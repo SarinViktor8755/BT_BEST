@@ -1,0 +1,48 @@
+apply plugin: 'java'
+sourceCompatibility = 1.6
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+sourceSets.main.java.srcDirs = [ "src/" ]
+project.ext.mainClassName = "main.java.com.ServerLauncher"
+
+task run(dependsOn: classes, type: JavaExec) {
+    main = project.mainClassName
+    classpath = sourceSets.main.runtimeClasspath
+    standardInput = System.in
+    ignoreExitValue = true
+
+}
+
+task createSarin_v(type: Jar) {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from files(sourceSets.main.output.classesDirs)
+    from files(sourceSets.main.output.resourcesDir)
+
+  //  from {configurations.compileClasspath.collect {zipTree(it)}}
+
+    from {
+    (configurations.compileClasspath.findAll { !it.path.endsWith(".pom") }).collect {
+        it.isDirectory() ? it : zipTree(it)
+    }}
+
+    manifest {
+        attributes 'Main-Class': project.mainClassName
+    }
+}
+configurations {
+    javabob
+}
+dependencies {
+    implementation project(path: ':core')
+    javabob project(path: ':core')
+    implementation 'org.json:json:20220924'
+
+}
+
+eclipse.project {
+    name = appName + "-serCS"
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}

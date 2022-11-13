@@ -1,0 +1,33 @@
+
+button.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+b
+  rotate: false
+  xy: 1, 321
+  size: 158, 158
+  orig: 158, 158
+  offset: 0, 0
+  index: -1
+ba
+  rotate: false
+  xy: 1, 161
+  size: 158, 158
+  orig: 158, 158
+  offset: 0, 0
+  index: -1
+br
+  rotate: false
+  xy: 161, 321
+  size: 158, 158
+  orig: 158, 158
+  offset: 0, 0
+  index: -1
+stick
+  rotate: false
+  xy: 1, 1
+  size: 158, 158
+  orig: 158, 158
+  offset: 0, 0
+  index: -1
