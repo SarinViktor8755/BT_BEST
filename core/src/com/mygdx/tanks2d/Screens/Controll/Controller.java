@@ -37,12 +37,12 @@ public class Controller {
     final private Stage stage;
 
     OrthographicCamera cam;
+    OrthographicCamera cameraGUI;
 
     private boolean inTuchMove;
     private boolean attackButon;
     private boolean voiceButton;
     private boolean chance;
-
 
 
     final private Vector2 distance;
@@ -86,6 +86,7 @@ public class Controller {
 
         // gsp.getAssetManager().get("de.pack", TextureAtlas.class);
         time_in_game = 0;
+        this.gamePlayScreen = gsp;
 
         distance = new Vector2();
         inTuchMove = false;
@@ -95,7 +96,12 @@ public class Controller {
 
         this.directionMovement = new Vector2(0, 0);
         cam = new OrthographicCamera();
-
+//////////////////////////////////
+        cam = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        cam.position.set(0, 0, 0);
+        //  cam.setToOrtho(true); // flip y-axis
+        cam.update();
+        /////////
         viewport = new FitViewport(MainGame.WHIDE_SCREEN, MainGame.HIDE_SCREEN, cam);
         contollerOn = false;
 
@@ -107,12 +113,12 @@ public class Controller {
 
         font = gsp.getAMG().get("fonts/font.fnt", BitmapFont.class);
         Label.LabelStyle style = new Label.LabelStyle(font, Color.WHITE);
-        font.getData().setScale(.8f);
+        font.getData().setScale(.5f);
         font.getColor().set(.5f, .5f, .5f, 1);
 
 
-        final float sw = MainGame.WHIDE_SCREEN;
-        final float sh = MainGame.HIDE_SCREEN;
+        final float sw = Gdx.graphics.getWidth();
+        final float sh = Gdx.graphics.getHeight();
 
         banner = new Banner(gsp.getBatch());
 
@@ -179,7 +185,7 @@ public class Controller {
 
                 chance = true;
                 setChance(true);
-            //    System.out.println("changingGoal");
+                //    System.out.println("changingGoal");
                 return false;
             }
 
@@ -190,12 +196,13 @@ public class Controller {
             }
         });
 
-        voiceButtonImg =  new Image((Texture) gsp.getMainGame().getAMG().get("microphone.png"));
+        voiceButtonImg = new Image((Texture) gsp.getMainGame().getAMG().get("microphone.png"));
         voiceButtonImg.setSize(90, 90);
         voiceButtonImg.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                voiceButton = true;
+                //   voiceButton = true;
+
                 return true;
             }
 
@@ -240,8 +247,6 @@ public class Controller {
 
         changingGoal.setSize(55, 55);
         changingGoal.setPosition(sw - 100, 105);
-
-
 
 
         Group gropuButton = new Group();
@@ -320,7 +325,6 @@ public class Controller {
         changingGoal.setColor(1, 1, 1, .3f);
 
 
-
     }
 
     public boolean isButtonChangingOpponent() {
@@ -347,10 +351,35 @@ public class Controller {
 
     }
 
-    public void draw() {
+    public void randerGUI(SpriteBatch batch) {
+        batch.begin();
+try {
+    batch.setColor(1,1,1,1);
+        batch.draw(gamePlayScreen.getAMG().get("button.pack", TextureAtlas.class).findRegion("ba").getTexture(),
+                Gdx.graphics.getWidth()/2, // ширина экрана 
+                Gdx.graphics.getHeight()-50 // высота экрана
+                ,200,200);
+        //font.draw(batch,"asdsda",Gdx.,50);
+
+
+    } catch (NullPointerException e) {
+        e.printStackTrace();
+    }finally {
+    batch.end();
+    }
+
+    }
+
+    public void draw(SpriteBatch batch) {
+
+
         this.update();
+
         stage.draw();
         //    System.out.println(this.inTuchMove);
+
+            randerGUI(batch);
+
     }
 
     public void resize(int width, int height) {
@@ -370,20 +399,32 @@ public class Controller {
     }
 
     private void update() {
+//        System.out.println();
+//        System.out.println(cameraGUI.viewportHeight );
+//        System.out.println(cameraGUI.viewportWidth );
+//
+//        System.out.println("Gdx.graphics.getWidth() ");
+//        System.out.println(Gdx.graphics.getWidth() );
+//        System.out.println(Gdx.graphics.getHeight());
+//
+//        System.out.println("Gdx.graphics.getDisplayMode().height");
+//        System.out.println(Gdx.graphics.getDisplayMode().height );
+//        System.out.println(Gdx.graphics.getDisplayMode().width );
+
 
         banner.update();
 
         // labelHP = MathUtils.random(5,50);
         //labelHP.setText("HP: " + hp);
         //System.out.println(buttonChangingOpponent);
-       // changingGoal.setVisible(contollerOn);
+        // changingGoal.setVisible(contollerOn);
 
 
-        time_in_game+=Gdx.graphics.getDeltaTime();
-       // setBlueCommand(45 - (int) time_in_game);
-        score_blue.setText("TIME_MATH "+(45 - (int) time_in_game));
-   //     setBlueCommand((int) time_in_game);
-    //    System.out.println((time_in_game) + "  --");
+        time_in_game += Gdx.graphics.getDeltaTime();
+        // setBlueCommand(45 - (int) time_in_game);
+        score_blue.setText("TIME_MATH " + (45 - (int) time_in_game));
+        //     setBlueCommand((int) time_in_game);
+        //    System.out.println((time_in_game) + "  --");
 
 
         pointStick.setVisible(contollerOn);
@@ -393,7 +434,7 @@ public class Controller {
 
         if (buttonChangingOpponent) changingGoal.setColor(1, 1, 1, .3f);
         else changingGoal.setColor(1, 0, 0, .1f);
-        if(!contollerOn) changingGoal.setColor(1,1,1,1);
+        if (!contollerOn) changingGoal.setColor(1, 1, 1, 1);
     }
 
     public void setContollerOn(boolean contollerOn) {

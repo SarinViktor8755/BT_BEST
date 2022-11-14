@@ -250,7 +250,7 @@ public class GamePlayScreen implements Screen {
 
             this.batch.end();
             //  this.getGameSpace().getLighting().renderLights(cameraGame.getCamera()); временно
-            this.controller.draw();
+            this.controller.draw(this.getBatch());
             this.getBatch().setColor(1, 1, 1, 1);
 
         } catch (ConcurrentModificationException e) {

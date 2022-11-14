@@ -1,6 +1,9 @@
 package main.java.com;
 
+import static com.esotericsoftware.minlog.Log.LEVEL_INFO;
+
 import com.badlogic.gdx.math.MathUtils;
+import com.esotericsoftware.minlog.Log;
 import com.mygdx.tanks2d.Locations.GameSpace;
 import com.mygdx.tanks2d.Locations.MapsList;
 
@@ -155,9 +158,9 @@ public class MainGame {
                       //  if(MathUtils.randomBoolean(0.5f))gameServer.indexBot.clearAllBot();
 
                       //  System.out.println("Tokkens :: " + gameServer.lp.getPlayersTokken());
+                     //   gameServer.server.
 
-
-
+                     //   Log.set(LEVEL_INFO);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
