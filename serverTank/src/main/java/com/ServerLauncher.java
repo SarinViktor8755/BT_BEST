@@ -3,7 +3,7 @@ package main.java.com;
 import java.io.IOException;
 
 public class ServerLauncher {
-    public static main.java.com.GameServer server;
+    public static GameServer server;
 
     public static void main(String[] args) throws IOException {
         System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");

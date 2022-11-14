@@ -1,9 +1,14 @@
 package main.java.com;
 
+import static com.mygdx.tanks2d.ClientNetWork.Network.register;
 
+import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
+import com.mygdx.tanks2d.ClientNetWork.Heading_type;
+import com.mygdx.tanks2d.ClientNetWork.Network;
+import com.mygdx.tanks2d.ClientNetWork.VoiceChat.VoiceChatServer;
 
 
 import java.io.IOException;
@@ -19,7 +24,7 @@ import main.java.com.Units.SpaceMap.IndexMap;
 public class GameServer {
 
     Server server;
-    main.java.com.MainGame mainGame;
+    MainGame mainGame;
     IndexBot indexBot; // количество играков - по нему боты орентируюься сколько их нужно = для автобаласа
     private VoiceChatServer relay;
 
