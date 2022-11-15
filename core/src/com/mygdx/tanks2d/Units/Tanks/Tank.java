@@ -26,7 +26,6 @@ public class Tank {
 
     Texture img, img_1, img2, imgB, imgB2, img_1B, imgr, body, towers;
 
-
     Texture target;
 
     float raz;
@@ -62,7 +61,7 @@ public class Tank {
         position = new Vector2(MathUtils.random(0, gsp.getGameSpace().WITH_LOCATION), MathUtils.random(0, gsp.getGameSpace().HEIHT_LOCATION));
         direction = new Vector2(0, 1);
         direction.setToRandomDirection();
-
+        hp = 100;
 
         direction_tower = new Vector2(0, 1);
         direction_tower.setAngleDeg(direction.angleDeg());
@@ -86,8 +85,6 @@ public class Tank {
         target = gsp.getAMG().get("target.png", Texture.class);
         //////////////////
         replace_textures();
-
-        hp = 100;
 
 
         target.setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.Linear);
@@ -154,7 +151,7 @@ public class Tank {
         try {
             if (this.tr.getNomTarget() != null) {
                 targetCoordinat = gsp.getTanksOther().getTankForID(this.tr.getNomTarget()).getPosition();
-               // gsp.getGameSpace().getLighting().setLasetOn(true);
+                // gsp.getGameSpace().getLighting().setLasetOn(true);
             }
         } catch (NullPointerException e) {
             e.printStackTrace();
@@ -349,7 +346,7 @@ public class Tank {
 
 //        gsp.getGameSpace().getLighting().setPointL(position.x, position.y); //освещение перемещение
 //        gsp.getGameSpace().getLighting().setCone(position.x, position.y, direction.angleDeg());
-     //   gsp.getGameSpace().getLighting().setConeTower(position.x, position.y, direction_tower.angleDeg());
+        //   gsp.getGameSpace().getLighting().setConeTower(position.x, position.y, direction_tower.angleDeg());
     }
 
     public void getTargetCamera(Vector2 t) {
@@ -358,7 +355,7 @@ public class Tank {
         //  gsp.getCameraGame().moveFloatCameraToPoint(temp.x, temp.y, (int) 3.5); //камера перемещение
 //        gsp.getGameSpace().getLighting().setPointL(position.x, position.y); //освещение перемещение
 //        gsp.getGameSpace().getLighting().setCone(position.x, position.y, direction.angleDeg());
-     //   gsp.getGameSpace().getLighting().setConeTower(position.x, position.y, direction_tower.angleDeg());
+        //   gsp.getGameSpace().getLighting().setConeTower(position.x, position.y, direction_tower.angleDeg());
     }
 
     public boolean redyToAttack() {
@@ -371,7 +368,11 @@ public class Tank {
 
     public boolean isLive() {
         //  System.out.println(hp + "  hp");
-        if (hp < 1) return false;
-        return true;
+        if (hp > 0) return true;
+        return false;
+    }
+
+    public float getTime_Tackt(){
+        return tr.getTimerTackt();
     }
 }

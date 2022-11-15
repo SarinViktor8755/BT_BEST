@@ -204,11 +204,6 @@ public class GamePlayScreen implements Screen {
 
     @Override
     public void render(float delta) {
-
-      //  System.out.println(mainGame.getScreen());
-       // System.out.println(mainGame.isMainMenuScreen() + " @@@@@@");
-        //  System.out.println(MapsList.getMapForServer());
-
         update();
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -227,9 +222,7 @@ public class GamePlayScreen implements Screen {
             this.getGameSpace().getRadspurens().randerCrater(batch);// следы от Crater
             this.getGameSpace().getRadspurens().randerRadspurens(batch);// следы от танка
 
-
             this.pc.randerGarbage(batch);
-
 
             //this.tanksOther.updateOtherTank(mainGame.getMainClient().isOnLine()); /// обновление других танков с сервреа (позиция) или локальной зоны
             this.tanksOther.randerOtherTanks(getBatch());      // визуализация других танков

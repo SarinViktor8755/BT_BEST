@@ -67,6 +67,8 @@ public class Controller {
 
     private GamePlayScreen gamePlayScreen;
 
+    private Texture track;
+
     private boolean buttonChangingOpponent;
 
     private int frag = 0;
@@ -325,6 +327,7 @@ public class Controller {
         changingGoal.setColor(1, 1, 1, .3f);
 
 
+        track = gamePlayScreen.getAMG().get("pause_screen/treck_bar.png", Texture.class);
     }
 
     public boolean isButtonChangingOpponent() {
@@ -353,20 +356,38 @@ public class Controller {
 
     public void randerGUI(SpriteBatch batch) {
         batch.begin();
-try {
-    batch.setColor(1,1,1,1);
-        batch.draw(gamePlayScreen.getAMG().get("button.pack", TextureAtlas.class).findRegion("ba").getTexture(),
-                Gdx.graphics.getWidth()/2, // ширина экрана 
-                Gdx.graphics.getHeight()-50 // высота экрана
-                ,200,200);
-        //font.draw(batch,"asdsda",Gdx.,50);
+        try {
+//            batch.setColor(1, 1, 1, 1);
+//            batch.draw(gamePlayScreen.getAMG().get("button.pack", TextureAtlas.class).findRegion("ba").getTexture(),
+//                    Gdx.graphics.getWidth() / 2, // ширина экрана
+//                    Gdx.graphics.getHeight() - 50 // высота экрана
+//                    , 200, 200);
+//            //font.draw(batch,"asdsda",Gdx.,50);
+/////////////////////////////////////////////////
+            float n = Gdx.graphics.getWidth() / 2 - 100;
+            float tt = gamePlayScreen.getTank().getTime_Tackt();
 
 
-    } catch (NullPointerException e) {
-        e.printStackTrace();
-    }finally {
-    batch.end();
-    }
+            if (tt < 1) {
+                batch.setColor(1, 1, 1, 1);
+                batch.draw(track,
+                        n, // ширина экрана
+                        Gdx.graphics.getHeight() - 50 // высота экрана
+                        , gamePlayScreen.getTank().getTime_Tackt() * 200, 6);
+                batch.setColor(1, 1, 1, .3f);
+                batch.draw(track,
+                        n, // ширина экрана
+                        Gdx.graphics.getHeight() - 50 // высота экрана
+                        , 200, 6);
+                batch.setColor(1, 1, 1, 1);
+            }
+
+
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        } finally {
+            batch.end();
+        }
 
     }
 
@@ -378,7 +399,7 @@ try {
         stage.draw();
         //    System.out.println(this.inTuchMove);
 
-            randerGUI(batch);
+        randerGUI(batch);
 
     }
 

@@ -39,6 +39,10 @@ public class TowerRotation { /// поворот любой башни ЛОГИК
         // this.myCommand  =
     }
 
+    public float getTimerTackt(){
+        return timerTackt;
+    }
+
     public void update(float delta) {
         makingDecisionTower(delta);
         this.timerTackt += delta;
