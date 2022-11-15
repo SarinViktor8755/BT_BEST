@@ -2,6 +2,7 @@ package com.mygdx.tanks2d;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
@@ -50,9 +51,9 @@ public class MainGame extends Game {
 	static public int status = STATUS_GAME_MENU;
 
 	public MainGame(int tip) {
+
 		mainClient = new MainClient(this);
 		// assetManager = new AssetManager();
-
 
 		assetsManagerGame = new AssetsManagerGame(new AssetManager());
 		// assetsManagerGame.loadAllAssetMenu();
@@ -69,6 +70,7 @@ public class MainGame extends Game {
 
 	@Override
 	public void create() {
+		//System.out.println("!!! " +  Gdx.graphics.getWidth());
 		// tokken = NikName.getTokken();
 		assetsManagerGame.loadAllAssetMenu();
 		mainMenu = new MenuScreen(this);

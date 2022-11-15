@@ -239,16 +239,16 @@ public class Controller {
 //        });
         ////////////////////////////////////////////////////////////////////////////////////
         stick.setSize(90, 90);
-        stick.setPosition(0, 0);
-
+//        stick.setPosition(0, 0);
+//
         attacButton.setSize(55, 55);
-        attacButton.setPosition(sw - 100, 40);
-
+        attacButton.setPosition(480 - 70, 40);
+//
         voiceButtonImg.setSize(55, 55);
-        voiceButtonImg.setPosition(sw - 100, 170);
-
+        voiceButtonImg.setPosition(480 - 70, 170);
+//
         changingGoal.setSize(55, 55);
-        changingGoal.setPosition(sw - 100, 105);
+        changingGoal.setPosition(480 - 70, 105);
 
 
         Group gropuButton = new Group();
@@ -263,6 +263,7 @@ public class Controller {
         gropuButton.addActor(gropuStick);
         gropuButton.addActor(attacButton);
         gropuButton.addActor(voiceButtonImg);
+        //   gropuButton.setPosition(50,50);
 
         gropuButton.addActor(changingGoal);
 
@@ -270,20 +271,20 @@ public class Controller {
 ///////////////////
         // skinGame = gsp.getMainGame().assetManager.get("skin/metal-ui.json", Skin.class);
         labelHP = new Label("HP:", style);
-        labelHP.setX(30);
+        //  labelHP.setX(sw);
         labelHP.setY(sh - 40);
         stage.addActor(labelHP);
 
         ///////////////////////////////
         score_red = new Label("RED:", style);
         score_red.setColor(Color.RED);
-        score_red.setX(30);
+        //  score_red.setX(sw);
         score_red.setY(sh - 70);
         stage.addActor(score_red);
 
         score_blue = new Label("BLUE:", style);
         score_blue.setColor(Color.BLUE);
-        score_blue.setX(30);
+        // score_blue.setX(30);
         score_blue.setY(sh - 100);
         stage.addActor(score_blue);
 
@@ -364,7 +365,7 @@ public class Controller {
 //                    , 200, 200);
 //            //font.draw(batch,"asdsda",Gdx.,50);
 /////////////////////////////////////////////////
-            float n = Gdx.graphics.getWidth() / 2 - 100;
+            float n = MainGame.WHIDE_SCREEN / 2 - 100;
             float tt = gamePlayScreen.getTank().getTime_Tackt();
 
 
@@ -372,12 +373,12 @@ public class Controller {
                 batch.setColor(1, 1, 1, 1);
                 batch.draw(track,
                         n, // ширина экрана
-                        Gdx.graphics.getHeight() - 50 // высота экрана
+                        MainGame.HIDE_SCREEN - 50 // высота экрана
                         , gamePlayScreen.getTank().getTime_Tackt() * 200, 6);
                 batch.setColor(1, 1, 1, .3f);
                 batch.draw(track,
                         n, // ширина экрана
-                        Gdx.graphics.getHeight() - 50 // высота экрана
+                        MainGame.HIDE_SCREEN - 50 // высота экрана
                         , 200, 6);
                 batch.setColor(1, 1, 1, 1);
             }
