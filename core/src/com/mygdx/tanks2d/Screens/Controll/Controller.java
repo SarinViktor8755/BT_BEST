@@ -62,6 +62,8 @@ public class Controller {
     private Label live_score_red;
     private Label live_score_blue;
     private Label my_frag;
+
+    private Label timer;
     /////////////
     private BitmapFont font;
 
@@ -271,22 +273,22 @@ public class Controller {
 ///////////////////
         // skinGame = gsp.getMainGame().assetManager.get("skin/metal-ui.json", Skin.class);
         labelHP = new Label("HP:", style);
-        //  labelHP.setX(sw);
+        labelHP.setX(sw);
         labelHP.setY(sh - 40);
         stage.addActor(labelHP);
 
         ///////////////////////////////
         score_red = new Label("RED:", style);
         score_red.setColor(Color.RED);
-        //  score_red.setX(sw);
+        score_red.setX(sw);
         score_red.setY(sh - 70);
         stage.addActor(score_red);
 
-        score_blue = new Label("BLUE:", style);
-        score_blue.setColor(Color.BLUE);
-        // score_blue.setX(30);
-        score_blue.setY(sh - 100);
-        stage.addActor(score_blue);
+        timer = new Label("", style);
+        timer.setColor(Color.WHITE);
+        timer.setX(MainGame.WHIDE_SCREEN / 2 - 35);
+        timer.setY(MainGame.HIDE_SCREEN - 25);
+        stage.addActor(timer);
 
 
         my_frag = new Label("frags : " + frag, style);
@@ -444,7 +446,9 @@ public class Controller {
 
         time_in_game += Gdx.graphics.getDeltaTime();
         // setBlueCommand(45 - (int) time_in_game);
-        score_blue.setText("TIME_MATH " + (45 - (int) time_in_game));
+
+
+        timer.setText(format_time((int)time_in_game));
         //     setBlueCommand((int) time_in_game);
         //    System.out.println((time_in_game) + "  --");
 
@@ -465,6 +469,15 @@ public class Controller {
 
     public void setButtonChangingOpponent(boolean buttonChangingOpponent) {
         this.buttonChangingOpponent = buttonChangingOpponent;
+    }
+
+    private String format_time(int time) {// орматировтаь время под часы игры
+        int      min = time / 60 % 60,
+                sec = time / 1 % 60;
+        return String.format("%02d:%02d",min, sec);
+
+        //return result;
+
     }
 
     public float getTime_in_game() {
