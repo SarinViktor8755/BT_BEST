@@ -299,14 +299,14 @@ public class Controller {
 
         live_score_red = new Label("RED_LIVE:", style);
         live_score_red.setColor(Color.RED);
-        live_score_red.setX(30);
-        live_score_red.setY(sh - 160);
+        live_score_red.setX(MainGame.WHIDE_SCREEN / 2 + 40);
+        live_score_red.setY(MainGame.HIDE_SCREEN - 32);
         stage.addActor(live_score_red);
-
+/////////
         live_score_blue = new Label("BLUE_LIVE:", style);
         live_score_blue.setColor(Color.BLUE);
-        live_score_blue.setX(30);
-        live_score_blue.setY(sh - 190);
+        live_score_blue.setX(MainGame.WHIDE_SCREEN / 2 - 60);
+        live_score_blue.setY(MainGame.HIDE_SCREEN - 32);
         stage.addActor(live_score_blue);
 
 
