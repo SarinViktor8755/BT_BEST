@@ -66,6 +66,8 @@ public class MainGame {
                        // System.out.println("50");
 
                         StatisticMath.key_recalculate_statistics = true;
+
+
                   //      System.out.println();
 
                         //StatisticMath.printSttisticMath();
@@ -153,7 +155,9 @@ public class MainGame {
                         System.out.println("600");
                         gameServer.indexBot.updateCountBot(gameServer.countLivePlayer(), targetPlayer); // контроль количество ботов
                         gameServer.lp.getStatisticMath().counting_p(); /// пересчет игры
-                        gameServer.lp.print_list_player();
+
+                        gameServer.server.getUpdateThread();
+                       // gameServer.lp.print_list_player();
 
                       //  if(MathUtils.randomBoolean(0.5f))gameServer.indexBot.clearAllBot();
 
@@ -161,6 +165,11 @@ public class MainGame {
                      //   gameServer.server.
 
                      //   Log.set(LEVEL_INFO);
+//                        if(MathUtils.randomBoolean(.005f)){
+//                            gameServer.server.close();
+//                            gameServer.server.start();
+//                        }
+
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

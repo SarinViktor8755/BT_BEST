@@ -125,10 +125,10 @@ public class GamePlayScreen implements Screen {
 
     public void update() {
         //mainGame.getMainClient().
-        mainGame.getMainClient().checkConnect(Heading_type.STATUS_GAME);
+        //mainGame.getMainClient().checkConnect(Heading_type.STATUS_GAME);
 
-        disconect_protection();
-
+       // disconect_protection();
+        mainGame.getMainClient().checkConnect(Heading_type.IN_GAME); // проверяет на коннект переподключется
         getMainGame().updateClien();
 
         // кинуть на сервер мои координаты
@@ -174,12 +174,13 @@ public class GamePlayScreen implements Screen {
     private void disconect_protection() {
         if (!mainGame.getMainClient().getClient().isConnected()) {
             if (MathUtils.randomBoolean(.005f)) {
-                try {
-                    tanksOther.deathAllPlayers();
-                    mainGame.getMainClient().getClient().reconnect(5000);
-                } catch (IOException e) {
-                    //     e.printStackTrace();
-                }
+//                try {
+//                    tanksOther.deathAllPlayers();
+//                  //  mainGame.getMainClient().getClient().reconnect(5000);
+//                 //   reconectClienNewThred();
+//                } catch (IOException e) {
+//                    //     e.printStackTrace();
+//                }
             }
             //mainGame.transitionScreenGameToMenu();
         }

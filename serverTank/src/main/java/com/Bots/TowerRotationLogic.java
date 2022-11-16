@@ -93,8 +93,8 @@ public class TowerRotationLogic { /// поворот любой башни ЛО�
         if(lp.getPlayerForId(dbBot.getNomTarget()).getPosi().dst2(p.getPosi()) > rast_to_target) dbBot.setNomTarget(null);
          //   System.out.println("ckeck_target");
         }catch (NullPointerException e){
-         //   System.out.println("NullPointerException  ckeck_target");
-            e.printStackTrace();
+            System.out.println("NullPointerException  ckeck_target");
+          //  e.printStackTrace();
         }
         return true;
     }

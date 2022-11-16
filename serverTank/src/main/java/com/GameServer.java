@@ -38,7 +38,8 @@ public class GameServer {
         GameServer.break_in_the_game = false;
 
         int bufferSize = 44100; // Recommened value.
-        server = new Server(bufferSize, bufferSize);
+
+        server = new Server(10000000,9000000);
         register(server);
         server.bind(Network.tcpPort, Network.udpPort);
         server.start();
@@ -52,8 +53,11 @@ public class GameServer {
 
                                @Override
                                public void disconnected(Connection connection) {
-                                   lp.getPlayerForId(connection.getID()).setStatus(Heading_type.DISCONECT_PLAYER);
-                                   lp.getPlayerForId(connection.getID()).setPosition(-10000, -10000);
+                                   try {
+                                       lp.getPlayerForId(connection.getID()).setStatus(Heading_type.DISCONECT_PLAYER);
+                                       lp.getPlayerForId(connection.getID()).setPosition(-10000, -10000);
+                                   }catch (NullPointerException e){}
+
                                    send_DISCONECT_PLAYER(connection.getID());
                                }
 
