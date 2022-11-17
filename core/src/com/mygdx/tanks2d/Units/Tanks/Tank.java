@@ -300,7 +300,8 @@ public class Tank {
         // System.out.println(this.tr.getNomTarget());
 
         if (tr.getNomTarget() != null) {
-            sb.setColor(1, 1, 1, .4f);
+            float ag = Interpolation.fade.apply(getTime_Tackt());
+            sb.setColor(ag, 1 - ag, ag, .4f);
             sb.draw(target,
                     targetCoordinat.x - 35, targetCoordinat.y - 35,
                     35, 35,
@@ -372,7 +373,7 @@ public class Tank {
         return false;
     }
 
-    public float getTime_Tackt(){
+    public float getTime_Tackt() {
         return tr.getTimerTackt();
     }
 }
