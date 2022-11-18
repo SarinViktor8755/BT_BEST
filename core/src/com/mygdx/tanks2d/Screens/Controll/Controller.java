@@ -59,8 +59,10 @@ public class Controller {
     private Label score_red;
     private Label score_blue;
 
-    private Label live_score_red;
-    private Label live_score_blue;
+    private Label live_score_red; //// количество живых 
+    private Label live_score_blue; /// количество живых
+
+
     private Label my_frag;
 
     private Label timer;
