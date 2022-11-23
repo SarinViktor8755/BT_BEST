@@ -157,7 +157,7 @@ public class MainGame {
                         gameServer.lp.getStatisticMath().counting_p(); /// пересчет игры
 
                         gameServer.server.getUpdateThread();
-                       // gameServer.lp.print_list_player();
+                        gameServer.lp.print_list_player();
 
                       //  if(MathUtils.randomBoolean(0.5f))gameServer.indexBot.clearAllBot();
 

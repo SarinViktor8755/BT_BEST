@@ -126,6 +126,15 @@ public class MainGame extends Game {
 
 	}
 
+	public void goMenuForPause() { // выход из игры в меню
+		this.screen.dispose();
+		this.mainMenu.dispose();
+		//this.gamePlayScreen.dispose();
+		mainMenu = new MenuScreen(this);
+		this.setScreen(mainMenu);
+
+	}
+
 	public AssetsManagerGame getAMG() {
 		return assetsManagerGame;
 	}

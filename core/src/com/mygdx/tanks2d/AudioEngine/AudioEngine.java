@@ -114,13 +114,15 @@ public class AudioEngine {
     }
 
     public void pleySoundKickStick(float x, float y, float x1, float y1) {
-        if(isPause()) return;
+        try {
+            if(isPause()) return;
+            float distanc = countVolmeDistantion(x, y, x1, y1);
+            if (distanc <= 0) return;
+            long id = sound.play();
+            sound.setPitch(id, MathUtils.random(.95f, 1.1f));
+            sound.setVolume(id, distanc);
+        }catch (NullPointerException | IllegalArgumentException e){}
 
-        float distanc = countVolmeDistantion(x, y, x1, y1);
-        if (distanc <= 0) return;
-        long id = sound.play();
-        sound.setPitch(id, MathUtils.random(.95f, 1.1f));
-        sound.setVolume(id, distanc);
     }
 
     public void pleySoundKickStick(float vol) {

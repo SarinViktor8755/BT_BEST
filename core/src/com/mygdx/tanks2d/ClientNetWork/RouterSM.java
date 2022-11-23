@@ -162,10 +162,12 @@ public class RouterSM {
         }
 
         if (Heading_type.DISCONECT_PLAYER == sm.tip) {
-            System.out.println("del  " + ((int) sm.p1));
+            System.out.println("del  DISCONECT_PLAYER" + ((int) sm.p1) + "       !!!!!!!!!!!! ПРОВЕРИТЬ ");
             mainGame.getGamePlayScreen().getTanksOther().getTankForID((int) sm.p1).setLive(-1000);
             mainGame.getGamePlayScreen().getTanksOther().getTankForID((int) sm.p1).getPosition().set(-10_000, -10_000);
             mainGame.getGamePlayScreen().getTanksOther().delPlayer((int) sm.p1);
+
+
             // mainGame.getGamePlayScreen().getTanksOther().delPlayer((int)sm.p1);
             return;
         }

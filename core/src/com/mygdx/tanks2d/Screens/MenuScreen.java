@@ -80,7 +80,11 @@ public class MenuScreen implements Screen {
         batch = new SpriteBatch();
         camera = new OrthographicCamera();
         viewport = new StretchViewport(MainGame.WHIDE_SCREEN, MainGame.HIDE_SCREEN, camera);
+
         viewport.apply();
+
+       // viewport.apply(true);
+
         camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0);
         camera.update();
         camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0);
@@ -237,6 +241,14 @@ public class MenuScreen implements Screen {
         this.batch.setProjectionMatrix(camera.combined);
         this.batch.begin();
 
+//        System.out.println(timeInScreen);
+//        System.out.println(viewport.getScreenX());
+//        System.out.println(viewport.getScreenY());
+//        System.out.println(camera.position);
+//       // System.out.println(viewport.getScreenY());
+//        System.out.println(0 + ((MathUtils.sin(timeInScreen) + 1) / 2) * 20);
+//        System.out.println();
+
 
         batch.setColor(1 - timerStartGame, 1 - timerStartGame, 1 - timerStartGame, 1);
 
@@ -249,7 +261,6 @@ public class MenuScreen implements Screen {
         batch.setColor(1 - timerStartGame, 1 - timerStartGame, 1, 1);
 
         batch.draw(wallpaper, viewport.getScreenX(), viewport.getScreenY() - ((Interpolation.bounce.apply((MathUtils.sin(timeInScreen) + 1) / 2) * 10)));
-
         batch.draw(logo, viewport.getScreenX(), viewport.getScreenY() + 14 + ((MathUtils.cos(timeInScreen * 3) + 1) / 2) * 20);
 
         if (!mainClient.getClient().isConnected()) {
@@ -332,10 +343,12 @@ public class MenuScreen implements Screen {
 
     @Override
     public void dispose() {
-        batch.dispose();
-        stageMenu.dispose();
-        wallpaper.dispose();
-        logo.dispose();
+        try {
+            batch.dispose();
+            stageMenu.dispose();
+            wallpaper.dispose();
+            logo.dispose();
+        }catch (IllegalArgumentException e){}
     }
 
     public void setStartgameMP(boolean startgame) {

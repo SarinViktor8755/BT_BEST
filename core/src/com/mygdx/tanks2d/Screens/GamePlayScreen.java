@@ -124,6 +124,11 @@ public class GamePlayScreen implements Screen {
     }
 
     public void update() {
+        if(MathUtils.randomBoolean(.005f)){
+            System.out.println("goMenuForPause");
+            mainGame.goMenuForPause();
+        }
+
         //mainGame.getMainClient().
         //mainGame.getMainClient().checkConnect(Heading_type.STATUS_GAME);
 
