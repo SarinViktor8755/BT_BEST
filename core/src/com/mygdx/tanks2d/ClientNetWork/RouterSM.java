@@ -130,19 +130,20 @@ public class RouterSM {
             try {
 
                 int id = mainGame.getMainClient().getClient().getID();
-                if (id == (int) sm.p1) {
+                if (id == (int) sm.p1) {   // мой танк
                     System.out.println(sm);
                     saveParametrsMyTank(sm);
-                } else {
-                    OpponentsTanks opponentsTanks = mainGame.getGamePlayScreen().getTanksOther().getTankForID((int) sm.p1);
+                } else {   // чужие танки  - получают урон
+                    OpponentsTanks ot = mainGame.getGamePlayScreen().getTanksOther().getTankForID((int) sm.p1);
                     //    System.out.println(opponentsTanks);
                     // opponentsTanks = new OpponentsTanks();
-                    opponentsTanks.hp = (int) sm.p3;
-                    opponentsTanks.command = (int) sm.p2;
-                    opponentsTanks.setNikPlayer(sm.textM);
-                    if (!opponentsTanks.isLive()) {
+                    ot.hp = (int) sm.p3;
+                    ot.command = (int) sm.p2;
+                    ot.setNikPlayer(sm.textM);
+
+                    if (!ot.isLive()) {
                         if (mainGame.getGamePlayScreen().getTimeInGame() < 1) return;
-                        mainGame.getGamePlayScreen().getPc().addAnimationDeath(opponentsTanks.getPosition().x, opponentsTanks.getPosition().y);
+                        mainGame.getGamePlayScreen().getPc().addAnimationDeath(ot.getPosition().x, ot.getPosition().y);
 
 
 //                        System.out.println(sm + " !!!!!!!!!!!!!!!!!!!!!!!");

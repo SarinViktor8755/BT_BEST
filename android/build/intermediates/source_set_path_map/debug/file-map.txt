@@ -1,0 +1,8 @@
+com.mygdx.tanks2d.android-pngs-0 C:\game_dev\BT_BEST\android\build\generated\res\pngs\debug
+com.mygdx.tanks2d.android-resValues-1 C:\game_dev\BT_BEST\android\build\generated\res\resValues\debug
+com.mygdx.tanks2d.android-rs-2 C:\game_dev\BT_BEST\android\build\generated\res\rs\debug
+com.mygdx.tanks2d.android-mergeDebugResources-3 C:\game_dev\BT_BEST\android\build\intermediates\incremental\debug\mergeDebugResources\merged.dir
+com.mygdx.tanks2d.android-mergeDebugResources-4 C:\game_dev\BT_BEST\android\build\intermediates\incremental\debug\mergeDebugResources\stripped.dir
+com.mygdx.tanks2d.android-merged_res-5 C:\game_dev\BT_BEST\android\build\intermediates\merged_res\debug
+com.mygdx.tanks2d.android-android-6 C:\game_dev\BT_BEST\android\res
+com.mygdx.tanks2d.android-debug-7 C:\game_dev\BT_BEST\android\src\debug\res

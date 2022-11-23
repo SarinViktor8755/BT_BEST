@@ -127,8 +127,8 @@ public class MenuScreen implements Screen {
         //  singelGame = new TextButton("Singel game", skinMenu);
         ///System.out.println(textField.getText());
 
-        textButton.setX(350);
-        textButton.setY(30);
+        textButton.setX(270);
+        textButton.setY(80);
         textButton.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -225,15 +225,19 @@ public class MenuScreen implements Screen {
         stageMenu.addActor(statusConnetct);
 
         Gdx.input.setInputProcessor(stageMenu);
+        mainGame.audioEngine.playMusicPaseMenu();
     }
 
     @Override
     public void show() {
+        mainGame.audioEngine.stopSoundOfTracks();
         mainGame.audioEngine.playMusicPaseMenu();
     }
 
     @Override
     public void render(float delta) {
+
+     //   mainGame.audioEngine.stopSoundOfTracks();
         upDateScreen();
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);

@@ -29,7 +29,7 @@ public class AudioEngine {
     private Long idTower;
     private float timer_towr_ratation;
     private boolean timerTower;
-    private static long pause_music_id;
+    private static long pause_music_id = 1;
 
     private static Vector2 tempV = new Vector2(0, 0);
 
@@ -148,8 +148,13 @@ public class AudioEngine {
 
     ///////////////
     public void playMusicPaseMenu() {
-        pause_music_id = music_pause.loop(1);
         stopSoundOfTracks();
+   //     System.out.println("!!!!!!!!!! music_pause__pause_music_id " + pause_music_id);
+      //  if(pause_music_id == -999) return;
+//        if(pause_music_id != -1) return;
+      //  if(pause_music_id<1) return;
+        pause_music_id = music_pause.loop(1);
+        //music_pause.
         // pause_music_id = music_pause.play();
 
     }
