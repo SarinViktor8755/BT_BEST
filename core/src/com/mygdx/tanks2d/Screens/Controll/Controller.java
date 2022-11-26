@@ -1,5 +1,7 @@
 package com.mygdx.tanks2d.Screens.Controll;
 
+import static com.mygdx.tanks2d.MainGame.WIDTH_SCREEN;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -108,12 +110,12 @@ public class Controller {
         this.directionMovement = new Vector2(0, 0);
         cam = new OrthographicCamera();
 //////////////////////////////////
-        cam = new OrthographicCamera(MainGame.WIDTH_SCREEN, MainGame.HEIGHT_SCREEN);
+        cam = new OrthographicCamera(WIDTH_SCREEN, MainGame.HEIGHT_SCREEN);
         cam.position.set(0, 0, 0);
         //  cam.setToOrtho(true); // flip y-axis
         cam.update();
         /////////
-        viewport = new FillViewport(MainGame.WIDTH_SCREEN, MainGame.HEIGHT_SCREEN, cam);
+        viewport = new FillViewport(WIDTH_SCREEN, MainGame.HEIGHT_SCREEN, cam);
         contollerOn = false;
 
 
@@ -261,13 +263,15 @@ public class Controller {
 //        stick.setPosition(0, 0);
 //
         attacButton.setSize(55, 55);
-        attacButton.setPosition(480 - 70, 40);
+        attacButton.setPosition(WIDTH_SCREEN - 90, 40);
+
+        changingGoal.setSize(55, 55);
+        changingGoal.setPosition(WIDTH_SCREEN - 90, 105);
 //
         voiceButtonImg.setSize(55, 55);
-        voiceButtonImg.setPosition(480 - 70, 170);
+        voiceButtonImg.setPosition(WIDTH_SCREEN - 90, 170);
 //
-        changingGoal.setSize(55, 55);
-        changingGoal.setPosition(480 - 70, 105);
+
 
 
         Group gropuButton = new Group();
@@ -305,7 +309,7 @@ public class Controller {
         timer.setColor(Color.WHITE);
 //        timer.setX(1);
 //        timer.setY(gsp.getMainGame().hb);
-        timer.setX(MainGame.WIDTH_SCREEN / 2 - 35);
+        timer.setX(WIDTH_SCREEN / 2 - 35);
         timer.setY(gsp.getMainGame().hu - 25);
 
         stage.addActor(timer);
@@ -319,13 +323,13 @@ public class Controller {
 
         live_score_red = new Label("RED_LIVE:", style);
         live_score_red.setColor(Color.RED);
-        live_score_red.setX(MainGame.WIDTH_SCREEN / 2 + 40);
+        live_score_red.setX(WIDTH_SCREEN / 2 + 40);
         live_score_red.setY(gsp.getMainGame().hu - 35);
         stage.addActor(live_score_red);
 /////////
         live_score_blue = new Label("BLUE_LIVE:", style);
         live_score_blue.setColor(Color.BLUE);
-        live_score_blue.setX(MainGame.WIDTH_SCREEN / 2 - 60);
+        live_score_blue.setX(WIDTH_SCREEN / 2 - 60);
         live_score_blue.setY(gsp.getMainGame().hu - 35);
         stage.addActor(live_score_blue);
 
@@ -381,7 +385,7 @@ public class Controller {
 
         batch.begin();
         try {
-            float n = MainGame.WIDTH_SCREEN / 2 - 100;
+            float n = WIDTH_SCREEN / 2 - 100;
             float tt = gamePlayScreen.getTank().getTime_Tackt();
 
 
