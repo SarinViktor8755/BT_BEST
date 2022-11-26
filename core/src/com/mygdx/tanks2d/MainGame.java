@@ -52,7 +52,7 @@ public class MainGame extends Game {
     static public final int WIDTH_SCREEN = 555; // шириа экрана Х
     static public final int HEIGHT_SCREEN = 315;  // высота экрана У
 
-    public float wb, wu; // шириа экрана Х
+   // public float wb, wu; // шириа экрана Х
     public float hb, hu; // высота экрана У
 
     static public int status = STATUS_GAME_MENU;
@@ -238,13 +238,13 @@ public class MainGame extends Game {
 
     ///////////////////////////////////////////
 
-    public float getWb() {
-        return wb;
-    }
-
-    public float getWu() {
-        return wu;
-    }
+//    public float getWb() {
+//        return wb;
+//    }
+//
+//    public float getWu() {
+//        return wu;
+//    }
 
     public float getHb() {
         return hb;

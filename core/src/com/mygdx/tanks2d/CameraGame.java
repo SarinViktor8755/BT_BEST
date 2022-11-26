@@ -26,9 +26,9 @@ public class CameraGame {
     private Vector2 speed; // определяемая скосроть с назначением новойо точки
     private Vector2 targetPoint; // точка к которой двиать камеру
 
-    private final int hl, wl;
+    private final int hl, wl , dw;
 
-    public CameraGame(float HIDE_SCREEN, float WHIDE_SCREEN, int sm, int hl, int wl) {
+    public CameraGame(float HIDE_SCREEN, float WHIDE_SCREEN, int sm, int hl, int wl, float delta_wheile) {
         this.camera = new OrthographicCamera();
         this.viewport = new FillViewport(HIDE_SCREEN, WHIDE_SCREEN, camera);
       //  this.viewport = new FillViewport(HIDE_SCREEN, WHIDE_SCREEN, camera);
@@ -37,6 +37,9 @@ public class CameraGame {
         this.sizeMap = sm;
         this.wl = wl;
         this.hl = hl;
+        this.dw = (int)delta_wheile;
+
+
     }
 
     public void moveFloatCameraToPoint(float x, float y, float speed) {
@@ -124,10 +127,10 @@ public class CameraGame {
             camera.position.x = wl - scaledViewportWidthHalfExtent;
 
         // Vertical
-        if (camera.position.y < scaledViewportHeightHalfExtent)
-            camera.position.y = scaledViewportHeightHalfExtent;
-        else if (camera.position.y > hl - scaledViewportHeightHalfExtent)
-            camera.position.y = hl - scaledViewportHeightHalfExtent;
+        if (camera.position.y < scaledViewportHeightHalfExtent - this.dw) //hb
+            camera.position.y = scaledViewportHeightHalfExtent- this.dw;
+        else if (camera.position.y > hl - scaledViewportHeightHalfExtent +  this.dw)
+            camera.position.y = hl - scaledViewportHeightHalfExtent + this.dw;
     }
 
     public Vector3 getCameraPosition() {
