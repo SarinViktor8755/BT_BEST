@@ -20,6 +20,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.tanks2d.MainGame;
 import com.mygdx.tanks2d.Screens.GamePlayScreen;
@@ -78,6 +79,10 @@ public class Controller {
     private int frag = 0;
 
     private boolean contollerOn;
+//
+//
+//    public float sw;
+//    public float sh;
 
 
     Vector2 directionMovement; // Направление движения
@@ -103,12 +108,12 @@ public class Controller {
         this.directionMovement = new Vector2(0, 0);
         cam = new OrthographicCamera();
 //////////////////////////////////
-        cam = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        cam = new OrthographicCamera(MainGame.WIDTH_SCREEN, MainGame.HEIGHT_SCREEN);
         cam.position.set(0, 0, 0);
         //  cam.setToOrtho(true); // flip y-axis
         cam.update();
         /////////
-        viewport = new FitViewport(MainGame.WHIDE_SCREEN, MainGame.HIDE_SCREEN, cam);
+        viewport = new FillViewport(MainGame.WIDTH_SCREEN, MainGame.HEIGHT_SCREEN, cam);
         contollerOn = false;
 
 
@@ -121,10 +126,20 @@ public class Controller {
         Label.LabelStyle style = new Label.LabelStyle(font, Color.WHITE);
         font.getData().setScale(.5f);
         font.getColor().set(.5f, .5f, .5f, 1);
+        System.out.println(font.getCapHeight() + "getCapHeight");
 
-
-        final float sw = Gdx.graphics.getWidth();
-        final float sh = Gdx.graphics.getHeight();
+//        float procent = GamePlayScreen.get_percentage_of_proportions(MainGame.WIDTH_SCREEN/(float)MainGame.HEIGHT_SCREEN,Gdx.graphics.getWidth()/(float)Gdx.graphics.getHeight());
+//
+//        System.out.println(
+//                procent
+//
+//        );
+//        float a = ((float) MainGame.HEIGHT_SCREEN)/ 100 * procent ;
+//
+//
+//        sh = a;
+//        sw  = a;
+//        System.out.println("!!!!!!!!!!!!!  " + sw);
 
         banner = new Banner(gsp.getBatch());
 
@@ -275,40 +290,43 @@ public class Controller {
 ///////////////////
         // skinGame = gsp.getMainGame().assetManager.get("skin/metal-ui.json", Skin.class);
         labelHP = new Label("HP:", style);
-        labelHP.setX(sw);
-        labelHP.setY(sh - 40);
+        labelHP.setX(1);
+        labelHP.setY(1 - 40);
         stage.addActor(labelHP);
 
         ///////////////////////////////
         score_red = new Label("RED:", style);
         score_red.setColor(Color.RED);
-        score_red.setX(sw);
-        score_red.setY(sh - 70);
+        score_red.setX(1);
+        score_red.setY(1 - 70);
         stage.addActor(score_red);
-
+//      //  MathUtils.map(MainGame.HEIGHT_SCREEN,MainGame.WHIDE_SCREEN,Gdx.graphics.getHeight(),Gdx.graphics.getWidth(),MainGame.HEIGHT_SCREEN - 70);
         timer = new Label("", style);
         timer.setColor(Color.WHITE);
-        timer.setX(MainGame.WHIDE_SCREEN / 2 - 35);
-        timer.setY(MainGame.HIDE_SCREEN - 25);
+//        timer.setX(1);
+//        timer.setY(gsp.getMainGame().hb);
+        timer.setX(MainGame.WIDTH_SCREEN / 2 - 35);
+        timer.setY(gsp.getMainGame().hu - 25);
+
         stage.addActor(timer);
-
-
+//
+//
         my_frag = new Label("frags : " + frag, style);
         my_frag.setColor(Color.YELLOW);
         my_frag.setX(30);
-        my_frag.setY(sh - 130);
+        my_frag.setY( 130);
         stage.addActor(my_frag);
 
         live_score_red = new Label("RED_LIVE:", style);
         live_score_red.setColor(Color.RED);
-        live_score_red.setX(MainGame.WHIDE_SCREEN / 2 + 40);
-        live_score_red.setY(MainGame.HIDE_SCREEN - 32);
+        live_score_red.setX(MainGame.WIDTH_SCREEN / 2 + 40);
+        live_score_red.setY(gsp.getMainGame().hu - 35);
         stage.addActor(live_score_red);
 /////////
         live_score_blue = new Label("BLUE_LIVE:", style);
         live_score_blue.setColor(Color.BLUE);
-        live_score_blue.setX(MainGame.WHIDE_SCREEN / 2 - 60);
-        live_score_blue.setY(MainGame.HIDE_SCREEN - 32);
+        live_score_blue.setX(MainGame.WIDTH_SCREEN / 2 - 60);
+        live_score_blue.setY(gsp.getMainGame().hu - 35);
         stage.addActor(live_score_blue);
 
 
@@ -360,29 +378,25 @@ public class Controller {
     }
 
     public void randerGUI(SpriteBatch batch) {
+
         batch.begin();
         try {
-//            batch.setColor(1, 1, 1, 1);
-//            batch.draw(gamePlayScreen.getAMG().get("button.pack", TextureAtlas.class).findRegion("ba").getTexture(),
-//                    Gdx.graphics.getWidth() / 2, // ширина экрана
-//                    Gdx.graphics.getHeight() - 50 // высота экрана
-//                    , 200, 200);
-//            //font.draw(batch,"asdsda",Gdx.,50);
-/////////////////////////////////////////////////
-            float n = MainGame.WHIDE_SCREEN / 2 - 100;
+            float n = MainGame.WIDTH_SCREEN / 2 - 100;
             float tt = gamePlayScreen.getTank().getTime_Tackt();
 
 
             if (tt < 1) {
                 batch.setColor(1, 1, 1, 1);
                 batch.draw(track,
+
+
                         n, // ширина экрана
-                        MainGame.HIDE_SCREEN - 50 // высота экрана
+                        gamePlayScreen.getMainGame().hu - 50 // высота экрана
                         , gamePlayScreen.getTank().getTime_Tackt() * 200, 6);
                 batch.setColor(1, 1, 1, .3f);
                 batch.draw(track,
                         n, // ширина экрана
-                        MainGame.HIDE_SCREEN - 50 // высота экрана
+                        gamePlayScreen.getMainGame().hu - 50 // высота экрана
                         , 200, 6);
                 batch.setColor(1, 1, 1, 1);
             }
@@ -398,7 +412,16 @@ public class Controller {
 
     public void draw(SpriteBatch batch) {
 
-
+//        System.out.println(
+//                MathUtils.map(Gdx.graphics.getHeight(),Gdx.graphics.getWidth(),MainGame.HIDE_SCREEN,MainGame.WHIDE_SCREEN,MainGame.HIDE_SCREEN - 70)
+//
+//        );
+//        System.out.println(Gdx.graphics.getWidth()/(float)Gdx.graphics.getHeight());
+//        System.out.println(MainGame.WHIDE_SCREEN/(float)MainGame.HIDE_SCREEN);
+//        System.out.println(GamePlayScreen.get_percentage_of_proportions(MainGame.WHIDE_SCREEN/(float)MainGame.HIDE_SCREEN,Gdx.graphics.getWidth()/(float)Gdx.graphics.getHeight()));
+//        //System.out.println(GamePlayScreen.get_percentage_of_proportions(110,100));
+//        System.out.println("-------------------  " + (MainGame.WHIDE_SCREEN- sw));
+//        System.out.println("-------------------  " + sw);
         this.update();
 
         stage.draw();
@@ -425,6 +448,7 @@ public class Controller {
     }
 
     private void update() {
+
 //        System.out.println();
 //        System.out.println(cameraGUI.viewportHeight );
 //        System.out.println(cameraGUI.viewportWidth );

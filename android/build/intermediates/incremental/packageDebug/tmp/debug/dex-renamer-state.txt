@@ -1,4 +1,4 @@
-#Wed Nov 23 22:23:44 GMT+06:00 2022
+#Sat Nov 26 15:11:06 GMT+06:00 2022
 base.0=C\:\\game_dev\\BT_BEST\\android\\build\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

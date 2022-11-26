@@ -39,10 +39,10 @@ public class PauseScreen implements Screen {
         this.batch = new SpriteBatch();
         this.mainGame = mainGame;
 
-        viewport = new StretchViewport(MainGame.WHIDE_SCREEN, MainGame.HIDE_SCREEN, camera);
+        viewport = new StretchViewport(MainGame.WIDTH_SCREEN, MainGame.HEIGHT_SCREEN, camera);
         //viewport.apply();
         camera = new OrthographicCamera();
-        viewport = new StretchViewport(MainGame.WHIDE_SCREEN / 2, MainGame.HIDE_SCREEN / 2, camera);
+        viewport = new StretchViewport(MainGame.WIDTH_SCREEN / 2, MainGame.HEIGHT_SCREEN / 2, camera);
         viewport.apply();
         camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0);
         camera.update();

@@ -74,7 +74,7 @@ public class GamePlayScreen implements Screen {
         this.inputProcessorPC = new InputProcessorDesktop(this);
         Gdx.input.setInputProcessor(inputProcessorPC);
         this.pos = new Vector2(150, 150);
-        this.cameraGame = new CameraGame(MainGame.WHIDE_SCREEN * 1.2f, MainGame.HIDE_SCREEN * 1.2f, gameSpace.getSizeLocationPixel(), gameSpace.WITH_LOCATION, gameSpace.HEIHT_LOCATION);
+        this.cameraGame = new CameraGame(MainGame.WIDTH_SCREEN * 1.2f, MainGame.HEIGHT_SCREEN * 1.2f, gameSpace.getSizeLocationPixel(), gameSpace.WITH_LOCATION, gameSpace.HEIHT_LOCATION);
         this.cameraGame.jampCameraToPoint(pos.x, pos.y);
 
 //        this.controller = new Controller(this, mainGame.getAssetManager().get("flatDark26.png", Texture.class), mainGame.getAssetManager().get("flatDark261.png", Texture.class));
@@ -124,15 +124,15 @@ public class GamePlayScreen implements Screen {
     }
 
     public void update() {
-        if(MathUtils.randomBoolean(.005f)){
-            System.out.println("goMenuForPause");
-            mainGame.goMenuForPause();
-        }
+//        if(MathUtils.randomBoolean(.005f)){
+//            System.out.println("goMenuForPause");
+//            mainGame.goMenuForPause();
+//        }
 
         //mainGame.getMainClient().
         //mainGame.getMainClient().checkConnect(Heading_type.STATUS_GAME);
 
-       // disconect_protection();
+        // disconect_protection();
         mainGame.getMainClient().checkConnect(Heading_type.IN_GAME); // проверяет на коннект переподключется
         getMainGame().updateClien();
 
@@ -150,11 +150,11 @@ public class GamePlayScreen implements Screen {
 
         //System.out.println(controller.isVoiceButton());
 
-        if(controller.isVoiceButton()){
+        if (controller.isVoiceButton()) {
 //            System.out.println("-------------");
 //            System.out.println(mainGame.getMainClient().getClient());
 //            System.out.println(mainGame.getMainClient().getVoiceChatClient());
-            mainGame.getMainClient().getVoiceChatClient().sendVoice(mainGame.getMainClient().getClient(),Gdx.graphics.getDeltaTime());
+            mainGame.getMainClient().getVoiceChatClient().sendVoice(mainGame.getMainClient().getClient(), Gdx.graphics.getDeltaTime());
         }
 
 
@@ -162,7 +162,7 @@ public class GamePlayScreen implements Screen {
             controller.setChance(false);
             if (tank.isLive()) {
                 tank.getTr().changeTarget();
-            }else {
+            } else {
                 getCameraGame().createNewTargetDeathRhim(getTanksOther().getRandomPlayer());
             }
         }
@@ -210,6 +210,7 @@ public class GamePlayScreen implements Screen {
 
     @Override
     public void render(float delta) {
+
         update();
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -257,10 +258,10 @@ public class GamePlayScreen implements Screen {
         }
 
         mainGame.startPauseScreen();
-     //  if(MathUtils.randomBoolean(.005f)) MainGame.setFlagChangeScreen((byte) MainGame.STATUS_GAME_PAUSE);
+        //  if(MathUtils.randomBoolean(.005f)) MainGame.setFlagChangeScreen((byte) MainGame.STATUS_GAME_PAUSE);
     }
 
-    public AssetsManagerGame getAMG(){
+    public AssetsManagerGame getAMG() {
         return mainGame.getAMG();
     }
 
@@ -385,4 +386,6 @@ public class GamePlayScreen implements Screen {
     public void setScore_blue_command(int score_blue_command) {
         this.score_blue_command = score_blue_command;
     }
+
+
 }

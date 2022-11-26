@@ -1,7 +1,7 @@
 package com.mygdx.tanks2d;
 
-import static com.mygdx.tanks2d.MainGame.HIDE_SCREEN;
-import static com.mygdx.tanks2d.MainGame.WHIDE_SCREEN;
+import static com.mygdx.tanks2d.MainGame.HEIGHT_SCREEN;
+import static com.mygdx.tanks2d.MainGame.WIDTH_SCREEN;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -114,8 +114,8 @@ public class CameraGame {
 
 
     public void fixBounds() { // не выходила за края
-        float scaledViewportWidthHalfExtent = WHIDE_SCREEN * 1.2f * 0.5f;
-        float scaledViewportHeightHalfExtent = HIDE_SCREEN * 1.2f * 0.5f;
+        float scaledViewportWidthHalfExtent = WIDTH_SCREEN * 1.2f * 0.5f;
+        float scaledViewportHeightHalfExtent = HEIGHT_SCREEN * 1.2f * 0.5f;
 
         // Horizontal
         if (camera.position.x < scaledViewportWidthHalfExtent)
