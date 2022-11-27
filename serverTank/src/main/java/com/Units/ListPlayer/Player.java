@@ -32,6 +32,22 @@ public class Player {
 //        }
     }
 
+    public Player(int id, int command, boolean bot) {//bot
+        this.id = id;
+        hp = -1;
+        this.command = command;
+        nikName = Heading_type.DEFULT_NAME; // от куда он берется - это не понятно
+        pos = new Vector2(StatusPlayer.IN_MENU, StatusPlayer.IN_MENU); // если -999 - знаит ненажал кнопчку старт 998 нажал -y это счетчик на время смерти ))
+        body_rotation = new Vector2(1, 1);
+        status = StatusPlayer.IN_MENU;
+        tokken = id+":nikName";
+//        if (id < -99) {
+//            System.out.println(
+//                    "create " + id + "  " + getNikName());
+//            new Exception().printStackTrace();
+//        }
+    }
+
     public void setPosition(Vector2 p) {
         //  System.out.println(p);
 

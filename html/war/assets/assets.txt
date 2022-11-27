@@ -77,6 +77,8 @@ d:sound:sound:0:application/unknown:1
 a:sound/00708.ogg:sound/00708-b7bbea00c26d8771c34e61cd1c13b23b.ogg:12794:audio/ogg:1
 a:sound/bash.ogg:sound/bash-a9ce706fd81bb273675cadf8a4d622f4.ogg:5909:audio/ogg:1
 a:sound/BSB.ogg:sound/BSB-43de435a7a9f6ee3443066e42ccf6b69.ogg:15512:audio/ogg:1
+a:sound/dver.ogg:sound/dver-0475adc0e7cf37c7fed14516ce659ebf.ogg:14844:audio/ogg:1
+a:sound/eject_text.ogg:sound/eject_text-f2050f1ad2741c73d9c3be73f0904389.ogg:5002:audio/ogg:1
 a:sound/explode4.ogg:sound/explode4-9c43bb858d0c497057ef59797e257823.ogg:10768:audio/ogg:1
 a:sound/f.ogg:sound/f-bce605bdad08906991f2e7677e53182f.ogg:8945:audio/ogg:1
 a:sound/loose.ogg:sound/loose-3cff108d94ae52cf32d3c020c84cf647.ogg:14352:audio/ogg:1

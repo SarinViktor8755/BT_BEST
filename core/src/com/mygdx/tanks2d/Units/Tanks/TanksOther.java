@@ -134,6 +134,10 @@ public class TanksOther { /// много танков )))
                 ot.getPosition().add(temp.sub(ot.getPosition().cpy()).scl(Gdx.graphics.getDeltaTime() * 10));
                 //ot.getPosition().sub(temp.scl(Gdx.graphics.getDeltaTime()));
 //                System.out.println("frame TRUE");
+
+
+
+
             }
 
             float rotation = tRotation.set(p.xp, p.yp).cpy().sub(ot.getPosition()).angleDeg();
@@ -148,7 +152,7 @@ public class TanksOther { /// много танков )))
                 listSled.put(p.nom, listSled.get(p.nom) + Gdx.graphics.getDeltaTime()); /// СЛЕДЫ
         } else {
             try {
-                createOponent(p.xp, p.yp, p.nom, p.roy_tower);
+                createOponent(p.xp, p.yp, p.nom, p.roy_tower); // создаем новый !!!!!!!
             } catch (NullPointerException e) {
 
             }

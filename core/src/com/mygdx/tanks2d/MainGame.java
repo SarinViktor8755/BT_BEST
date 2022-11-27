@@ -232,7 +232,8 @@ public class MainGame extends Game {
         hb = convert_percentage_pixels(a, true);
         hu = HEIGHT_SCREEN - hb;
         if(a < 0) {hb  = 0; hu = HEIGHT_SCREEN;}
-        //  System.out.println("!!!!!! a " + a + "  " + hb + "  " + hu);
+         System.out.println("!!!!!! a " + a + "  " + hb + "  " + hu);
+
     }
 
 
