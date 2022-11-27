@@ -91,7 +91,14 @@ public class OpponentsTanks { // ОДИН ТАНК
     public void setPosition(Vector2 position) {
         this.position = position;
     }
+//p.xp, p.yp, p.nom, p.roy_tower
+    public void setPosition(float x, float y, float roy_tower) {
+        this.position.x = x;
+        this.position.y = y;
 
+
+    }
+/////
     public Vector2 getDirection() {
         return direction;
     }

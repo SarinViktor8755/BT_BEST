@@ -91,55 +91,20 @@ public class TanksOther { /// много танков )))
             OpponentsTanks ot = listOpponents.get(p.nom);
             /////////////
 
-
-            if (!newFrame) { // нет фрейма
-                if (ot.move) {
-                    temp.set(ot.getDirection()).clamp(90, 90).scl(Gdx.graphics.getDeltaTime());
-                    if (temp.len2() > 0.5929847) {
-                        ot.move = false;
-                        return;
-                    }
-
-                    //System.out.println(temp.len() + "  " + temp.len2());
-//                    ot.getPosition().add(temp);
-//                    System.out.println(temp.len());
-
-                }
-
-                //     System.out.println("frame FALSE");
-
-            } else { // есть фрейм - тогда смещаем танк к реальной точке перемещения
+            // есть фрейм - тогда смещаем танк к реальной точке перемещения
 
                 temp.set(p.xp, p.yp);
-
                 tRotation.set(p.xp, p.yp).sub(ot.getPosition());
-//                System.out.println("!!!! " + tRotation.angleDeg()+ "  _-"+ot.getDirection().angleDeg()
-//                +"  " + (tRotation.angleDeg() - ot.getDirection().angleDeg())
-//                );
+
                 float delta = tRotation.angleDeg() - ot.getDirection().angleDeg();
                 if (Math.abs(delta) > 10) {
                     delta = MathUtils.map(-360, 360, -1, 1, delta);
                 }
                 ot.getDirection().setAngleRad(delta);
-                //  System.out.println(tRotation.hasOppositeDirection(ot.getDirection()));
-
-                /// поворот
-//                if (Math.abs(temp.angleDeg() - ot.getDirection().angleDeg()) > 2) {
-//                    if (temp.angleDeg() - ot.getDirection().angleDeg() > 0)
-//                        ot.getDirection().rotateDeg(.005f);
-//                    else ot.getDirection().rotateDeg(-.005f);
-//                } else ot.getDirection().setAngleRad(temp.angleDeg());
-
-                //   System.out.println(ot.getDirection().angleDeg() + "  angel " + temp.angleDeg() + "   - " + (Math.abs(temp.angleDeg() - ot.getDirection().angleDeg())));
+/////////////////////////////////
+               if(temp.dst2(ot.getPosition())>500) ot.getPosition().set(p.xp, p.yp);else
                 ot.getPosition().add(temp.sub(ot.getPosition().cpy()).scl(Gdx.graphics.getDeltaTime() * 10));
-                //ot.getPosition().sub(temp.scl(Gdx.graphics.getDeltaTime()));
-//                System.out.println("frame TRUE");
-
-
-
-
-            }
-
+////////////////////////////////
             float rotation = tRotation.set(p.xp, p.yp).cpy().sub(ot.getPosition()).angleDeg();
 
             if (temp.set(p.xp, p.yp).sub(ot.getPosition().cpy()).scl(10).len2() > 50)
