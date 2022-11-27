@@ -447,6 +447,37 @@ public class IndexBot extends Thread {
         names.add("Boba Fett");
         names.add("Sarin");
         names.add("Sasha");
+
+
+        names.add("Buddy");
+        names.add("King");
+        names.add("Champ");
+        names.add("Bro");
+        names.add("Bubba");
+        names.add("Tiny");
+        names.add("Sport");
+        names.add("Mouse");
+        names.add("Bug");
+
+        names.add("Oldie");
+        names.add("Teacup");
+        names.add("Kiddo");
+        names.add("Smarty");
+        names.add("Ace");
+        names.add("Goon");
+        names.add("Punk");
+        names.add("Rambo");
+        names.add("Smiley");
+
+        names.add("Handsome");
+        names.add("Boo");
+        names.add("Stud");
+        names.add("Bae");
+        names.add("Babe");
+        names.add("Honey");
+        names.add("Casanova");
+        names.add("Sexy");
+        names.add("McDreamy");
         return names.get(MathUtils.random(names.size() - 1)) + "@Bot";
     }
 
