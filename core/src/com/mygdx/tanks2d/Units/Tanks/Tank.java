@@ -93,12 +93,17 @@ public class Tank {
         deltaSled = 0;
         tr = new TowerRotation(direction, direction_tower, position, gsp.getTanksOther().listOpponents, getMy_Command());
         targetCoordinat = new Vector2(0, 0);
-        deltaSledVec.set(this.getPosition());
+
 
         //  gsp.getCameraGame().createNewTargetDeathRhim(gsp.getTanksOther().getRandomPlayer());
 
         this.point_respown_blue.set(gsp.getGameSpace().getRasp1());
         this.point_respown_red.set(gsp.getGameSpace().getRasp2());
+
+
+        if(my_Command == Heading_type.RED_COMMAND)position.set(point_respown_red);
+        if(my_Command == Heading_type.BLUE_COMMAND)position.set(point_respown_blue);
+        deltaSledVec.set(this.getPosition());
 
     }
 

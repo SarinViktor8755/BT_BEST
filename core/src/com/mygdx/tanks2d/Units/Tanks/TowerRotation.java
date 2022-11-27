@@ -65,8 +65,21 @@ public class TowerRotation { /// поворот любой башни ЛОГИК
             turningTower(returnAngle(listOpponents.get(nomTarget).getPosition(), myPosition), delta);
             if (MathUtils.randomBoolean(.05f)) targetDetectionTower(this.myPosition); // ищем цели
             if (checkLen()) nomTarget = null;
+            if(changeCommand()) nomTarget = null;
+
         }
     }
+
+
+    public boolean changeCommand(){// проверяет команду
+        try {
+            return myCommand == listOpponents.get(nomTarget).getCommand();
+        }catch(NullPointerException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 
     private void turningTower(float targetAlign, float delta) { /// повернуть башню на градус
         if (!MathUtils.isEqual(direction_tower.angleDeg(), targetAlign, 1.2f)) {
