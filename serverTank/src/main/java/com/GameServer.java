@@ -78,8 +78,13 @@ public class GameServer {
                                        if(getLp().getPlayerForId(connection.getID()) == null) return;
                                        //надо проверить - есть литакой игрок
                                        lp.updatePosition(connection.getID(), (Network.PleyerPosition) object);
-                                       lp.sendToAllPlayerPosition(connection.getID(), (Network.PleyerPosition) object);
                                        lp.getPlayerForId(connection.getID()).setStatus(Heading_type.IN_GAME);
+                                       if(lp.getPlayerForId(connection.getID()).getTokken().equals("")) {
+                                           System.out.println("NO_TOOOKEN");
+                                           return;
+                                       }
+                                       lp.sendToAllPlayerPosition(connection.getID(), (Network.PleyerPosition) object);
+
                                        return;
                                    }
 

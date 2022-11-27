@@ -294,8 +294,8 @@ public class Controller {
 ///////////////////
         // skinGame = gsp.getMainGame().assetManager.get("skin/metal-ui.json", Skin.class);
         labelHP = new Label("HP:", style);
-        labelHP.setX(1);
-        labelHP.setY(1 - 40);
+        labelHP.setX(WIDTH_SCREEN / 2 - 180);
+        labelHP.setY(gsp.getMainGame().hu - 25);
         stage.addActor(labelHP);
 
         ///////////////////////////////

@@ -26,6 +26,7 @@ public class RouterMassege {
             gameServer.send_MAP_PARAMETOR(id_coonect);
             gameServer.lp.getPlayerForId(id_coonect).setNikName(sm.textM);
             gameServer.lp.getPlayerForId(id_coonect).setCommand((int)sm.p1);
+            gameServer.lp.getPlayerForId(id_coonect).setHp(100);
             gameServer.lp.getPlayerForId(id_coonect).setStatus(StatusPlayer.CLICK_BOTON_START);
             return;
         }
