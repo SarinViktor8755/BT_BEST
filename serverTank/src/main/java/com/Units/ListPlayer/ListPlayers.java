@@ -23,7 +23,7 @@ public class ListPlayers {
     private int size_list_player_in_game = 0;
 
     ConcurrentHashMap<Integer, Player> players;
-    ConcurrentHashMap<String, Integer> playersTokken; // tooken/ id
+  //  ConcurrentHashMap<String, Integer> playersTokken; // tooken/ id
 
     GameServer gameServer;
     Network.PleyerPositionNom pn = new Network.PleyerPositionNom();
@@ -56,7 +56,7 @@ public class ListPlayers {
 
     public ListPlayers(GameServer gameServer) {
         this.players = new ConcurrentHashMap<>();
-        this.playersTokken = new ConcurrentHashMap<>();
+       // this.playersTokken = new ConcurrentHashMap<>();
         this.gameServer = gameServer;
 
         //  System.out.println("install_ListPlayers : " + GameServer.getDate());
@@ -75,23 +75,24 @@ public class ListPlayers {
 
     }
 
-    public ConcurrentHashMap<String, Integer> getPlayersTokken() {
-        return playersTokken;
-    }
+   // public ConcurrentHashMap<String, Integer> getPlayersTokken() {
+//        return playersTokken;
+//    }
 
     public ConcurrentHashMap<Integer, Player> getPlayers() {
         return players;
     }
 
     private boolean checkTokken(String tokken, int connct_id) { // проверяет был литакой токкен
-        playersTokken.put(tokken, connct_id);
-        Integer p = playersTokken.get(tokken);
-        if (p == null) {
-            playersTokken.put(tokken, connct_id);
-            return false;
-        } else {
-            return true;
-        }
+//        playersTokken.put(tokken, connct_id);
+//        Integer p = playersTokken.get(tokken);
+//        if (p == null) {
+//            playersTokken.put(tokken, connct_id);
+//            return false;
+//        } else {
+//            return true;
+//        }
+        return true;
     }
 
     public void addPlayer(int con) {
@@ -103,6 +104,24 @@ public class ListPlayers {
     public void addPlayer(Player p) { // конструктоор для ботов
         update_the_average_coordinates_of_the_commands();
         this.players.put(p.getId(), p);
+    }
+
+    public boolean find_tokken_and_replace(int id, String tokken) { // токкен есть обносить путь до него
+        boolean key = false;
+        Iterator<Map.Entry<Integer, Player>> entries = players.entrySet().iterator();
+        while (entries.hasNext()) {
+            Map.Entry<Integer, Player> e = entries.next();
+            if (tokken.equals(e.getValue().getTokken())) {
+                players.put(id, e.getValue());
+                // players.remove(e.getValue().status =);
+                e.getValue().status = Heading_type.DISCONECT_PLAYER;
+                key = true;
+            }
+
+
+        }
+        if(!key) players.put((int)id, new Player(id));
+        return key;
     }
 
     public void clearList() {

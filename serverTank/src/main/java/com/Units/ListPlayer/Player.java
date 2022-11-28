@@ -17,9 +17,24 @@ public class Player {
 
     String tokken, nikName;
 
+    public Player(int id) {
+        this.id = id;
+        hp = 100;
+        this.command = 0;
+        nikName = Heading_type.DEFULT_NAME; // от куда он берется - это не понятно
+        pos = new Vector2(StatusPlayer.IN_MENU, StatusPlayer.IN_MENU); // если -999 - знаит ненажал кнопчку старт 998 нажал -y это счетчик на время смерти ))
+        body_rotation = new Vector2(1, 1);
+        status = StatusPlayer.IN_MENU;
+//        if (id < -99) {
+//            System.out.println(
+//                    "create " + id + "  " + getNikName());
+//            new Exception().printStackTrace();
+//        }
+    }
+
     public Player(int id, int command) {
         this.id = id;
-        hp = -1;
+        hp = 100;
         this.command = command;
         nikName = Heading_type.DEFULT_NAME; // от куда он берется - это не понятно
         pos = new Vector2(StatusPlayer.IN_MENU, StatusPlayer.IN_MENU); // если -999 - знаит ненажал кнопчку старт 998 нажал -y это счетчик на время смерти ))

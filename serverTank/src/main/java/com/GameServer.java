@@ -84,7 +84,6 @@ public class GameServer {
                                            return;
                                        }
                                        lp.sendToAllPlayerPosition(connection.getID(), (Network.PleyerPosition) object);
-
                                        return;
                                    }
 
