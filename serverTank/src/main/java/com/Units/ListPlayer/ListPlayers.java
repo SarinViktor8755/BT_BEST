@@ -106,7 +106,7 @@ public class ListPlayers {
         this.players.put(p.getId(), p);
     }
 
-    public boolean find_tokken_and_replace(int id, String tokken) { // токкен есть обносить путь до него
+    public boolean find_tokken_and_replace_old(int id, String tokken) { // токкен есть обносить путь до него
         boolean key = false;
         Iterator<Map.Entry<Integer, Player>> entries = players.entrySet().iterator();
         while (entries.hasNext()) {
@@ -122,6 +122,19 @@ public class ListPlayers {
         }
         if(!key) players.put((int)id, new Player(id));
         return key;
+    }
+
+    public void find_tokken_and_replace(int id, String tokken, int my_coomand) { // токкен есть обносить путь до него
+        players.put(id, new Player(id,my_coomand));/// добавили нового пользователя
+        Iterator<Map.Entry<Integer, Player>> entries = players.entrySet().iterator();
+        while (entries.hasNext()) { // удалить копию
+            Map.Entry<Integer, Player> e = entries.next();
+            if(e.getKey() == id) continue;
+            if (tokken.equals(e.getValue().getTokken())) {
+                e.getValue().status = Heading_type.DISCONECT_PLAYER;
+                gameServer.send_DISCONECT_PLAYER(e.getKey());
+            }
+        }
     }
 
     public void clearList() {

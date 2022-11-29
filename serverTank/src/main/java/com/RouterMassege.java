@@ -31,23 +31,8 @@ public class RouterMassege {
             return;
         }
         if (Heading_type.MY_TOKKEN == sm.tip) {
+            gameServer.getLp().find_tokken_and_replace(id_coonect,sm.textM,(int)sm.p1);
 
-
-
-
-//            if(gameServer.lp.getPlayersTokken().get(sm.textM)!= null){
-//               // Player p = gameServer.lp.getPlayerForId(gameServer.lp.getPlayersTokken().get(sm.textM));
-//                gameServer.lp.remove_player(gameServer.lp.getPlayersTokken().get(sm.textM));
-//                gameServer.lp.getPlayerForId(id_coonect).setTokken(sm.textM);
-//                gameServer.lp.getPlayersTokken().put(sm.textM, id_coonect);
-//            }else {
-//                // System.out.println("@@@@@@@@@!!!!!!!!!" + gameServer.lp.getPlayersTokken().get(sm.textM) + "  "+ sm.textM);
-//                /// проверка на дублева )) )
-//                gameServer.lp.getPlayerForId(id_coonect).setTokken(sm.textM);
-//                gameServer.lp.getPlayersTokken().put(sm.textM, id_coonect);
-//            }
-////            System.out.println(gameServer.lp.getPlayersTokken()+ "  "+ gameServer.lp.getPlayersTokken().size());
-////            System.out.println(gameServer.lp.getPlayers());
 
             return;
         }

@@ -11,7 +11,7 @@ public class DesktopLauncher {
 		config.setForegroundFPS(60);
 		config.useVsync(false);
 		config.setTitle("TanksPVP_2d");
-		config.setWindowedMode(MainGame.WHIDE_SCREEN  ,MainGame.HIDE_SCREEN);
+		config.setWindowedMode(MainGame.WIDTH_SCREEN  ,MainGame.HEIGHT_SCREEN);
 		new Lwjgl3Application(new MainGame(1), config);
 	}
 }
