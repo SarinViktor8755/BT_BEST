@@ -32,7 +32,7 @@ public class Player {
 //        }
     }
 
-    public Player(int id, int command) {
+    public Player(int id, int command,String tokken) {
         this.id = id;
         hp = 100;
         this.command = command;
@@ -40,6 +40,9 @@ public class Player {
         pos = new Vector2(StatusPlayer.IN_MENU, StatusPlayer.IN_MENU); // если -999 - знаит ненажал кнопчку старт 998 нажал -y это счетчик на время смерти ))
         body_rotation = new Vector2(1, 1);
         status = StatusPlayer.IN_MENU;
+        this.tokken = tokken;
+
+
 //        if (id < -99) {
 //            System.out.println(
 //                    "create " + id + "  " + getNikName());
@@ -55,7 +58,7 @@ public class Player {
         pos = new Vector2(StatusPlayer.IN_MENU, StatusPlayer.IN_MENU); // если -999 - знаит ненажал кнопчку старт 998 нажал -y это счетчик на время смерти ))
         body_rotation = new Vector2(1, 1);
         status = StatusPlayer.IN_MENU;
-        tokken = id+":nikName";
+        tokken = id+":bot_";
 //        if (id < -99) {
 //            System.out.println(
 //                    "create " + id + "  " + getNikName());
@@ -189,8 +192,8 @@ public class Player {
     }
 
     public boolean isClickButtonStart() {
-        // System.out.println(status);
-        if (getStatus() == StatusPlayer.IN_MENU) return false;
+        if (getPosi().x == -999) return false;
+     //   if (getStatus() == StatusPlayer.IN_MENU) return false;
         else return true;
     }
 

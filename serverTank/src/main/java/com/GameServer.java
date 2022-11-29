@@ -56,6 +56,7 @@ public class GameServer {
                                    try {
                                        lp.getPlayerForId(connection.getID()).setStatus(Heading_type.DISCONECT_PLAYER);
                                        lp.getPlayerForId(connection.getID()).setPosition(-10000, -10000);
+                                       getLp().getPlayers().remove(connection.getID());
                                    }catch (NullPointerException e){}
 
                                    send_DISCONECT_PLAYER(connection.getID());
@@ -63,10 +64,9 @@ public class GameServer {
 
                                @Override
                                public void connected(Connection connection) {
-                                   lp.addPlayer(connection.getID());
-                                   lp.getPlayerForId(connection.getID()).setStatus(Heading_type.IN_MENU);
+//                                   lp.addPlayer(connection.getID());
+//                                   lp.getPlayerForId(connection.getID()).setStatus(Heading_type.IN_MENU);
                                    send_MAP_PARAMETOR(connection.getID());
-
                                }
 
 
@@ -75,15 +75,11 @@ public class GameServer {
                                    relay.relayVoice(connection, object, server);
                                    ///      System.out.println(server.getConnections().length +"    -------------");
                                    if (object instanceof Network.PleyerPosition) {
-                                       if(getLp().getPlayerForId(connection.getID()) == null) return;
-                                       //надо проверить - есть литакой игрок
-                                       lp.updatePosition(connection.getID(), (Network.PleyerPosition) object);
-                                       lp.getPlayerForId(connection.getID()).setStatus(Heading_type.IN_GAME);
-                                       if(lp.getPlayerForId(connection.getID()).getTokken().equals("")) {
-                                           System.out.println("NO_TOOOKEN");
-                                           return;
-                                       }
+                                       Network.PleyerPosition pp = (Network.PleyerPosition) object;
+
                                        lp.sendToAllPlayerPosition(connection.getID(), (Network.PleyerPosition) object);
+                                       lp.getPlayerForId(connection.getID()).setPosition(pp.xp,pp.yp);
+                                       lp.getPlayerForId(connection.getID()).setRotTower(pp.roy_tower);
                                        return;
                                    }
 

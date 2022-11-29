@@ -1,10 +1,6 @@
 package main.java.com;
 
-import static com.esotericsoftware.minlog.Log.LEVEL_INFO;
 
-import com.badlogic.gdx.math.MathUtils;
-import com.esotericsoftware.minlog.Log;
-import com.mygdx.tanks2d.Locations.GameSpace;
 import com.mygdx.tanks2d.Locations.MapsList;
 
 import main.java.com.MatchOrganization.IndexMath;
@@ -61,9 +57,11 @@ public class MainGame {
             public void run() {
                 try {
                     while (true) {
+                        System.out.println(":::: 50");
                         if (gameServer.isServerLivePlayer()) Thread.sleep(timer_tread_50);
                         else Thread.sleep(450);
                        // System.out.println("50");
+
 
                         StatisticMath.key_recalculate_statistics = true;
 
@@ -111,6 +109,7 @@ public class MainGame {
             public void run() {
                 try {
                     while (true) {
+                        System.out.println(":::: 25");
                         if (gameServer.isServerLivePlayer()) Thread.sleep(timer_tread_25);
                         else Thread.sleep(timer_tread_50);
 
@@ -151,6 +150,7 @@ public class MainGame {
             public void run() {
                 try {
                     while (true) {
+                        System.out.println(":::: 600");
                         Thread.sleep(600);
                         System.out.println("600");
                         gameServer.indexBot.updateCountBot(gameServer.countLivePlayer(), targetPlayer); // контроль количество ботов

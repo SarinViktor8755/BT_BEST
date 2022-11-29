@@ -61,7 +61,7 @@ public class IndexBot extends Thread {
 
         System.out.println("Add_bot");
         int command = gs.getMainGame().getIndexMath().getCommand();
-        Player p = new Player(NOM_ID_BOT, command);
+        Player p = new Player(NOM_ID_BOT, command,true);
         //     System.out.println(command);
 
         p.setHp(100);
@@ -85,10 +85,8 @@ public class IndexBot extends Thread {
 
     public void updaeteBot(float deltaTime) {
         if(!gs.isServerLivePlayer()) return;
-
         actionBot(deltaTime);
         send_bot_coordinates();
-
     }
 
 

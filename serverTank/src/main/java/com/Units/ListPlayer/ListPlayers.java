@@ -23,7 +23,7 @@ public class ListPlayers {
     private int size_list_player_in_game = 0;
 
     ConcurrentHashMap<Integer, Player> players;
-  //  ConcurrentHashMap<String, Integer> playersTokken; // tooken/ id
+    //  ConcurrentHashMap<String, Integer> playersTokken; // tooken/ id
 
     GameServer gameServer;
     Network.PleyerPositionNom pn = new Network.PleyerPositionNom();
@@ -56,7 +56,7 @@ public class ListPlayers {
 
     public ListPlayers(GameServer gameServer) {
         this.players = new ConcurrentHashMap<>();
-       // this.playersTokken = new ConcurrentHashMap<>();
+        // this.playersTokken = new ConcurrentHashMap<>();
         this.gameServer = gameServer;
 
         //  System.out.println("install_ListPlayers : " + GameServer.getDate());
@@ -75,7 +75,7 @@ public class ListPlayers {
 
     }
 
-   // public ConcurrentHashMap<String, Integer> getPlayersTokken() {
+    // public ConcurrentHashMap<String, Integer> getPlayersTokken() {
 //        return playersTokken;
 //    }
 
@@ -97,7 +97,7 @@ public class ListPlayers {
 
     public void addPlayer(int con) {
         update_the_average_coordinates_of_the_commands();
-        this.players.put(con, new Player(con, gameServer.getMainGame().getIndexMath().getCommand()));
+        // this.players.put(con, new Player(con, gameServer.getMainGame().getIndexMath().getCommand()));
         //   System.out.println(this.players);
     }
 
@@ -120,21 +120,22 @@ public class ListPlayers {
 
 
         }
-        if(!key) players.put((int)id, new Player(id));
+        if (!key) players.put((int) id, new Player(id));
         return key;
     }
 
     public void find_tokken_and_replace(int id, String tokken, int my_coomand) { // токкен есть обносить путь до него
-        players.put(id, new Player(id,my_coomand));/// добавили нового пользователя
+
         Iterator<Map.Entry<Integer, Player>> entries = players.entrySet().iterator();
         while (entries.hasNext()) { // удалить копию
             Map.Entry<Integer, Player> e = entries.next();
-            if(e.getKey() == id) continue;
+            //      if(e.getKey() == id) continue;
             if (tokken.equals(e.getValue().getTokken())) {
                 e.getValue().status = Heading_type.DISCONECT_PLAYER;
                 gameServer.send_DISCONECT_PLAYER(e.getKey());
             }
         }
+        players.put(id, new Player(id, my_coomand, tokken));/// добавили нового пользователя
     }
 
     public void clearList() {
@@ -154,14 +155,14 @@ public class ListPlayers {
 //        return live_red_size_player;
 //    }
 
-    public Player updatePosition(int id, Network.PleyerPosition pp) { // записать парметры Игрока
-        Player p = players.get(id);
-        if (p == null)
-            players.put(id, new Player(id, gameServer.getMainGame().getIndexMath().getCommand()));
-        p.setPosition(pp.xp, pp.yp);
-        p.setRotTower(pp.roy_tower);
-        return p;
-    }
+//    public Player updatePosition(int id, Network.PleyerPosition pp) { // записать парметры Игрока
+////        Player p = players.get(id);
+////        if (p == null)
+////            players.put(id, new Player(id, gameServer.getMainGame().getIndexMath().getCommand()));
+////        p.setPosition(pp.xp, pp.yp);
+////        p.setRotTower(pp.roy_tower);
+////        return p;
+//    }
 
     public void remove_player(int id) { // del player
         this.players.remove(id);
@@ -316,20 +317,23 @@ public class ListPlayers {
             for (int i = 0, n = connections.length; i < n; i++) {
                 Connection connection = connections[i];
                 //  System.out.println(getPlayerForId(connection.getID()).isClickButtonStart());
-                if (!getPlayerForId(connection.getID()).isClickButtonStart()) continue;
+                try {
+                    if (!getPlayerForId(connection.getID()).isClickButtonStart()) continue;
+                    Player ppp = players.get(connections[i].getID());
+                    //float dst = Vector2.dst2(pn.xp, pn.yp, ppp.getPosi().x, ppp.getPosi().y);
 
-                Player ppp = players.get(connections[i].getID());
-                //float dst = Vector2.dst2(pn.xp, pn.yp, ppp.getPosi().x, ppp.getPosi().y);
+                    boolean bx = !MathUtils.isEqual(pn.xp, ppp.getPosi().x, 500);
+                    boolean by = !MathUtils.isEqual(pn.yp, ppp.getPosi().y, 350);
 
-                boolean bx = !MathUtils.isEqual(pn.xp, ppp.getPosi().x, 500);
-                boolean by = !MathUtils.isEqual(pn.yp, ppp.getPosi().y, 350);
-
-                boolean res = bx && by;
+                    boolean res = bx && by;
 //                (dst > 230400)
-                if (!ppp.isLive()) {
+                    if (!ppp.isLive()) {
+                        connection.sendUDP(pn);
+                    } else if ((((res) && !MathUtils.randomBoolean(.12f)))) continue;
                     connection.sendUDP(pn);
-                } else if ((((res) && !MathUtils.randomBoolean(.12f)))) continue;
-                connection.sendUDP(pn);
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
