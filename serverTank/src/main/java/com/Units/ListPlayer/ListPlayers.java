@@ -334,6 +334,7 @@ public class ListPlayers {
                     connection.sendUDP(pn);
                 } catch (NullPointerException e) {
                     e.printStackTrace();
+                    players.remove(connections[i].getID());
                 }
             }
         }

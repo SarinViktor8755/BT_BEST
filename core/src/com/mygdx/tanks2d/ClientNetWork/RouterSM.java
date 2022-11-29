@@ -128,10 +128,9 @@ public class RouterSM {
 
         if (Heading_type.PARAMETERS_PLAYER == sm.tip) {
             try {
-
                 int id = mainGame.getMainClient().getClient().getID();
                 if (id == (int) sm.p1) {   // мой танк
-                    System.out.println(sm);
+                    //System.out.println(sm);
                     saveParametrsMyTank(sm);
                 } else {   // чужие танки  - получают урон
                     OpponentsTanks ot = mainGame.getGamePlayScreen().getTanksOther().getTankForID((int) sm.p1);
@@ -140,7 +139,6 @@ public class RouterSM {
                     ot.hp = (int) sm.p3;
                     ot.command = (int) sm.p2;
                     ot.setNikPlayer(sm.textM);
-
                     if (!ot.isLive()) {
                         if (mainGame.getGamePlayScreen().getTimeInGame() < 1) return;
                         mainGame.getGamePlayScreen().getPc().addAnimationDeath(ot.getPosition().x, ot.getPosition().y);
@@ -152,7 +150,7 @@ public class RouterSM {
                 }
 
             } catch (NullPointerException e) {
-                //      e.printStackTrace();
+                      e.printStackTrace();
                 //  System.out.println("1");
 //                Tank myTank = mainGame.getGamePlayScreen().getTank();
 //                myTank.setHp((int) sm.p3);
