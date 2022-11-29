@@ -57,8 +57,13 @@ public class TowerRotation { /// поворот любой башни ЛОГИК
             if (MathUtils.randomBoolean(.3f)) targetDetectionTower(this.myPosition); // ищем цели
             nomTarget = selectTarget();
         } else {    // если  цели есть
-            if (!listOpponents.get(nomTarget).isLive()) { // сброс цели
-                target_tank = 0;
+            try {
+                if (!listOpponents.get(nomTarget).isLive()) { // сброс цели
+                    target_tank = 0;
+                    nomTarget = null;
+                    return;
+                }
+            }catch (NullPointerException e){
                 nomTarget = null;
                 return;
             }

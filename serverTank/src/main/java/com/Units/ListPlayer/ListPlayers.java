@@ -318,7 +318,8 @@ public class ListPlayers {
                 Connection connection = connections[i];
                 //  System.out.println(getPlayerForId(connection.getID()).isClickButtonStart());
                 try {
-                    if (!getPlayerForId(connection.getID()).isClickButtonStart()) continue;
+
+                    //     if (!getPlayerForId(connection.getID()).isClickButtonStart()) continue;
                     Player ppp = players.get(connections[i].getID());
                     //float dst = Vector2.dst2(pn.xp, pn.yp, ppp.getPosi().x, ppp.getPosi().y);
 

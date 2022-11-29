@@ -67,26 +67,30 @@ public class IndexBullets {
 
             if(np!=-1){
 
+                try {
 
-                delBullet(bullet); // /тут ели попали в игрок 1. минусуем хп 2. уничтожаем патрон 3. рассылаем игрока
-                Player player = gameServer.getLp().getPlayerForId(np);
-                gameServer.getLp().getPlayerForId(bullet.getAuthor_bullet()).getCommand();
-                if(gameServer.getLp().getPlayerForId(bullet.getAuthor_bullet()).getCommand() == player.getCommand()) {
-                //    System.out.println("frend");
-                    continue;
-                }
-                //System.out.println("vrag");
-                int  hp = player.minusHP(MathUtils.random(18,27));
-                gameServer.send_PARAMETERS_PLAYER(player); // рассылка всем
-                if(hp < 1){     // если игрок умер тогда присваиваем очки
-                    IndexMath.add_score_team(player.getCommand());
 
-                    /// отправить сообщение
+                    delBullet(bullet); // /тут ели попали в игрок 1. минусуем хп 2. уничтожаем патрон 3. рассылаем игрока
+                    Player player = gameServer.getLp().getPlayerForId(np);
+                    gameServer.getLp().getPlayerForId(bullet.getAuthor_bullet()).getCommand();
+                    if (gameServer.getLp().getPlayerForId(bullet.getAuthor_bullet()).getCommand() == player.getCommand()) {
+                        //    System.out.println("frend");
+                        continue;
+                    }
+                    //System.out.println("vrag");
+                    int hp = player.minusHP(MathUtils.random(18, 27));
+                    gameServer.send_PARAMETERS_PLAYER(player); // рассылка всем
+                    if (hp < 1) {     // если игрок умер тогда присваиваем очки
+                        IndexMath.add_score_team(player.getCommand());
 
-                }
+                        /// отправить сообщение
 
-                if(bullet.getTimeLife() > Heading_type.SHOT_LIFETIME)  delBullet(bullet,false); // конец жизни пули )))
-                gameServer.send_PARAMETERS_MATH();
+                    }
+
+                    if (bullet.getTimeLife() > Heading_type.SHOT_LIFETIME)
+                        delBullet(bullet, false); // конец жизни пули )))
+                    gameServer.send_PARAMETERS_MATH();
+                }catch (NullPointerException e){e.printStackTrace();}
             }
           //  System.out.println("______________________"+ np);
             if(gameServer.getMainGame().getMapSpace().isPointInCollision(bullet.position.x,bullet.position.y)) delBullet(bullet);

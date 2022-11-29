@@ -28,8 +28,6 @@ public class TowerRotationLogic { /// поворот любой башни ЛО�
 
     private static void making_Decision_Tower(DBBot dbBot, Player p, ListPlayers lp) { // принятие решение башня
         try {
-
-
         if (dbBot.getNomTarget() == null) { // если нет целей
             // dbBot.setTarget_tank(0);
             dbBot.setTarget_angle_rotation_tower(p.getBody_rotation().cpy().rotateDeg(180));
@@ -43,9 +41,9 @@ public class TowerRotationLogic { /// поворот любой башни ЛО�
           if(MathUtils.randomBoolean(.08f))  ckeck_target(dbBot,p,lp);
         }
         }catch (NullPointerException e){
-
-
             e.printStackTrace();
+            dbBot.setNomTarget(null);
+
         }
 
        // System.out.println(dbBot.getNomTarget() + "@@" + p.getId());
@@ -94,6 +92,7 @@ public class TowerRotationLogic { /// поворот любой башни ЛО�
          //   System.out.println("ckeck_target");
         }catch (NullPointerException e){
             System.out.println("NullPointerException  ckeck_target");
+            dbBot.setNomTarget(null);
           //  e.printStackTrace();
         }
         return true;

@@ -39,7 +39,7 @@ public class GameServer {
 
         int bufferSize = 44100; // Recommened value.
 
-        server = new Server(10000000,9000000);
+        server = new Server(10000000, 9000000);
         register(server);
         server.bind(Network.tcpPort, Network.udpPort);
         server.start();
@@ -57,7 +57,8 @@ public class GameServer {
                                        lp.getPlayerForId(connection.getID()).setStatus(Heading_type.DISCONECT_PLAYER);
                                        lp.getPlayerForId(connection.getID()).setPosition(-10000, -10000);
                                        getLp().getPlayers().remove(connection.getID());
-                                   }catch (NullPointerException e){}
+                                   } catch (NullPointerException e) {
+                                   }
 
                                    send_DISCONECT_PLAYER(connection.getID());
                                }
@@ -78,7 +79,7 @@ public class GameServer {
                                        Network.PleyerPosition pp = (Network.PleyerPosition) object;
 
                                        lp.sendToAllPlayerPosition(connection.getID(), (Network.PleyerPosition) object);
-                                       lp.getPlayerForId(connection.getID()).setPosition(pp.xp,pp.yp);
+                                       lp.getPlayerForId(connection.getID()).setPosition(pp.xp, pp.yp);
                                        lp.getPlayerForId(connection.getID()).setRotTower(pp.roy_tower);
                                        return;
                                    }
@@ -148,8 +149,9 @@ public class GameServer {
     public void send_Chang_screen(boolean pause) { // нужно добаить время на сколько уходим на паузу
         Network.StockMessOut stockMessOut = new Network.StockMessOut();
         stockMessOut.tip = Heading_type.CHANGE_THE_SCREEN;
-        if(pause)stockMessOut.p1 = Heading_type.PAUSE_GAME; else stockMessOut.p1 = Heading_type.PLAY_GAME;
-        if(stockMessOut.p1 == Heading_type.PLAY_GAME) return;
+        if (pause) stockMessOut.p1 = Heading_type.PAUSE_GAME;
+        else stockMessOut.p1 = Heading_type.PLAY_GAME;
+        if (stockMessOut.p1 == Heading_type.PLAY_GAME) return;
 
         this.server.sendToAllTCP(stockMessOut);
     }
@@ -224,9 +226,13 @@ public class GameServer {
     public void sendToAllTCP_in_game(Object object) { // разослать тем кто в игре
         Connection[] connections = server.getConnections();
         for (int i = 0, n = connections.length; i < n; i++) {
-            Connection connection = connections[i];
-            if (lp.getPlayerForId(connection.getID()).isClickButtonStart())
-                connection.sendTCP(object);
+            try {
+                Connection connection = connections[i];
+                if (lp.getPlayerForId(connection.getID()).isClickButtonStart())
+                    connection.sendTCP(object);
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -304,9 +310,6 @@ public class GameServer {
 //        else return Heading_type.RED_COMMAND;
 
     }
-
-
-
 
 
 }
