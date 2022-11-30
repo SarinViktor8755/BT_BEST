@@ -13,7 +13,7 @@ import main.java.com.Units.ListPlayer.Player;
 import main.java.com.Units.ListPlayer.StatisticMath;
 
 public class IndexMath {
-    private static final float SECONDS_MATH = 120;
+    private static final float SECONDS_MATH = 40;
     private static final float MATH_LENGHT = 1000 * SECONDS_MATH; // время матча
     private static float realTimeMath; // время матча
     private ListPlayers listPlayers; // копия листа
@@ -22,7 +22,7 @@ public class IndexMath {
     private static int blue_team_score;
 
 
-    private final static int DEFOULT_SCORE_RESPOWN = 80;
+    private final static int DEFOULT_SCORE_RESPOWN = 150;
     private static int SCORE_RESPOWN = 80;
 
 
@@ -98,7 +98,7 @@ public class IndexMath {
     }
 
     private void restartMath(float mathTime) {
-        if (mathTime < 3000) return;
+        if (mathTime < 5000) return;
         if (mathTime > MATH_LENGHT) {
             System.out.println("respown TIME");
             respon_math();}
@@ -116,11 +116,9 @@ public class IndexMath {
     }
 
     public void respon_math() {
-
         SCORE_RESPOWN--;
         System.out.println(SCORE_RESPOWN);
         if(SCORE_RESPOWN > 0) return;
-
 
         listPlayers.respownAllPlaers();
         realTimeMath = 0;

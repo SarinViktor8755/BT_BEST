@@ -101,18 +101,24 @@ public class Tank {
         this.point_respown_red.set(gsp.getGameSpace().getRasp2());
 
 
-        if(my_Command == Heading_type.RED_COMMAND)position.set(point_respown_red);
-        if(my_Command == Heading_type.BLUE_COMMAND)position.set(point_respown_blue);
+        if (my_Command == Heading_type.RED_COMMAND) position.set(point_respown_red);
+        if (my_Command == Heading_type.BLUE_COMMAND) position.set(point_respown_blue);
+        position.x += MathUtils.random(-100, 100);
+        position.y += MathUtils.random(-100, 100);
         deltaSledVec.set(this.getPosition());
 
     }
 
-    public void respownTank() {
+    public void respownTank(int command) {
+        my_Command = command;
         hp = 100;
         time_life = 0;
         if (my_Command == Heading_type.BLUE_COMMAND) position.set(point_respown_blue);
         if (my_Command == Heading_type.RED_COMMAND) position.set(point_respown_red);
         position.set(position.x, position.y);
+        position.x += MathUtils.random(-100, 100);
+        position.y += MathUtils.random(-100, 100);
+
         gsp.getMainGame().getGamePlayScreen().getAudioEngine().pley_fight_ad_sound();
     }
 

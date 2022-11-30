@@ -2,6 +2,7 @@ package main.java.com;
 
 import static com.mygdx.tanks2d.ClientNetWork.Network.register;
 
+import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
@@ -55,7 +56,7 @@ public class GameServer {
                                    try {
                                        lp.getPlayerForId(connection.getID()).setStatus(Heading_type.DISCONECT_PLAYER);
                                        lp.getPlayerForId(connection.getID()).setPosition(Player.DISCONECT_SYS_LAYER);
-                                      // getLp().getPlayers().remove(connection.getID());
+                                       // getLp().getPlayers().remove(connection.getID());
                                    } catch (NullPointerException e) {
                                        e.printStackTrace();
                                    }
@@ -86,7 +87,7 @@ public class GameServer {
 
                                    if (object instanceof Network.StockMessOut) {// полученеи сообщения
                                        Network.StockMessOut sm = (Network.StockMessOut) object;
-                                         System.out.println(sm);
+                                       System.out.println(sm);
                                        RouterMassege.routeSM(sm, connection.getID(), getMainGame().gameServer);
                                    }
 
@@ -143,6 +144,12 @@ public class GameServer {
         stockMessOut.p1 = x; // позиция респауна
         stockMessOut.p2 = y; // позиция респауна
         stockMessOut.p3 = id; /// ид игрока
+
+//        if (MathUtils.randomBoolean()) stockMessOut.p4 = lp.RED_COMMAND;
+//        else stockMessOut.p4 = Heading_type.BLUE_COMMAND;
+
+        stockMessOut.p4 = Heading_type.BLUE_COMMAND;
+        /// комада игрока - отом исправить мсена команды
         this.server.sendToTCP(id, stockMessOut);
     }
 
@@ -228,11 +235,11 @@ public class GameServer {
         for (int i = 0, n = connections.length; i < n; i++) {
             try {
                 Connection connection = connections[i];
-               // int id = connections[i].getID();
+                // int id = connections[i].getID();
                 if (lp.getPlayerForId(connection.getID()).isClickButtonStart())
                     connection.sendTCP(object);
             } catch (NullPointerException e) {
-              //  lp.getPlayerForId(connection.getID())
+                //  lp.getPlayerForId(connection.getID())
                 lp.remove_player(connections[i].getID());
                 e.printStackTrace();
             }

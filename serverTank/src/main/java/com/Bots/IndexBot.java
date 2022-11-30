@@ -476,6 +476,7 @@ public class IndexBot extends Thread {
         names.add("Casanova");
         names.add("Sexy");
         names.add("McDreamy");
+        names.add("ALEKSIZE");
         return names.get(MathUtils.random(names.size() - 1)) + "@Bot";
     }
 

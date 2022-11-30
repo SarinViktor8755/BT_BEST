@@ -122,6 +122,9 @@ public class MainClient {
             System.out.println("pp.nom  " + pp.nom);
             //   System.out.println(pp.nom + "x y " + pp.xp + " " + pp.yp );
             if (pp.nom == client.getID()) return;
+
+
+
             // System.out.println("PleyerPositionNom");
             try {
                 try {
