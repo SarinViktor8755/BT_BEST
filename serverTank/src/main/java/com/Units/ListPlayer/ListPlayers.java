@@ -124,18 +124,19 @@ public class ListPlayers {
         return key;
     }
 
-    public void find_tokken_and_replace(int id, String tokken, int my_coomand) { // токкен есть обносить путь до него
-
+    public void delete_by_toiken(String tokken) { // токкен есть обносить путь до него
         Iterator<Map.Entry<Integer, Player>> entries = players.entrySet().iterator();
         while (entries.hasNext()) { // удалить копию
             Map.Entry<Integer, Player> e = entries.next();
             //      if(e.getKey() == id) continue;
             if (tokken.equals(e.getValue().getTokken())) {
-                e.getValue().status = Heading_type.DISCONECT_PLAYER;
-                gameServer.send_DISCONECT_PLAYER(e.getKey());
+                players.remove(e.getKey());
+                System.out.println("remove_tokken");
+               // e.getValue().status = Heading_type.DISCONECT_PLAYER;
+               // gameServer.send_DISCONECT_PLAYER(e.getKey());
             }
         }
-        players.put(id, new Player(id, my_coomand, tokken));/// добавили нового пользователя
+      //  players.put(id, new Player(id, my_coomand, tokken));/// добавили нового пользователя
     }
 
     public void clearList() {
@@ -321,11 +322,11 @@ public class ListPlayers {
 
                     //     if (!getPlayerForId(connection.getID()).isClickButtonStart()) continue;
                     Player ppp = players.get(connections[i].getID());
+                    if (ppp == null) return;
                     //float dst = Vector2.dst2(pn.xp, pn.yp, ppp.getPosi().x, ppp.getPosi().y);
 
                     boolean bx = !MathUtils.isEqual(pn.xp, ppp.getPosi().x, 500);
                     boolean by = !MathUtils.isEqual(pn.yp, ppp.getPosi().y, 350);
-
                     boolean res = bx && by;
 //                (dst > 230400)
                     if (!ppp.isLive()) {
@@ -334,7 +335,7 @@ public class ListPlayers {
                     connection.sendUDP(pn);
                 } catch (NullPointerException e) {
                     e.printStackTrace();
-                    players.remove(connections[i].getID());
+                    //     players.remove(connections[i].getID());
                 }
             }
         }

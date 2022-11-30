@@ -54,7 +54,7 @@ public class GameServer {
                                public void disconnected(Connection connection) {
                                    try {
                                        lp.getPlayerForId(connection.getID()).setStatus(Heading_type.DISCONECT_PLAYER);
-                                       lp.getPlayerForId(connection.getID()).setPosition(-10000, -10000);
+                                       lp.getPlayerForId(connection.getID()).setPosition(Player.DISCONECT_SYS_LAYER);
                                       // getLp().getPlayers().remove(connection.getID());
                                    } catch (NullPointerException e) {
                                        e.printStackTrace();
@@ -65,9 +65,9 @@ public class GameServer {
 
                                @Override
                                public void connected(Connection connection) {
-//                                   lp.addPlayer(connection.getID());
-//                                   lp.getPlayerForId(connection.getID()).setStatus(Heading_type.IN_MENU);
+
                                    send_MAP_PARAMETOR(connection.getID());
+
                                }
 
 
@@ -86,7 +86,7 @@ public class GameServer {
 
                                    if (object instanceof Network.StockMessOut) {// полученеи сообщения
                                        Network.StockMessOut sm = (Network.StockMessOut) object;
-                                       //  System.out.println(sm);
+                                         System.out.println(sm);
                                        RouterMassege.routeSM(sm, connection.getID(), getMainGame().gameServer);
                                    }
 
@@ -228,9 +228,12 @@ public class GameServer {
         for (int i = 0, n = connections.length; i < n; i++) {
             try {
                 Connection connection = connections[i];
+               // int id = connections[i].getID();
                 if (lp.getPlayerForId(connection.getID()).isClickButtonStart())
                     connection.sendTCP(object);
             } catch (NullPointerException e) {
+              //  lp.getPlayerForId(connection.getID())
+                lp.remove_player(connections[i].getID());
                 e.printStackTrace();
             }
         }

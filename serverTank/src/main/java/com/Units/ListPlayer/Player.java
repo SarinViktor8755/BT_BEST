@@ -7,6 +7,8 @@ import com.mygdx.tanks2d.Utils.VectorUtils;
 
 public class Player {
 
+
+    public  static Vector2 DISCONECT_SYS_LAYER = new Vector2(-10000, -10000);
     int status;
 
     Vector2 pos;
