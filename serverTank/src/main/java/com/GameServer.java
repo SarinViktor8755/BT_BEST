@@ -50,14 +50,14 @@ public class GameServer {
         mainGame = new MainGame(this, getSizeBot(args));
         server.addListener(new Listener() {
 
-
                                @Override
                                public void disconnected(Connection connection) {
                                    try {
                                        lp.getPlayerForId(connection.getID()).setStatus(Heading_type.DISCONECT_PLAYER);
                                        lp.getPlayerForId(connection.getID()).setPosition(-10000, -10000);
-                                       getLp().getPlayers().remove(connection.getID());
+                                      // getLp().getPlayers().remove(connection.getID());
                                    } catch (NullPointerException e) {
+                                       e.printStackTrace();
                                    }
 
                                    send_DISCONECT_PLAYER(connection.getID());

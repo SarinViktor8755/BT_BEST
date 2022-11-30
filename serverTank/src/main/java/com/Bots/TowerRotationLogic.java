@@ -93,7 +93,7 @@ public class TowerRotationLogic { /// поворот любой башни ЛО�
         }catch (NullPointerException e){
             System.out.println("NullPointerException  ckeck_target");
             dbBot.setNomTarget(null);
-          //  e.printStackTrace();
+            e.printStackTrace();
         }
         return true;
     }

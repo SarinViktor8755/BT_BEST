@@ -118,25 +118,23 @@ public class MainClient {
         if (!onLine) return;
         if (object instanceof Network.PleyerPositionNom) { // полученеи позиции играков
             Network.PleyerPositionNom pp = (Network.PleyerPositionNom) object;
-
-            System.out.println("--  " + pp.nom);
             frameUpdates.put(pp.nom, true);
-
             //   System.out.println(pp.nom + "x y " + pp.xp + " " + pp.yp );
             if (pp.nom == client.getID()) return;
             // System.out.println("PleyerPositionNom");
-
+            try {
                 try {
-                  //  OpponentsTanks t = mg.getGamePlayScreen().getTanksOther().getTankForID(pp.nom);
+                    OpponentsTanks t = mg.getGamePlayScreen().getTanksOther().getTankForID(pp.nom);
                     mg.getGamePlayScreen().getTanksOther().setTankPosition(pp, mg.getMainClient().frameUpdates.get(pp.nom));
                 } catch (NullPointerException e) {
-                 //   OpponentsTanks ot = new OpponentsTanks();
-                    System.out.println("CREATE");
+                    OpponentsTanks ot = new OpponentsTanks();
                     mg.getGamePlayScreen().getTanksOther().createOponent(pp.xp, pp.yp, pp.nom, pp.roy_tower);
                 }
 
                 //mg.getMainClient().frameUpdates.put(pp.nom, false); /// закрывает флаг о рендере __
-
+            } catch (NullPointerException e) {
+                //   e.printStackTrace();
+            }
 
             return;
         }
