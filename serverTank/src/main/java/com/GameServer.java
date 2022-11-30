@@ -67,7 +67,7 @@ public class GameServer {
                                @Override
                                public void connected(Connection connection) {
 
-                                   send_MAP_PARAMETOR(connection.getID());
+                                  // send_MAP_PARAMETOR(connection.getID());
 
                                }
 

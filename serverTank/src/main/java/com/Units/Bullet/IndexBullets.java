@@ -81,7 +81,9 @@ public class IndexBullets {
                     int hp = player.minusHP(MathUtils.random(18, 27));
                     gameServer.send_PARAMETERS_PLAYER(player); // рассылка всем
                     if (hp < 1) {     // если игрок умер тогда присваиваем очки
+                        player.setPosition(-1111,-1111);
                         IndexMath.add_score_team(player.getCommand());
+
 
                         /// отправить сообщение
 

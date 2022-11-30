@@ -37,18 +37,18 @@ public class Bullets {
         // System.out.println(activeBullets.size);
     }
 
-    public Bullet getBullet(int id){
-      return activeBullets.get(id);
+    public Bullet getBullet(int id) {
+        return activeBullets.get(id);
     }
 
     public void randerBullets(float delta) {
         float width = 5;
         float height = 13;
         SpriteBatch sb = gpl.getBatch();
-        sb.setColor(1, MathUtils.random(0,255),  MathUtils.random(0,255), 1);
+        sb.setColor(1, MathUtils.random(0, 255), MathUtils.random(0, 255), 1);
         for (Bullet b : activeBullets) {
 
-            if(b.getTimeLife() > Heading_type.SHOT_LIFETIME) removeBullet(b);
+            if (b.getTimeLife() > Heading_type.SHOT_LIFETIME) removeBullet(b);
 
             if (!checkingGoingAbroad(b.position.x, b.position.y)) {
                 removeBullet(b);
@@ -58,20 +58,17 @@ public class Bullets {
 
             for (int i = 0; i < MathUtils.random(1, 4); i++) {
                 if (MathUtils.randomBoolean(.7f))
-                   // System.out.println(b.getNamber() + " - -- - -");
+                    // System.out.println(b.getNamber() + " - -- - -");
                     gpl.pc.addParticalsSmokeOneBullet(b.position.x + MathUtils.random(-MAX_distribution_smoke, +MAX_distribution_smoke), b.position.y + MathUtils.random(-MAX_distribution_smoke, +MAX_distribution_smoke));
 
             }
 
-            if(MathUtils.randomBoolean(.2f))
+            if (MathUtils.randomBoolean(.2f))
                 gpl.pc.add_flying_stereo_elements_bases(
-                    b.position.x + MathUtils.random(-MAX_distribution_smoke, +MAX_distribution_smoke),
-                    b.position.y + MathUtils.random(-MAX_distribution_smoke, +MAX_distribution_smoke),
-                    1,.3f,2.5f,gpl.pc.getT(),.4f, .4f, MathUtils.random(.7f, 1),1
-
-
-            );
-
+                        b.position.x + MathUtils.random(-MAX_distribution_smoke, +MAX_distribution_smoke),
+                        b.position.y + MathUtils.random(-MAX_distribution_smoke, +MAX_distribution_smoke),
+                        1, .3f, 2.5f, gpl.pc.getT(), .4f, .4f, MathUtils.random(.7f, 1), 1
+                );
 
 
             b.update(delta); // update bullet
@@ -95,18 +92,18 @@ public class Bullets {
         }
     }
 
-    public void removeBullet(Bullet b){
+    public void removeBullet(Bullet b) {
         activeBullets.removeValue(b, true);
         bp.free(b);
     }
 
-    public Vector2 removeBullet(int nomBullet){  // удаление по номеру
-      //  System.out.println("FINE:");
+    public Vector2 removeBullet(int nomBullet) {  // удаление по номеру
+        //  System.out.println("FINE:");
         Bullet b;
         for (int i = 0; i < activeBullets.size; i++) {
             b = activeBullets.get(i);
-            if(b.namber == nomBullet){
-                b.position.set(-20_000,-20_000);
+            if (b.namber == nomBullet) {
+                b.position.set(-20_000, -20_000);
                 return b.direction;
             }
         }
@@ -120,8 +117,6 @@ public class Bullets {
     private boolean checkingGoingAbroad(float x, float y) {
         return gpl.getGameSpace().inPointLocation(x, y);
     }
-
-
 
 
     private boolean checkingTerrainObstacles(float x, float y) { /// н ерабочий метод

@@ -9,6 +9,7 @@ public class Garbage {
     private Vector2 velocity;
     private float timeLife;
     private float rot;
+    public float temperature;
 
 
     public Garbage() {
@@ -16,10 +17,12 @@ public class Garbage {
         this.velocity = new Vector2();
         this.timeLife = 0;
         this.rot = 0;
+        this.temperature = 0;
     }
 
     public void upDate(){
         if(!isLife()) return;
+        temperature -= Gdx.graphics.getDeltaTime();
         if (timeLife > 0) timeLife -= Gdx.graphics.getDeltaTime();
         pos.add(velocity.cpy().scl(Gdx.graphics.getDeltaTime()));
     }
@@ -34,6 +37,7 @@ public class Garbage {
         this.velocity.set(MathUtils.random(-1f,1f),MathUtils.random(-1f,1f)).scl(500);
         this.timeLife = .4f;
         this.rot = MathUtils.random(0,360);
+        if(MathUtils.randomBoolean()) temperature = 3f;
     }
     public void  setParametors(float x, float y, float vx, float vy){
         this.pos.set(x,y);
@@ -41,6 +45,7 @@ public class Garbage {
         this.rot = MathUtils.random(0,360);
         this.timeLife = MathUtils.random(.03f,.1f);
         this.rot = MathUtils.random(0,360);
+        if(MathUtils.randomBoolean()) temperature = 3f;
     }
 
 

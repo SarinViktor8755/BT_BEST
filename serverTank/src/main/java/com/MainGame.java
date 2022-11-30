@@ -1,6 +1,7 @@
 package main.java.com;
 
 
+import com.badlogic.gdx.math.MathUtils;
 import com.mygdx.tanks2d.Locations.MapsList;
 
 import main.java.com.MatchOrganization.IndexMath;
@@ -57,6 +58,7 @@ public class MainGame {
             public void run() {
                 try {
                     while (true) {
+                        if(MathUtils.randomBoolean(.05f)) System.out.println(":::: 50");
                       //  System.out.println(":::: 50");
                         if (gameServer.isServerLivePlayer()) Thread.sleep(timer_tread_50);
                         else Thread.sleep(450);
@@ -109,7 +111,7 @@ public class MainGame {
             public void run() {
                 try {
                     while (true) {
-                        //    System.out.println(":::: 25");
+                      if(MathUtils.randomBoolean(.05f)) System.out.println(":::: 25");
                         if (gameServer.isServerLivePlayer()) Thread.sleep(timer_tread_25);
                         else Thread.sleep(timer_tread_50);
 

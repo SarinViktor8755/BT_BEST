@@ -11,6 +11,8 @@ import com.mygdx.tanks2d.Screens.Controll.Controller;
 import com.mygdx.tanks2d.Screens.GamePlayScreen;
 
 public class Tank {
+    static final Vector2 DEATH_VECTOR = new Vector2(-1111,-1111);
+
     GamePlayScreen gsp;
 
     //Корпус
@@ -162,7 +164,7 @@ public class Tank {
         flashing_tank();
 
 
-        if (!isLive()) this.position.set(-1111, -1111);
+        if (!isLive()) this.position.set(DEATH_VECTOR);
         // if (MathUtils.randomBoolean(.005f)) hp = MathUtils.random(0, 80);
         // if(MathUtils.randomBoolean(.05f)) gsp.pc.addPasricalExplosionDeath(position.x, position.y);
         upDateHpHud();

@@ -76,7 +76,7 @@ public class ParticleCustum {
         }
 
         for (int i = 0; i < 30; i++) {
-            Point_of_fire ed = new Point_of_fire(this,t);
+            Point_of_fire ed = new Point_of_fire(this, t);
             this.point_of_fires.add(ed);
         }
 
@@ -167,20 +167,25 @@ public class ParticleCustum {
 //        }
 
 
-
     }
 
     public void randerGarbage(SpriteBatch spriteBatch) {
 
         for (Shard s : shardsArr) {  // частицы
             s.upDate();
-            spriteBatch.setColor(1, 1, 1, 1);
+            spriteBatch.setColor(0, 0, 0, 1);
+
+
+            if (s.temperature > 0) {
+                s.temperature -= Gdx.graphics.getDeltaTime();
+                float a = Interpolation.bounceIn.apply(MathUtils.map(0,3,0,1,s.temperature));
+                spriteBatch.setColor(s.temperature, MathUtils.sin(s.temperature), s.temperature, 1);
+            }
             // spriteBatch.draw(shardsTex,MathUtils.random(150,500),MathUtils.random(150,500));
             spriteBatch.draw(shardsTex, s.getPos().x, s.getPos().y);
         }
 
     }
-
 
 
     public void addAnimationDeath(float x, float y) {
@@ -190,7 +195,7 @@ public class ParticleCustum {
             addShares(x, y);
         }
 
-        gps.getAudioEngine().pleySoundKickExplosion(x,y,gps.getCameraGame().getCamera().position.x,gps.getCameraGame().getCamera().position.y);
+        gps.getAudioEngine().pleySoundKickExplosion(x, y, gps.getCameraGame().getCamera().position.x, gps.getCameraGame().getCamera().position.y);
         gps.getGameSpace().getRadspurens().addCrater(x, y, MathUtils.random(0, 360)); // кратор
         gps.pc.addPasricalDeath_little(x, y, 2.7f);
 
@@ -339,7 +344,7 @@ public class ParticleCustum {
         //System.out.println("Vzriv smerti");
         // addDeathSmoke(x, y);
         this.explosion_Death.offerFirst(a);
-        add_Point_of_fire(x,y);
+        add_Point_of_fire(x, y);
 
     }
 
@@ -413,6 +418,9 @@ public class ParticleCustum {
         for (ParticleSmoke u : particleDeque) {
             if (!u.isLife()) continue;
 //            k++;
+
+            // sb.setColor(1, 0, 1, 1);
+
             u.update();
             u.setAlpha(MathUtils.clamp(u.getTime_life(), -1, .7f));
             sb.setColor(u.getColor());
