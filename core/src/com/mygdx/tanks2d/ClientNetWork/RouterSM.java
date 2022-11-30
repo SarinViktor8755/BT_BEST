@@ -86,8 +86,8 @@ public class RouterSM {
 
             /// ока сделаем что бы клиент сам определял место респауна, если что - поменяем на то что бы сервер определял ,
             mainGame.getGamePlayScreen().getTank().setHp(100);
-            mainGame.getGamePlayScreen().getTank().respownTank((int) sm.p4);
-
+           // mainGame.getGamePlayScreen().getTank().respownTank((int) sm.p4);
+            mainGame.getGamePlayScreen().getTank().respownTank();
 
             mainGame.getGamePlayScreen().getController().setTime_in_game(0);
 

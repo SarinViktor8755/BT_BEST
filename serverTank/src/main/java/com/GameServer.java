@@ -145,12 +145,20 @@ public class GameServer {
         stockMessOut.p2 = y; // позиция респауна
         stockMessOut.p3 = id; /// ид игрока
 
-//        if (MathUtils.randomBoolean()) stockMessOut.p4 = lp.RED_COMMAND;
-//        else stockMessOut.p4 = Heading_type.BLUE_COMMAND;
 
-        stockMessOut.p4 = Heading_type.BLUE_COMMAND;
+
         /// комада игрока - отом исправить мсена команды
         this.server.sendToTCP(id, stockMessOut);
+    }
+
+    public void change_team(int id){
+        /////////////
+        int comand;
+        if (MathUtils.randomBoolean()) comand = Heading_type.RED_COMMAND;
+        else comand = Heading_type.BLUE_COMMAND;
+        lp.getPlayerForId(id).setCommand(comand);
+     //   stockMessOut.p4 = comand;
+        //////////////////Смена команды но надо еще мсообщить всем о смене )))
     }
 
     public void send_Chang_screen(boolean pause) { // нужно добаить время на сколько уходим на паузу

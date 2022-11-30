@@ -122,6 +122,18 @@ public class Tank {
         gsp.getMainGame().getGamePlayScreen().getAudioEngine().pley_fight_ad_sound();
     }
 
+    public void respownTank() {
+        hp = 100;
+        time_life = 0;
+        if (my_Command == Heading_type.BLUE_COMMAND) position.set(point_respown_blue);
+        if (my_Command == Heading_type.RED_COMMAND) position.set(point_respown_red);
+        position.set(position.x, position.y);
+        position.x += MathUtils.random(-100, 100);
+        position.y += MathUtils.random(-100, 100);
+
+        gsp.getMainGame().getGamePlayScreen().getAudioEngine().pley_fight_ad_sound();
+    }
+
     public static Integer getMy_Command() {
         return my_Command;
     }
