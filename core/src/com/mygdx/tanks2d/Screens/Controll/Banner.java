@@ -57,7 +57,7 @@ public class Banner { // банер на гланом экране
     public void rander(SpriteBatch batch) {
         float scale = MathUtils.map(0,1,0,.5f,timeLife);
         float alpha = MathUtils.sinDeg(timeLife + .5f);
-        System.out.println("!!!!!!!!!!!!!!!!!!!!");
+      //  System.out.println("!!!!!!!!!!!!!!!!!!!!");
         batch.setColor(alpha,1,1,scale);
         batch.draw(feature,
                 160 , // ширина экрана

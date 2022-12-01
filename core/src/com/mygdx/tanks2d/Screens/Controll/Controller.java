@@ -369,9 +369,9 @@ public class Controller {
 
         changingGoal.setColor(1, 1, 1, .3f);
 
-
+       // assets.put("fith.png", Texture.class);
         track = gamePlayScreen.getAMG().get("treck_bar.png", Texture.class);
-        feature = gamePlayScreen.getAMG().get("treck_bar.png", Texture.class);
+        feature = gamePlayScreen.getAMG().get("Fith.png", Texture.class);
         feature1 = gamePlayScreen.getAMG().get("treck_bar1.png", Texture.class);
 
 
@@ -412,7 +412,7 @@ public class Controller {
             batch.setColor(1, 1, 1, 1);
            // fr = MathUtils.random(0,15);
             for (int i = 0; i < fr; i++) {
-                batch.draw(feature,
+                batch.draw(track,
                         WIDTH_SCREEN / 2 + 60 + (i * 15), // ширина экрана
                         gamePlayScreen.getMainGame().hu - 35 // высота экрана
                         , 10, 10);
@@ -425,7 +425,7 @@ public class Controller {
                         , 10, 10);
             }
 
-
+///////////////////////////////////////////////////////////////////
 
             if (tt < 1) {
                 batch.setColor(1, 1, 1, 1);

@@ -33,6 +33,7 @@ public class AssetsManagerGame {
         assets.put("pause_screen/bg_bw.png", Texture.class);
         assets.put("treck_bar.png", Texture.class);
         assets.put("treck_bar1.png", Texture.class);
+        assets.put("Fith.png", Texture.class);
         assets.put("pause_screen/pm.ogg", Sound.class);
 
 
