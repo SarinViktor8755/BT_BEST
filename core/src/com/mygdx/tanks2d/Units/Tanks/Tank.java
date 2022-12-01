@@ -275,8 +275,8 @@ public class Tank {
 //        gsp.getController().setBlueCommand(gsp.getScore_blue_command());
 //        gsp.getController().setRedCommand(gsp.getScore_red_command());
         //  System.out.println("blue "+ gsp.getScore_blue_command()+ " red "+ gsp.getScore_red_command());
-        gsp.getController().setLive_score_blue(gsp.getLive_blue_command());
-        gsp.getController().setLive_score_red(gsp.getLive_red_command());
+        gsp.getController().setFb(gsp.getLive_blue_command());
+        gsp.getController().setFr(gsp.getLive_red_command());
 
     }
 

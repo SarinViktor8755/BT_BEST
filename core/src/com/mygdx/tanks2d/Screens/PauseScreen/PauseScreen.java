@@ -47,9 +47,9 @@ public class PauseScreen implements Screen {
         camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0);
         camera.update();
         this.mainClient = mainGame.getMainClient();
-        f = mainGame.getAMG().get("pause_screen/bg.png", Texture.class);
-        f_bw = mainGame.getAMG().get("pause_screen/bg_bw.png", Texture.class);
-        tb = mainGame.getAMG().get("pause_screen/treck_bar.png", Texture.class);
+        f = mainGame.getAMG().get("bg.png", Texture.class);
+        f_bw = mainGame.getAMG().get("bg_bw.png", Texture.class);
+        tb = mainGame.getAMG().get("treck_bar.png", Texture.class);
         timeInScreen = 15;
 
        // audioEngine.playMusicPaseMenu();

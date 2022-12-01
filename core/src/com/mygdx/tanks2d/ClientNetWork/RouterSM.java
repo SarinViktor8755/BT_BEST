@@ -49,9 +49,12 @@ public class RouterSM {
         }
 
         if (Heading_type.PARAMETERS_MATH == sm.tip) {
+//            mainGame.getGamePlayScreen().setLive_red_command((int) sm.p1);
+//            mainGame.getGamePlayScreen().setLive_score_blue((int) sm.p2);
+            mainGame.getGamePlayScreen().getController().setLive_score_red((int) sm.p2);
+            mainGame.getGamePlayScreen().getController().setLive_score_blue((int) sm.p1);
 
-            mainGame.getGamePlayScreen().setScore_blue_command((int) sm.p1);
-            mainGame.getGamePlayScreen().setScore_red_command((int) sm.p2);
+            System.out.println(sm.p1 + "            "+ sm.p2);
 
             mainGame.getGamePlayScreen().getController().setTime_in_game(sm.p3 / 1000);  // переделать на время матча
 //            mainGame.getGamePlayScreen().setLive_red_command((int) sm.p4);

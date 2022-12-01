@@ -178,8 +178,8 @@ public class ParticleCustum {
 
             if (s.temperature > 0) {
                 s.temperature -= Gdx.graphics.getDeltaTime();
-                float a = Interpolation.bounceIn.apply(MathUtils.map(0,3,0,1,s.temperature));
-                spriteBatch.setColor(s.temperature, MathUtils.sin(s.temperature), s.temperature, 1);
+                float a = MathUtils.random(0,s.temperature);
+                spriteBatch.setColor(a, a, a, 1);
             }
             // spriteBatch.draw(shardsTex,MathUtils.random(150,500),MathUtils.random(150,500));
             spriteBatch.draw(shardsTex, s.getPos().x, s.getPos().y);

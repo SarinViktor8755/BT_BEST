@@ -37,7 +37,7 @@ public class Garbage {
         this.velocity.set(MathUtils.random(-1f,1f),MathUtils.random(-1f,1f)).scl(500);
         this.timeLife = .4f;
         this.rot = MathUtils.random(0,360);
-        if(MathUtils.randomBoolean()) temperature = 3f;
+        if(MathUtils.randomBoolean()) temperature = MathUtils.random(1,3);
     }
     public void  setParametors(float x, float y, float vx, float vy){
         this.pos.set(x,y);
@@ -45,7 +45,7 @@ public class Garbage {
         this.rot = MathUtils.random(0,360);
         this.timeLife = MathUtils.random(.03f,.1f);
         this.rot = MathUtils.random(0,360);
-        if(MathUtils.randomBoolean()) temperature = 3f;
+        if(MathUtils.randomBoolean()) temperature = MathUtils.random(1,3);
     }
 
 

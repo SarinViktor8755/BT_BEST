@@ -75,12 +75,17 @@ public class Controller {
     private GamePlayScreen gamePlayScreen;
 
     private Texture track;
+    private Texture feature;
+    private Texture feature1;
 
     private boolean buttonChangingOpponent;
 
     private int frag = 0;
 
     private boolean contollerOn;
+
+    private float fr; /// колчиество красных квадратиков
+    private float fb; /// колчиество синих квадратиков
 //
 //
 //    public float sw;
@@ -93,6 +98,14 @@ public class Controller {
 
     public boolean isInTuchMove() {
         return inTuchMove;
+    }
+
+    public void setFr(float fr) {
+        this.fr = fr;
+    }
+
+    public void setFb(float fb) {
+        this.fb = fb;
     }
 
     public Controller(GamePlayScreen gsp) {
@@ -154,6 +167,8 @@ public class Controller {
         // System.out.println(pointStick.getImageHeight()+ "  ==== ___ ");
 
         pointStick.setSize(90, 90);
+
+
 
         stick.addListener(new InputListener() {
             @Override
@@ -273,7 +288,6 @@ public class Controller {
 //
 
 
-
         Group gropuButton = new Group();
         Group gropuStick = new Group();
 
@@ -318,16 +332,16 @@ public class Controller {
         my_frag = new Label("frags : " + frag, style);
         my_frag.setColor(Color.YELLOW);
         my_frag.setX(30);
-        my_frag.setY( 130);
+        my_frag.setY(130);
         stage.addActor(my_frag);
 
-        live_score_red = new Label("RED_LIVE:", style);
+        live_score_red = new Label("0", style);
         live_score_red.setColor(Color.RED);
         live_score_red.setX(WIDTH_SCREEN / 2 + 40);
         live_score_red.setY(gsp.getMainGame().hu - 35);
         stage.addActor(live_score_red);
 /////////
-        live_score_blue = new Label("BLUE_LIVE:", style);
+        live_score_blue = new Label("0", style);
         live_score_blue.setColor(Color.BLUE);
         live_score_blue.setX(WIDTH_SCREEN / 2 - 60);
         live_score_blue.setY(gsp.getMainGame().hu - 35);
@@ -354,7 +368,9 @@ public class Controller {
         changingGoal.setColor(1, 1, 1, .3f);
 
 
-        track = gamePlayScreen.getAMG().get("pause_screen/treck_bar.png", Texture.class);
+        track = gamePlayScreen.getAMG().get("treck_bar.png", Texture.class);
+        feature = gamePlayScreen.getAMG().get("treck_bar.png", Texture.class);
+        feature1 = gamePlayScreen.getAMG().get("treck_bar1.png", Texture.class);
     }
 
     public boolean isButtonChangingOpponent() {
@@ -388,12 +404,27 @@ public class Controller {
             float n = WIDTH_SCREEN / 2 - 100;
             float tt = gamePlayScreen.getTank().getTime_Tackt();
 
+            batch.setColor(1, 1, 1, 1);
+           // fr = MathUtils.random(0,15);
+            for (int i = 0; i < fr; i++) {
+                batch.draw(feature,
+                        WIDTH_SCREEN / 2 + 60 + (i * 15), // ширина экрана
+                        gamePlayScreen.getMainGame().hu - 35 // высота экрана
+                        , 10, 10);
+            }
+            //batch.setColor(Color.BLUE);
+            for (int i = 0; i < fb; i++) {
+                batch.draw(feature1,
+                        WIDTH_SCREEN / 2 - 80 - (i * 15), // ширина экрана
+                        gamePlayScreen.getMainGame().hu - 35 // высота экрана
+                        , 10, 10);
+            }
+
+
 
             if (tt < 1) {
                 batch.setColor(1, 1, 1, 1);
                 batch.draw(track,
-
-
                         n, // ширина экрана
                         gamePlayScreen.getMainGame().hu - 50 // высота экрана
                         , gamePlayScreen.getTank().getTime_Tackt() * 200, 6);
@@ -411,7 +442,10 @@ public class Controller {
         } finally {
             batch.end();
         }
-
+//
+//        live_score_red.setX(WIDTH_SCREEN / 2 + 40);
+//        live_score_red.setY(gamePlayScreen.getMainGame().hu - 35);
+/////////////////////////
     }
 
     public void draw(SpriteBatch batch) {
@@ -478,7 +512,7 @@ public class Controller {
         // setBlueCommand(45 - (int) time_in_game);
 
 
-        timer.setText(format_time((int)time_in_game));
+        timer.setText(format_time((int) time_in_game));
         //     setBlueCommand((int) time_in_game);
         //    System.out.println((time_in_game) + "  --");
 
@@ -502,9 +536,9 @@ public class Controller {
     }
 
     private String format_time(int time) {// орматировтаь время под часы игры
-        int      min = time / 60 % 60,
+        int min = time / 60 % 60,
                 sec = time / 1 % 60;
-        return String.format("%02d:%02d",min, sec);
+        return String.format("%02d:%02d", min, sec);
 
         //return result;
 
