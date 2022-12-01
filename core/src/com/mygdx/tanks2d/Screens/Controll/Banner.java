@@ -47,11 +47,11 @@ public class Banner { // банер на гланом экране
     private void rander() {
         float scale = MathUtils.map(0,1,0,.5f,timeLife);
         float alpha = MathUtils.sinDeg(timeLife + .5f);
-        System.out.println(scale);
-        System.out.println(alpha);
-
-        System.out.println(q);
-        System.out.println(timeLife);
+//        System.out.println(scale);
+//        System.out.println(alpha);
+//
+//        System.out.println(q);
+//        System.out.println(timeLife);
     }
 
     public void addBaner(int bn) {
