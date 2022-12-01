@@ -141,7 +141,7 @@ public class Controller {
         Label.LabelStyle style = new Label.LabelStyle(font, Color.WHITE);
         font.getData().setScale(.5f);
         font.getColor().set(.5f, .5f, .5f, 1);
-        System.out.println(font.getCapHeight() + "getCapHeight");
+//        System.out.println(font.getCapHeight() + "getCapHeight");
 
 //        float procent = GamePlayScreen.get_percentage_of_proportions(MainGame.WIDTH_SCREEN/(float)MainGame.HEIGHT_SCREEN,Gdx.graphics.getWidth()/(float)Gdx.graphics.getHeight());
 //
@@ -156,7 +156,7 @@ public class Controller {
 //        sw  = a;
 //        System.out.println("!!!!!!!!!!!!!  " + sw);
 
-        banner = new Banner(gsp.getBatch());
+
 
         //System.out.println(Gdx.graphics.ge);
 
@@ -167,6 +167,8 @@ public class Controller {
         // System.out.println(pointStick.getImageHeight()+ "  ==== ___ ");
 
         pointStick.setSize(90, 90);
+
+
 
 
 
@@ -371,6 +373,9 @@ public class Controller {
         track = gamePlayScreen.getAMG().get("treck_bar.png", Texture.class);
         feature = gamePlayScreen.getAMG().get("treck_bar.png", Texture.class);
         feature1 = gamePlayScreen.getAMG().get("treck_bar1.png", Texture.class);
+
+
+        banner = new Banner(gsp.getBatch(),feature);
     }
 
     public boolean isButtonChangingOpponent() {
@@ -434,12 +439,14 @@ public class Controller {
                         gamePlayScreen.getMainGame().hu - 50 // высота экрана
                         , 200, 6);
                 batch.setColor(1, 1, 1, 1);
+
             }
 
 
         } catch (NullPointerException e) {
             e.printStackTrace();
         } finally {
+            if (banner.isWorking()) banner.rander(batch);
             batch.end();
         }
 //
@@ -466,6 +473,7 @@ public class Controller {
         //    System.out.println(this.inTuchMove);
 
         randerGUI(batch);
+
 
     }
 
