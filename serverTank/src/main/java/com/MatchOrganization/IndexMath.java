@@ -18,8 +18,11 @@ public class IndexMath {
     private static float realTimeMath; // время матча
     private ListPlayers listPlayers; // копия листа
 
-    private static int red_team_score;
-    private static int blue_team_score;
+    private static int red_team_score = 0;
+    private static int blue_team_score = 0;
+
+    private static int red_team_score_math = 0;
+    private static int blue_team_score_math = 0;
 
 
     private final static int DEFOULT_SCORE_RESPOWN = 150;
@@ -30,7 +33,7 @@ public class IndexMath {
         this.realTimeMath += dt;
         this.listPlayers = listPlayers;
         this.restartMath(this.realTimeMath);
-     //   if(pause_game) System.out.println("PAUSE game");
+        //   if(pause_game) System.out.println("PAUSE game");
 
 
     }
@@ -47,8 +50,8 @@ public class IndexMath {
 
     public int getCommand() { // определить команду
         //System.out.println();
-      //  System.out.print("vibor comdnd : red  " + listPlayers.getRed_size() + " blue :: " + listPlayers.getBlue_size() + "   --  ");
-       // listPlayers.counting_games();
+        //  System.out.print("vibor comdnd : red  " + listPlayers.getRed_size() + " blue :: " + listPlayers.getBlue_size() + "   --  ");
+        // listPlayers.counting_games();
 
 
         if (StatisticMath.getRedSize() < StatisticMath.getBlueSize()) {
@@ -91,6 +94,14 @@ public class IndexMath {
         red_team_score++;
     }
 
+    public static int getRed_team_score_math() {
+        return red_team_score_math;
+    }
+
+    public static int getBlue_team_score_math() {
+        return blue_team_score_math;
+    }
+
     public static void add_score_team(int team) {
         if (team == Heading_type.BLUE_COMMAND) add_score_blue_team();
         if (team == Heading_type.RED_COMMAND) add_score_red_team();
@@ -101,28 +112,42 @@ public class IndexMath {
         if (mathTime < 5000) return;
         if (mathTime > MATH_LENGHT) {
             System.out.println("respown TIME");
-            respon_math();}
-        if (StatisticMath.getLiveBlueSize() < 1)
-        {
-            System.out.println("respown blue");
             respon_math();
         }
-       if (StatisticMath.getLiveRedSize() < 1 )
-        {
-           System.out.println("respown red");
-           respon_math();
-       }
+        if (StatisticMath.getLiveBlueSize() < 1) {
+            System.out.println("respown blue");
+            respon_math(1);
+        }
+        if (StatisticMath.getLiveRedSize() < 1) {
+            System.out.println("respown red");
+            respon_math(2);
+        }
 
     }
 
     public void respon_math() {
         SCORE_RESPOWN--;
         System.out.println(SCORE_RESPOWN);
-        if(SCORE_RESPOWN > 0) return;
+        if (SCORE_RESPOWN > 0) return;
 
         listPlayers.respownAllPlaers();
         realTimeMath = 0;
-        System.out.println("RESTART MATH");
+        //System.out.println("RESTART MATH");
+        SCORE_RESPOWN = DEFOULT_SCORE_RESPOWN;
+    }
+
+    public void respon_math(int comand) {
+        SCORE_RESPOWN--;
+       // System.out.println(SCORE_RESPOWN);
+        if (SCORE_RESPOWN > 0) return;
+
+        if (comand == 1) red_team_score_math++;
+        if (comand == 2) blue_team_score_math++;
+
+        listPlayers.respownAllPlaers();
+        realTimeMath = 0;
+        System.out.println("RESTART MATH " + comand);
+
         SCORE_RESPOWN = DEFOULT_SCORE_RESPOWN;
     }
 

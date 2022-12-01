@@ -178,8 +178,12 @@ public class GameServer {
     public void send_PARAMETERS_MATH() { // разослать параметры матча
         Network.StockMessOut stockMessOut = new Network.StockMessOut();
         stockMessOut.tip = Heading_type.PARAMETERS_MATH;
-        stockMessOut.p1 = IndexMath.getBlue_team_score(); //счетсиний команды
-        stockMessOut.p2 = IndexMath.getRed_team_score(); //счетсиний команды
+
+//        stockMessOut.p1 = IndexMath.getBlue_team_score(); //счетсиний команды
+//        stockMessOut.p2 = IndexMath.getRed_team_score(); //счетсиний команды
+
+        stockMessOut.p1 = IndexMath.getBlue_team_score_math(); //счетсиний команды
+        stockMessOut.p2 = IndexMath.getRed_team_score_math(); //счетсиний команды
 
         stockMessOut.p3 = getMainGame().getTimeMath(); // осталось времени в матче
         //stockMessOut.p4 = lp.getLive_blue_size_player(); // ОСТАЛОСЬ ЖИВЫХ КРАСНЫХ
