@@ -375,7 +375,7 @@ public class Controller {
         feature1 = gamePlayScreen.getAMG().get("treck_bar1.png", Texture.class);
 
 
-        banner = new Banner(gsp.getBatch(),feature);
+        banner = new Banner(gsp.getBatch(),feature,track);
     }
 
     public boolean isButtonChangingOpponent() {
