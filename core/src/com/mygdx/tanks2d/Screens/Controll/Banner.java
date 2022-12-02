@@ -5,13 +5,14 @@ import static com.mygdx.tanks2d.MainGame.WIDTH_SCREEN;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 
 import java.util.ArrayList;
 
 public class Banner { // банер на гланом экране
     private float timeLife;
-    private static final float defoult_time_life = 1;
+    private static final float defoult_time_life = 2f;
     private ArrayList<Integer> q = new ArrayList<>();
     private SpriteBatch batch;
 
@@ -55,20 +56,21 @@ public class Banner { // банер на гланом экране
 
 
     public void rander(SpriteBatch batch) {
-        float scale = MathUtils.map(0,1,0,.5f,timeLife);
-        float alpha = MathUtils.sinDeg(timeLife + .5f);
-      //  System.out.println("!!!!!!!!!!!!!!!!!!!!");
-        batch.setColor(alpha,1,1,scale);
-        batch.draw(feature,
-                160 , // ширина экрана
-                150 // высота экрана
-                , 200 * scale, 100 * scale);
+        float scale = MathUtils.map(0,1,.5f,0,timeLife);
+    //    float alpha = MathUtils.map(0,1,0,3,timeLife);
 
-//        System.out.println(scale);
-//        System.out.println(alpha);
-//
-//        System.out.println(q);
-//        System.out.println(timeLife);
+ //       System.out.println("!!!!!!!!!!!!!!!!!!!!" + timeLife);
+
+
+        for (int i = 6; i > 1; i--) {
+            batch.setColor(1,1,1,MathUtils.map(1,6,1,0,i));
+            batch.draw(feature,
+                    160, // ширина экрана
+                    120  - (Interpolation.swing.apply(scale) * (65 * i))// высота экрана
+                    , 200 , 100);
+        }
+
+
     }
 
     public void addBaner(int bn) {
