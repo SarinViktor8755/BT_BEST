@@ -30,7 +30,7 @@ public class Banner { // банер на гланом экране
 
     public void update() {
 
-        if (MathUtils.randomBoolean(.005f)) {
+        if (MathUtils.randomBoolean(.5f)) {
             addBaner(MathUtils.random(500));
         }
 
@@ -56,7 +56,7 @@ public class Banner { // банер на гланом экране
 
 
     public void rander(SpriteBatch batch) {
-        float scale = MathUtils.map(0,1,.5f,0,timeLife);
+        float scale = MathUtils.map(0,1,.5f,0,defoult_time_life - timeLife);
     //    float alpha = MathUtils.map(0,1,0,3,timeLife);
 
  //       System.out.println("!!!!!!!!!!!!!!!!!!!!" + timeLife);
@@ -66,7 +66,7 @@ public class Banner { // банер на гланом экране
             batch.setColor(1,1,1,MathUtils.map(1,6,1,0,i));
             batch.draw(feature,
                     160, // ширина экрана
-                    120  - (Interpolation.swing.apply(scale) * (65 * i))// высота экрана
+                    120  - (Interpolation.swing.apply(scale) * (120 * i))// высота экрана
                     , 200 , 100);
         }
 
