@@ -83,6 +83,7 @@ public class AssetsManagerGame {
 
         //  assets.put("badlogic.png", Texture.class);
         assets.put("target.png", Texture.class);
+        assets.put("target_guidance.png", Texture.class);
 
 
 //            assets.put("badlogic.png", Texture.class);

@@ -11,7 +11,8 @@ import com.mygdx.tanks2d.Screens.Controll.Controller;
 import com.mygdx.tanks2d.Screens.GamePlayScreen;
 
 public class Tank {
-    static final Vector2 DEATH_VECTOR = new Vector2(-1111,-1111);
+    static final Vector2 DEATH_VECTOR = new Vector2(-1111, -1111);
+
 
     GamePlayScreen gsp;
 
@@ -29,6 +30,7 @@ public class Tank {
     Texture img, img_1, img2, imgB, imgB2, img_1B, imgr, body, towers;
 
     Texture target;
+    Texture target_guidance;
 
     float raz;
     boolean rot;
@@ -85,6 +87,7 @@ public class Tank {
 
         //target = new Texture(Gdx.files.internal("target.png"));
         target = gsp.getAMG().get("target.png", Texture.class);
+        target_guidance = gsp.getAMG().get("target_guidance.png", Texture.class);
         //////////////////
         replace_textures();
 
@@ -336,6 +339,13 @@ public class Tank {
                     1, 1,
                     80, 80,
                     false, false);
+            if (tr.isGuidance()){
+                sb.setColor(.6f, 1, .6f, .2f);
+                sb.draw(target_guidance,
+                        targetCoordinat.x - 40, targetCoordinat.y - 40, 80, 80
+                );
+
+            }
             sb.setColor(1, 1, 1, 1);
         }
     }

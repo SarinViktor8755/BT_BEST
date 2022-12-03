@@ -25,6 +25,8 @@ public class TowerRotation { /// поворот любой башни ЛОГИК
 
     private boolean rotation;
 
+    private boolean guidance = false; //наведеени на цель
+
     final float rast_to_target = 80_000; // растояние обноружения )
 
     public TowerRotation(Vector2 direction, Vector2 direction_tower, Vector2 pos, HashMap<Integer, OpponentsTanks> listOpponents, int command) {
@@ -85,8 +87,18 @@ public class TowerRotation { /// поворот любой башни ЛОГИК
         }
     }
 
+    public boolean isGuidance() {
+        return guidance;
+    }
 
     private void turningTower(float targetAlign, float delta) { /// повернуть башню на градус
+       System.out.println(guidance);
+        float temp = direction.cpy().setAngleDeg(targetAlign).angleDeg(direction_tower);
+
+        if(temp > 358 || temp < 2) guidance = true; else  guidance = false;
+
+
+        /// angle_difference = direction.cpy().setAngleDeg(targetAlign).angleDeg(direction_tower);
         if (!MathUtils.isEqual(direction_tower.angleDeg(), targetAlign, 1.2f)) {
             rotation = true;
 //            System.out.println( "  ___ "+
