@@ -123,8 +123,8 @@ public class Tank {
         position.set(position.x, position.y);
         position.x += MathUtils.random(-100, 100);
         position.y += MathUtils.random(-100, 100);
-
-        gsp.getMainGame().getGamePlayScreen().getAudioEngine().pley_fight_ad_sound();
+        controller.addBannerFeiath();
+       // gsp.getMainGame().getGamePlayScreen().getAudioEngine().pley_fight_ad_sound();
     }
 
     public void respownTank() {
@@ -136,7 +136,9 @@ public class Tank {
         position.x += MathUtils.random(-100, 100);
         position.y += MathUtils.random(-100, 100);
 
-        gsp.getMainGame().getGamePlayScreen().getAudioEngine().pley_fight_ad_sound();
+
+        controller.addBannerFeiath();
+      //  gsp.getMainGame().getGamePlayScreen().getAudioEngine().pley_fight_ad_sound();
     }
 
     public static Integer getMy_Command() {
@@ -165,6 +167,10 @@ public class Tank {
 
     public void update(Vector2 directionMovementControll, boolean inTuch) {
         flashing_tank();
+
+        
+        if(MathUtils.randomBoolean(.005f))
+        controller.addBannerFeiath();
 
 
         if (!isLive()) this.position.set(DEATH_VECTOR);

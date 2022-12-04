@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
+import com.mygdx.tanks2d.AudioEngine.AudioEngine;
 import com.mygdx.tanks2d.MainGame;
 
 import java.util.ArrayList;
@@ -17,32 +18,39 @@ public class Banner { // банер на гланом экране
     private static final float defoult_time_life = 2f;
     private ArrayList<Integer> q = new ArrayList<>();
     private SpriteBatch batch;
+    private boolean voise;
 
 
     private Texture feature;
     private Texture beck_graund;
+    private AudioEngine ae;
 
 
-    public Banner(SpriteBatch spriteBatch, Texture feature, Texture bg) {
+    public Banner(SpriteBatch spriteBatch, AudioEngine audioEngine, Texture feature, Texture bg) {
         this.timeLife = 0;
         this.batch = spriteBatch;
         this.beck_graund = bg;
         this.feature = feature;
+        voise  = false;
+        ae = audioEngine;
+
     }
 
     public void update() {
-
-        if (MathUtils.randomBoolean(.005f)) {
-            addBaner(MathUtils.random(500));
-        }
+//        if (MathUtils.randomBoolean(.005f)) {
+//            addBanerFeith();
+//        }
 
         timeLife -= Gdx.graphics.getDeltaTime();
         ////////////////////////////////////
         if (!isWorking()) {
             timeLife = defoult_time_life;
+
             return;
         }
         timeLife -= Gdx.graphics.getDeltaTime();
+        if(voise && timeLife < 1.5){ae.pley_fight_ad_sound(); voise = false;}
+
         if (timeLife < 0) {
             delBanner();
             timeLife = defoult_time_life;
@@ -54,6 +62,7 @@ public class Banner { // банер на гланом экране
 
     private void delBanner() {
         if (isWorking()) q.remove(0);
+        voise = true;
     }
 
 
@@ -80,8 +89,8 @@ public class Banner { // банер на гланом экране
 
     }
 
-    public void addBaner(int bn) {
-        q.add(bn);
+    public void addBanerFeith() {
+        q.add(2000);
     }
 
     public boolean isWorking() {
