@@ -170,7 +170,7 @@ public class Tank {
 
         
         if(MathUtils.randomBoolean(.005f))
-        controller.addBannerFeiath();
+//        controller.addBannerFeiath();
 
 
         if (!isLive()) this.position.set(DEATH_VECTOR);

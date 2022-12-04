@@ -84,11 +84,13 @@ public class AssetsManagerGame {
         //  assets.put("badlogic.png", Texture.class);
         assets.put("target.png", Texture.class);
         assets.put("target_guidance.png", Texture.class);
+        assets.put("explosion_ring.png", Texture.class);
+
+
 
 
 //            assets.put("badlogic.png", Texture.class);
 //             assets.put("badlogic1.png", Texture.class);
-
 
         assets.put("particle1.png", Texture.class);
 ////////////////////

@@ -45,6 +45,8 @@ public class ParticleCustum {
     private TextureAtlas textureAtlasDeathExplosion; /// атлес текстур взрыва тотала
     Point_of_fire point_of_fire;
 
+    Texture explosion_ring;
+
     GamePlayScreen gps;
 
     public ParticleCustum(GamePlayScreen gps, Texture t, Texture f, Texture iron, TextureAtlas de, Texture shards) {
@@ -137,6 +139,7 @@ public class ParticleCustum {
         t.setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.Linear);
         shards.setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.Linear);
         //f.setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.Linear);
+        explosion_ring =  gps.getAMG().get("explosion_ring.png");
 
     }
 
@@ -212,11 +215,22 @@ public class ParticleCustum {
             float xw = MathUtils.map(100, 0, 100, 0, tex.getRegionWidth());
             float yw = MathUtils.map(100, 0, 100, 0, tex.getRegionHeight());
             /////////////////
+            System.out.println("getTime_life"+ed.getTime_life());
+            sb.setColor(1,1,1,Interpolation.pow2InInverse.apply(ed.getTime_life() -0.95f));
+            sb.draw(
+                    explosion_ring,
+                    ed.getPosition().x - (tex.getRegionWidth() / 2 / ed.getKefm() * ed.getTime_life()) , ed.getPosition().y - (tex.getRegionHeight() / 2 / ed.getKefm() * ed.getTime_life()),
+                    xw / ed.getKefm() * ed.getTime_life(), yw / ed.getKefm() * ed.getTime_life()
+            );
+
+            sb.setColor(1,1,1,1);
             sb.draw(
                     tex,
                     ed.getPosition().x - (tex.getRegionWidth() / 2), ed.getPosition().y - (tex.getRegionHeight() / 2),
                     xw, yw
             );
+
+
 
         }
     }
@@ -257,12 +271,13 @@ public class ParticleCustum {
     }
 
 
-    private void rander_explosion_Death_little() {
+    private void rander_explosion_Death_little() { // Рендер смерти
         for (Explosion_Death ed : explosion_Death_little) {
             if (!ed.isLife()) continue;
             ed.update();
 
             /////////////////
+            //Texture explosion_ring =  gsp.getAMG().get("trb2.png");
             TextureAtlas.AtlasRegion tex = textureAtlasDeathExplosion.findRegion(ed.getNameTextureRegion());
             float xw = MathUtils.map(100, 0, 100, 0, tex.getRegionWidth());
             float yw = MathUtils.map(100, 0, 100, 0, tex.getRegionHeight());
@@ -272,6 +287,9 @@ public class ParticleCustum {
                     ed.getPosition().x - (tex.getRegionWidth() / 2 / ed.getKefm() * ed.getTime_life()), ed.getPosition().y - (tex.getRegionHeight() / 2 / ed.getKefm() * ed.getTime_life()),
                     xw / ed.getKefm() * ed.getTime_life(), yw / ed.getKefm() * ed.getTime_life()
             );
+
+
+
 
         }
     }
