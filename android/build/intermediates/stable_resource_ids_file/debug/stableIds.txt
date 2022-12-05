@@ -1,4 +1,7 @@
-com.mygdx.tanks2d:string/app_name = 0x7f030000
-com.mygdx.tanks2d:drawable/ic_launcher = 0x7f020000
+com.mygdx.tanks2d:string/app_name = 0x7f040000
 com.mygdx.tanks2d:drawable/ic_launcher_foreground = 0x7f020001
+com.mygdx.tanks2d:mipmap/ic_launcher_adaptive_back = 0x7f030001
+com.mygdx.tanks2d:mipmap/ic_launcher_adaptive_fore = 0x7f030002
+com.mygdx.tanks2d:drawable/ic_launcher = 0x7f020000
+com.mygdx.tanks2d:mipmap/ic_launcher = 0x7f030000
 com.mygdx.tanks2d:color/ic_background_color = 0x7f010000

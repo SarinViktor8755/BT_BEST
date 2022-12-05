@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.mygdx.tanks2d.android-merged_res-5:/values_values.arsc.flat",
+            "outputFile": "C:\\Users\\vik\\.gradle\\daemon\\7.5.1\\com.mygdx.tanks2d.android-merged_res-5:\\values_values.arsc.flat",
             "map": [
                 {
                     "source": "C:\\game_dev\\BT_BEST\\android\\res\\values\\color.xml",
