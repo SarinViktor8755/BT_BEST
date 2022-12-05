@@ -26,6 +26,7 @@ public class Bullets {
     }
 
     public void addBullet(Vector2 pos, Vector2 vel, int nomer) {
+
         //System.out.println("addBULET !!!!!!!!!");
         // получи пулю из нашего бассейна
         Bullet b = bp.obtain();

@@ -49,7 +49,7 @@ public class Banner { // банер на гланом экране
             return;
         }
         timeLife -= Gdx.graphics.getDeltaTime();
-        if(voise && timeLife < 1.5){ae.pley_fight_ad_sound(); voise = false;}
+        //if(voise && timeLife < 1.5){ae.pley_fight_ad_sound(); voise = false;}
 
         if (timeLife < 0) {
             delBanner();

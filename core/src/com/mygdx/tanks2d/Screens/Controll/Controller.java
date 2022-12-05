@@ -403,7 +403,7 @@ public class Controller {
     }
 
     public void addBannerFeiath(){
-        System.out.println("addBaner");
+       // System.out.println("addBaner");
         this.banner.addBanerFeith();
     }
 

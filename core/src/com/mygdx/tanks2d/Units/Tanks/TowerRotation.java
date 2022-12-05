@@ -92,7 +92,7 @@ public class TowerRotation { /// поворот любой башни ЛОГИК
     }
 
     private void turningTower(float targetAlign, float delta) { /// повернуть башню на градус
-       System.out.println(guidance);
+   //    System.out.println(guidance);
         float temp = direction.cpy().setAngleDeg(targetAlign).angleDeg(direction_tower);
 
         if(temp > 358 || temp < 2) guidance = true; else  guidance = false;

@@ -52,12 +52,15 @@ public class Tank {
     private float time_life = 0;
     private float g = 1;
 
+    private boolean banner_feith;
+
 
 //    private HashMap<Float, Integer> targetTreet; // цели - угол до цели - номер цели )))
 //    private int target_tank;
 //    private Integer nomTarget;
 
     public Tank(GamePlayScreen gsp) {
+        banner_feith = true;
         time_life = 0;
         g = 1;
         deltaSledVec = new Vector2();
@@ -123,8 +126,8 @@ public class Tank {
         position.set(position.x, position.y);
         position.x += MathUtils.random(-100, 100);
         position.y += MathUtils.random(-100, 100);
-        controller.addBannerFeiath();
-       // gsp.getMainGame().getGamePlayScreen().getAudioEngine().pley_fight_ad_sound();
+
+        // gsp.getMainGame().getGamePlayScreen().getAudioEngine().pley_fight_ad_sound();
     }
 
     public void respownTank() {
@@ -135,10 +138,11 @@ public class Tank {
         position.set(position.x, position.y);
         position.x += MathUtils.random(-100, 100);
         position.y += MathUtils.random(-100, 100);
+        banner_feith = true;
 
 
-        controller.addBannerFeiath();
-      //  gsp.getMainGame().getGamePlayScreen().getAudioEngine().pley_fight_ad_sound();
+        //   controller.addBannerFeiath();
+        //  gsp.getMainGame().getGamePlayScreen().getAudioEngine().pley_fight_ad_sound();
     }
 
     public static Integer getMy_Command() {
@@ -163,17 +167,30 @@ public class Tank {
         else g = 1;
 
 
+//        try {
+//         if(time_life > 2)   controller.addBannerFeiath();
+//        }catch (NullPointerException e){}
+
     }
 
     public void update(Vector2 directionMovementControll, boolean inTuch) {
-        flashing_tank();
 
-        
-        if(MathUtils.randomBoolean(.005f))
+        flashing_tank();
+       // System.out.println(banner_feith);
+
+        if (banner_feith && time_life > 2) {
+            //System.out.println("!!!!!!!!!!!!!!!!!!!!! addBannerFeiath");
+            banner_feith = false;
+            gsp.getAudioEngine().pley_fight_ad_sound();
+            gsp.getController().addBannerFeiath();
+        }
+
+
+        if (MathUtils.randomBoolean(.005f))
 //        controller.addBannerFeiath();
 
 
-        if (!isLive()) this.position.set(DEATH_VECTOR);
+            if (!isLive()) this.position.set(DEATH_VECTOR);
         // if (MathUtils.randomBoolean(.005f)) hp = MathUtils.random(0, 80);
         // if(MathUtils.randomBoolean(.05f)) gsp.pc.addPasricalExplosionDeath(position.x, position.y);
         upDateHpHud();
@@ -345,7 +362,7 @@ public class Tank {
                     1, 1,
                     80, 80,
                     false, false);
-            if (tr.isGuidance()){
+            if (tr.isGuidance()) {
                 sb.setColor(.6f, 1, .6f, .2f);
                 sb.draw(target_guidance,
                         targetCoordinat.x - 40, targetCoordinat.y - 40, 80, 80
