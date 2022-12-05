@@ -119,7 +119,7 @@ public class MainClient {
         if (object instanceof Network.PleyerPositionNom) { // полученеи позиции играков
             Network.PleyerPositionNom pp = (Network.PleyerPositionNom) object;
             frameUpdates.put(pp.nom, true);
-          ///  System.out.println("pp.nom  " + pp.nom);
+                         System.out.println("pp.nom  " + pp.nom);
             //   System.out.println(pp.nom + "x y " + pp.xp + " " + pp.yp );
             if (pp.nom == client.getID()) return;
 

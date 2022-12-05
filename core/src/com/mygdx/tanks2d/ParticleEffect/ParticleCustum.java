@@ -215,7 +215,7 @@ public class ParticleCustum {
             float xw = MathUtils.map(100, 0, 100, 0, tex.getRegionWidth());
             float yw = MathUtils.map(100, 0, 100, 0, tex.getRegionHeight());
             /////////////////
-            System.out.println("getTime_life"+ed.getTime_life());
+            //    System.out.println("getTime_life"+ed.getTime_life());
             sb.setColor(1,1,1,Interpolation.pow2InInverse.apply(ed.getTime_life() -0.95f));
             sb.draw(
                     explosion_ring,

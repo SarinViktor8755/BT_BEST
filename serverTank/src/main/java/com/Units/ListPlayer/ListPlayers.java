@@ -307,7 +307,7 @@ public class ListPlayers {
         while (entries.hasNext()) {
             Map.Entry<Integer, Player> entry = entries.next();
             checkPlayerForDisconect(entry.getValue()); // проверка на дисконект игрока
-            if (!isBot(entry.getValue())) continue;
+           // if (!isBot(entry.getValue())) continue;
             Player p = entry.getValue();
             pn.nom = entry.getKey();
             pn.xp = p.getPosi().x;

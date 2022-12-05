@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="output" path="bin/default"/>
+	<classpathentry output="bin/main" kind="src" path="src">
+		<attributes>
+			<attribute name="gradle_scope" value="main"/>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7/"/>
+	<classpathentry kind="src" path="/TanksPVP_2d-core">
+		<attributes>
+			<attribute name="without_test_code" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="C:/Users/vik/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-backend-robovm/1.11.0/68e6824e4e3d76144d919a09205509d2381bec44/gdx-backend-robovm-1.11.0-sources.jar" kind="lib" path="C:/Users/vik/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-backend-robovm/1.11.0/bedda1c3f9ecf153a9edd245831e620371614d64/gdx-backend-robovm-1.11.0.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="C:/Users/vik/.gradle/caches/modules-2/files-2.1/com.mobidevelop.robovm/robovm-rt/2.3.16/33edf164285a4db2968d077cc2d822187d80a127/robovm-rt-2.3.16-sources.jar" kind="lib" path="C:/Users/vik/.gradle/caches/modules-2/files-2.1/com.mobidevelop.robovm/robovm-rt/2.3.16/876326afdbbb044cc0224c1f7021cd10d0422b81/robovm-rt-2.3.16.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="C:/Users/vik/.gradle/caches/modules-2/files-2.1/com.mobidevelop.robovm/robovm-cocoatouch/2.3.16/4fb34def0c29ab6ddcf1eb22d30c623a98cc120c/robovm-cocoatouch-2.3.16-sources.jar" kind="lib" path="C:/Users/vik/.gradle/caches/modules-2/files-2.1/com.mobidevelop.robovm/robovm-cocoatouch/2.3.16/5e3f1d1a102c42a82a88b2f5ca9d1a9c9350e520/robovm-cocoatouch-2.3.16.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/vik/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-platform/1.11.0/a55afe221d06ea79c011fa235971eae22aa9419d/gdx-platform-1.11.0-natives-ios.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/vik/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-freetype-platform/1.11.0/c4c8c613b95b067af4f0928669077e7ad2585206/gdx-freetype-platform-1.11.0-natives-ios.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="C:/Users/vik/.gradle/caches/modules-2/files-2.1/com.mobidevelop.robovm/robovm-objc/2.3.16/a7920e529a1f0cfff7b3faba3771e7158bd816fd/robovm-objc-2.3.16-sources.jar" kind="lib" path="C:/Users/vik/.gradle/caches/modules-2/files-2.1/com.mobidevelop.robovm/robovm-objc/2.3.16/cafceb5042ec443b4e3cc90698df45fabba3b7b3/robovm-objc-2.3.16.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="C:/Users/vik/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-freetype/1.11.0/bce6d994984a1dc4d6ef0b5783ae3b7ba7a8848/gdx-freetype-1.11.0-sources.jar" kind="lib" path="C:/Users/vik/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-freetype/1.11.0/a3634ad2e6c56d251268d6ab5c0f66eee2841f2c/gdx-freetype-1.11.0.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="C:/Users/vik/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx/1.11.0/ea3e9eccc5c09636f405e345039b62376465a6f4/gdx-1.11.0-sources.jar" kind="lib" path="C:/Users/vik/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx/1.11.0/ffe1206d1004cd9e40027e28964be0fea0399af7/gdx-1.11.0.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="C:/Users/vik/.gradle/caches/modules-2/files-2.1/com.esotericsoftware/kryonet/2.22.0-RC1/8ee2b983164bf6b9d194004c84b11b7397079d32/kryonet-2.22.0-RC1-sources.jar" kind="lib" path="C:/Users/vik/.gradle/caches/modules-2/files-2.1/com.esotericsoftware/kryonet/2.22.0-RC1/2f25f7250a3096a8d1b8182946f6572d90d280d0/kryonet-2.22.0-RC1.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="C:/Users/vik/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-jnigen-loader/2.3.1/8228a038af98f2d0fa7b23ea7b4fa330af832305/gdx-jnigen-loader-2.3.1-sources.jar" kind="lib" path="C:/Users/vik/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-jnigen-loader/2.3.1/2d472f69243631fbcb3d4c3f93dd2e137a6cb084/gdx-jnigen-loader-2.3.1.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="C:/Users/vik/.gradle/caches/modules-2/files-2.1/com.esotericsoftware.kryo/kryo/2.24.0/72af5078b1592b627f2b4187f95decf72829b0e9/kryo-2.24.0-sources.jar" kind="lib" path="C:/Users/vik/.gradle/caches/modules-2/files-2.1/com.esotericsoftware.kryo/kryo/2.24.0/c6b206e80cfd97e66a1364003724491c757b92f/kryo-2.24.0.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="C:/Users/vik/.gradle/caches/modules-2/files-2.1/com.esotericsoftware/jsonbeans/0.7/5ddae466293fa27293a4eb341deffabc4d013564/jsonbeans-0.7-sources.jar" kind="lib" path="C:/Users/vik/.gradle/caches/modules-2/files-2.1/com.esotericsoftware/jsonbeans/0.7/de977f0875708eddd154f2a4c3a3f58a13ef297/jsonbeans-0.7.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="C:/Users/vik/.gradle/caches/modules-2/files-2.1/com.esotericsoftware.minlog/minlog/1.2/c0bf75c30b19393673253e25708aa797a545fa10/minlog-1.2-sources.jar" kind="lib" path="C:/Users/vik/.gradle/caches/modules-2/files-2.1/com.esotericsoftware.minlog/minlog/1.2/59bfcd171d82f9981a5e242b9e840191f650e209/minlog-1.2.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="C:/Users/vik/.gradle/caches/modules-2/files-2.1/org.objenesis/objenesis/2.1/611a57d836e2c320d59f9851d4ad587f3c8472e/objenesis-2.1-sources.jar" kind="lib" path="C:/Users/vik/.gradle/caches/modules-2/files-2.1/org.objenesis/objenesis/2.1/87c0ea803b69252868d09308b4618f766f135a96/objenesis-2.1.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+</classpath>

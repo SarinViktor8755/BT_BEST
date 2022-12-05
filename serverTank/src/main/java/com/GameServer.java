@@ -78,8 +78,7 @@ public class GameServer {
                                    ///      System.out.println(server.getConnections().length +"    -------------");
                                    if (object instanceof Network.PleyerPosition) {
                                        Network.PleyerPosition pp = (Network.PleyerPosition) object;
-
-                                       lp.sendToAllPlayerPosition(connection.getID(), (Network.PleyerPosition) object);
+                                       //  lp.sendToAllPlayerPosition(connection.getID(), (Network.PleyerPosition) object);
                                        lp.getPlayerForId(connection.getID()).setPosition(pp.xp, pp.yp);
                                        lp.getPlayerForId(connection.getID()).setRotTower(pp.roy_tower);
                                        return;
