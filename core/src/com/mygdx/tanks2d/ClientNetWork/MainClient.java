@@ -10,6 +10,7 @@ import com.esotericsoftware.kryonet.Listener;
 import com.mygdx.tanks2d.ClientNetWork.VoiceChat.VoiceChatClient;
 import com.mygdx.tanks2d.MainGame;
 import com.mygdx.tanks2d.Units.Tanks.OpponentsTanks;
+import com.mygdx.tanks2d.Units.Tanks.TanksOther;
 
 
 import java.io.IOException;
@@ -119,26 +120,39 @@ public class MainClient {
         if (object instanceof Network.PleyerPositionNom) { // полученеи позиции играков
             Network.PleyerPositionNom pp = (Network.PleyerPositionNom) object;
             frameUpdates.put(pp.nom, true);
-                         System.out.println("pp.nom  " + pp.nom);
+                        // System.out.println("pp.nom  " + pp.nom + "   " +pp.xp);
             //   System.out.println(pp.nom + "x y " + pp.xp + " " + pp.yp );
             if (pp.nom == client.getID()) return;
 
 
+           // System.out.println(mg.getGamePlayScreen().getTanksOther().get);
+            try {
+                if(mg.isMainMenuScreen()) return;
+              //  OpponentsTanks tank = mg.getGamePlayScreen().getTanksOther().getTankForID(pp.nom);
+                mg.getGamePlayScreen().getTanksOther().setTankPosition(pp, mg.getMainClient().frameUpdates.get(pp.nom));
+            } catch (NullPointerException e) {
+                mg.getGamePlayScreen().getTanksOther().createOponent(-10_000,-10_000,pp.nom,0);
+
+            }
+
+
+
+
 
             // System.out.println("PleyerPositionNom");
-            try {
-                try {
-                    OpponentsTanks t = mg.getGamePlayScreen().getTanksOther().getTankForID(pp.nom);
-                    mg.getGamePlayScreen().getTanksOther().setTankPosition(pp, mg.getMainClient().frameUpdates.get(pp.nom));
-                } catch (NullPointerException e) {
-                    OpponentsTanks ot = new OpponentsTanks();
-                    mg.getGamePlayScreen().getTanksOther().createOponent(pp.xp, pp.yp, pp.nom, pp.roy_tower);
-                }
-
-                //mg.getMainClient().frameUpdates.put(pp.nom, false); /// закрывает флаг о рендере __
-            } catch (NullPointerException e) {
-                //   e.printStackTrace();
-            }
+//            try {
+//                try {
+//                    OpponentsTanks t = mg.getGamePlayScreen().getTanksOther().getTankForID(pp.nom);
+//                    mg.getGamePlayScreen().getTanksOther().setTankPosition(pp, mg.getMainClient().frameUpdates.get(pp.nom));
+//                } catch (NullPointerException e) {
+//                    OpponentsTanks ot = new OpponentsTanks();
+//                    mg.getGamePlayScreen().getTanksOther().createOponent(pp.xp, pp.yp, pp.nom, pp.roy_tower);
+//                }
+//
+//                //mg.getMainClient().frameUpdates.put(pp.nom, false); /// закрывает флаг о рендере __
+//            } catch (NullPointerException e) {
+//                //   e.printStackTrace();
+//            }
 
             return;
         }

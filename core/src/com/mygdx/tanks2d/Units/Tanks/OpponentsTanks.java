@@ -60,6 +60,8 @@ public class OpponentsTanks { // ОДИН ТАНК
 
     }
 
+
+
     public OpponentsTanks() {
         //this.nikName = getNikNameGen();
 
@@ -77,6 +79,8 @@ public class OpponentsTanks { // ОДИН ТАНК
         temp_delta = new Vector2(0, 0);
 
     }
+
+
 
 
 

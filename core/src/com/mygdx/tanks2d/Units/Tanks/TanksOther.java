@@ -202,23 +202,20 @@ public class TanksOther { /// много танков )))
             }
         }
 
-//        System.out.println("_______________________________");
-//        System.out.println("  r: " + r + "  b: " + b);
-//        System.out.println("  rl: " + rl + "  bl: " + bl);
-//        System.out.println("_______________________________");
-//        gsp.getTank().isLive();
-//
-
-//        gsp.setScore_blue_command(b);
-//        gsp.setScore_blue_command(r);
-
         gsp.setLive_red_command(rl);
         gsp.setLive_blue_command(bl);
+    }
 
+
+    private void print_nickname(SpriteBatch sb,OpponentsTanks t){ // печатает ник -если нет то отправляет запрос
+        if (t.getNikPlayer() != null) {
+            textFont.draw(sb, t.getNikPlayer(), t.getPosition().x - t.getNikPlayer().length() * 4, t.getPosition().y + 50);
+        } else
+            gsp.getMainGame().getMainClient().getNetworkPacketStock().toSendMyParPlayer(t.nomder);
     }
 
     public void randerOtherTanks(SpriteBatch sb) {
-        count_living();
+        count_living();  // посчитать живых играко и всего сколько
         OpponentsTanks t;
         //   System.out.println("--------");
         for (Map.Entry<Integer, OpponentsTanks> tank : this.listOpponents.entrySet()) {
@@ -228,14 +225,7 @@ public class TanksOther { /// много танков )))
             gsp.pc.generatorSmoke(tank.getValue().hp, t.getPosition().x, t.getPosition().y);
             updateColor(t, Gdx.graphics.getDeltaTime());
 
-
-//////////////////////////////////////
-            if (t.getNikPlayer() != null) {
-                textFont.draw(sb, t.getNikPlayer(), t.getPosition().x - t.getNikPlayer().length() * 4, t.getPosition().y + 50);
-            } else
-                gsp.getMainGame().getMainClient().getNetworkPacketStock().toSendMyParPlayer(t.nomder);
-
-//////////////////////////////////////
+            print_nickname(gsp.getBatch(), t); // печатает ник -если нет то отправляет запрос
 
             t.update(Gdx.graphics.getDeltaTime());
 
@@ -417,6 +407,7 @@ public class TanksOther { /// много танков )))
         }
         return null;
     }
+
 
 
 }
