@@ -75,8 +75,12 @@ public class Controller {
     private GamePlayScreen gamePlayScreen;
 
     private Texture track;
+    private Texture fith;
     private Texture feature;
-    private Texture feature1;
+    private Texture victory;
+    private Texture failed;
+
+
 
     private boolean buttonChangingOpponent;
 
@@ -371,11 +375,15 @@ public class Controller {
 
        // assets.put("fith.png", Texture.class);
         track = gamePlayScreen.getAMG().get("treck_bar.png", Texture.class);
-        feature = gamePlayScreen.getAMG().get("Fith.png", Texture.class);
-        feature1 = gamePlayScreen.getAMG().get("treck_bar1.png", Texture.class);
+        fith = gamePlayScreen.getAMG().get("Fith.png", Texture.class);
+
+        failed = gamePlayScreen.getAMG().get("failed.png", Texture.class);
+        victory = gamePlayScreen.getAMG().get("victory.png", Texture.class);
+
+        feature = gamePlayScreen.getAMG().get("treck_bar1.png", Texture.class);
 
 
-        banner = new Banner(gsp.getBatch(),gsp.getAudioEngine(),feature,track);
+        banner = new Banner(gsp.getBatch(),gsp.getAudioEngine(),fith,track);
     }
 
     public boolean isButtonChangingOpponent() {
@@ -424,7 +432,7 @@ public class Controller {
             }
             //batch.setColor(Color.BLUE);
             for (int i = 0; i < fb; i++) {
-                batch.draw(feature1,
+                batch.draw(feature,
                         WIDTH_SCREEN / 2 - 80 - (i * 15), // ширина экрана
                         gamePlayScreen.getMainGame().hu - 35 // высота экрана
                         , 10, 10);

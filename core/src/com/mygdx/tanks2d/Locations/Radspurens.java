@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 
 import java.util.ArrayDeque;
+import java.util.ConcurrentModificationException;
 
 public class Radspurens { //следы кратеры
     ArrayDeque<RadspurenTank> listRadspurens;
@@ -85,11 +86,14 @@ public class Radspurens { //следы кратеры
     }
 
     public void clearRadspurens() {// оичстит следы на карте
-        for (RadspurenTank rt : listRadspurens) {
-            if(MathUtils.randomBoolean()) continue;
-            rt.life = false;
-            rt.timer = -1;
-        }
+        try {
+            for (RadspurenTank rt : listRadspurens) {
+                if(MathUtils.randomBoolean()) continue;
+                rt.life = false;
+                rt.timer = -1;
+            }
+        }catch (ConcurrentModificationException e){}
+
     }
 
     public void clearCrater() {// оичстит следы на карте

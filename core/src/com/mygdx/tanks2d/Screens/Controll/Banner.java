@@ -83,7 +83,7 @@ public class Banner { // банер на гланом экране
             batch.draw(feature,
                     160, // ширина экрана
                     120 - (Interpolation.swing.apply(scale) * (120 * i))// высота экрана
-                    , 200, 100);
+                    , 180, 100);
         }
 
 

@@ -232,7 +232,7 @@ public class Tank {
             if (Vector2.dst2(position.x, position.y, deltaSledVec.x, deltaSledVec.y) > 200) {
                 deltaSledVec.set(getPosition());
                 gsp.getGameSpace().addSled(position.x + direction.x * 3, position.y + direction.y * 3, direction.angleDeg());
-                gsp.getMainGame().audioEngine.pley_pip_1();
+               // gsp.getMainGame().audioEngine.pley_pip_1();
             }
     }
 
