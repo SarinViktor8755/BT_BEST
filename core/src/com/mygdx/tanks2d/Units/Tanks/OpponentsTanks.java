@@ -138,7 +138,7 @@ public class OpponentsTanks { // ОДИН ТАНК
     }
 
     public boolean isLive() {
-        return (hp > 0);
+        return (hp > 1);
     }
 
     public void setLive(float hp) {

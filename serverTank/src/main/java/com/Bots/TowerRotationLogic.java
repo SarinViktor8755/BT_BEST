@@ -28,30 +28,30 @@ public class TowerRotationLogic { /// поворот любой башни ЛО�
 
     private static void making_Decision_Tower(DBBot dbBot, Player p, ListPlayers lp) { // принятие решение башня
         try {
-        if (dbBot.getNomTarget() == null) { // если нет целей
-            // dbBot.setTarget_tank(0);
-            dbBot.setTarget_angle_rotation_tower(p.getBody_rotation().cpy().rotateDeg(180));
-            dbBot.setNomTarget(scanning_the_terrain(dbBot, p, lp)); // поиск цели
-        } else {
-            capturing_target(dbBot, p, lp);
+            if (dbBot.getNomTarget() == null) { // если нет целей
+                // dbBot.setTarget_tank(0);
+                dbBot.setTarget_angle_rotation_tower(p.getBody_rotation().cpy().rotateDeg(180));
+                dbBot.setNomTarget(scanning_the_terrain(dbBot, p, lp)); // поиск цели
+            } else {
+                capturing_target(dbBot, p, lp);
 
 //            if(!lp.getPlayerForId(dbBot.getNomTarget()).isLive())dbBot.setNomTarget(null);
 //            if(lp.getPlayerForId(dbBot.getNomTarget()).getPosi().dst2(p.getPosi()) > rast_to_target) dbBot.setNomTarget(null);
 //
-          if(MathUtils.randomBoolean(.08f))  ckeck_target(dbBot,p,lp);
-        }
-        }catch (NullPointerException e){
+                if (MathUtils.randomBoolean(.08f)) ckeck_target(dbBot, p, lp);
+            }
+        } catch (NullPointerException e) {
             e.printStackTrace();
             dbBot.setNomTarget(null);
 
         }
 
-       // System.out.println(dbBot.getNomTarget() + "@@" + p.getId());
+        // System.out.println(dbBot.getNomTarget() + "@@" + p.getId());
 
     }
 
     private static Integer scanning_the_terrain(DBBot dbBot, Player p, ListPlayers lp) { //найти цель
-        Integer targetID = lp.targetTankForBotAttack(p.getPosi(),p);
+        Integer targetID = lp.targetTankForBotAttack(p.getPosi(), p);
         return targetID;
     }
 
@@ -87,10 +87,12 @@ public class TowerRotationLogic { /// поворот любой башни ЛО�
 
     private static boolean ckeck_target(DBBot dbBot, Player p, ListPlayers lp) { // проверка цели
         try {
-        if(!lp.getPlayerForId(dbBot.getNomTarget()).isLive())dbBot.setNomTarget(null);
-        if(lp.getPlayerForId(dbBot.getNomTarget()).getPosi().dst2(p.getPosi()) > rast_to_target) dbBot.setNomTarget(null);
-         //   System.out.println("ckeck_target");
-        }catch (NullPointerException e){
+            if (lp.getPlayerForId(dbBot.getNomTarget()).getHp() < 1) dbBot.setNomTarget(null);
+            if (!lp.getPlayerForId(dbBot.getNomTarget()).isLive()) dbBot.setNomTarget(null);
+            if (lp.getPlayerForId(dbBot.getNomTarget()).getPosi().dst2(p.getPosi()) > rast_to_target)
+                dbBot.setNomTarget(null);
+            //   System.out.println("ckeck_target");
+        } catch (NullPointerException e) {
             System.out.println("NullPointerException  ckeck_target");
             dbBot.setNomTarget(null);
             e.printStackTrace();

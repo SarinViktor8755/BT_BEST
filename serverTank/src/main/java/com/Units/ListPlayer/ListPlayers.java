@@ -132,11 +132,11 @@ public class ListPlayers {
             if (tokken.equals(e.getValue().getTokken())) {
                 players.remove(e.getKey());
                 System.out.println("remove_tokken");
-               // e.getValue().status = Heading_type.DISCONECT_PLAYER;
-               // gameServer.send_DISCONECT_PLAYER(e.getKey());
+                // e.getValue().status = Heading_type.DISCONECT_PLAYER;
+                // gameServer.send_DISCONECT_PLAYER(e.getKey());
             }
         }
-      //  players.put(id, new Player(id, my_coomand, tokken));/// добавили нового пользователя
+        //  players.put(id, new Player(id, my_coomand, tokken));/// добавили нового пользователя
     }
 
     public void clearList() {
@@ -235,6 +235,7 @@ public class ListPlayers {
         while (entries.hasNext()) {
             Map.Entry<Integer, Player> entry = entries.next();
             if (!entry.getValue().in_game_player()) continue;
+            if (entry.getValue().hp < 1) continue;
 
             //if (entry.getValue().hp < 1) continue;
             temp2.set(entry.getValue().getPosi().x, entry.getValue().getPosi().y);
@@ -307,7 +308,7 @@ public class ListPlayers {
         while (entries.hasNext()) {
             Map.Entry<Integer, Player> entry = entries.next();
             checkPlayerForDisconect(entry.getValue()); // проверка на дисконект игрока
-           // if (!isBot(entry.getValue())) continue;
+            // if (!isBot(entry.getValue())) continue;
             Player p = entry.getValue();
             pn.nom = entry.getKey();
             pn.xp = p.getPosi().x;
@@ -433,6 +434,7 @@ public class ListPlayers {
             //  if (tank.getValue().hp < 1) continue;
             //   System.out.println(tank.getValue().id + "   " + tank.getValue().pos+ "   " + tank.getValue().status);
             if (tank.getValue().isCollisionsTanks(pos)) {
+                if(!tank.getValue().isLive()) continue;
                 //  System.out.println("!!!!!!!!!!!!!!!"+ tank.getValue().nikName);
                 return new Vector2().set(pos.cpy().sub(tank.getValue().pos).nor());
             }
@@ -449,6 +451,7 @@ public class ListPlayers {
         Iterator<Map.Entry<Integer, Player>> entries = players.entrySet().iterator();
         while (entries.hasNext()) {
             Player p = entries.next().getValue();
+            if(!p.isLive()) continue;
             if (!p.in_game_player()) continue;
             if (my.getCommand() == p.getCommand()) continue;
             float dst = p.getPosi().dst2(myPosi);

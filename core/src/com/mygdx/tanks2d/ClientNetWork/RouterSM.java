@@ -146,6 +146,9 @@ public class RouterSM {
                     ot.setNikPlayer(sm.textM);
                     if (!ot.isLive()) {
                         if (mainGame.getGamePlayScreen().getTimeInGame() < 1) return;
+
+                        System.out.println("!!::  "+ot.hp + "  "+ ot.getNikPlayer());
+
                         mainGame.getGamePlayScreen().getPc().addAnimationDeath(ot.getPosition().x, ot.getPosition().y);
 
 
