@@ -208,10 +208,21 @@ public class TanksOther { /// много танков )))
 
 
     private void print_nickname(SpriteBatch sb,OpponentsTanks t){ // печатает ник -если нет то отправляет запрос
-        if (t.getNikPlayer() != null) {
-            textFont.draw(sb, t.getNikPlayer(), t.getPosition().x - t.getNikPlayer().length() * 4, t.getPosition().y + 50);
-        } else
-            gsp.getMainGame().getMainClient().getNetworkPacketStock().toSendMyParPlayer(t.nomder);
+
+            if (t.getNikPlayer() != null ) {
+                textFont.draw(sb, t.getNikPlayer(), t.getPosition().x - t.getNikPlayer().length() * 4, t.getPosition().y + 50);
+            } else{
+                gsp.getMainGame().getMainClient().getNetworkPacketStock().toSendMyParPlayer(t.nomder);
+            }
+
+        try {
+            if (t.getNikPlayer().equals(Heading_type.DEFULT_NAME))gsp.getMainGame().getMainClient().getNetworkPacketStock().toSendMyParPlayer(t.nomder);
+            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!Heading_type.DEFULT_NAME");
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
+
+
     }
 
     public void randerOtherTanks(SpriteBatch sb) {
@@ -225,7 +236,7 @@ public class TanksOther { /// много танков )))
             gsp.pc.generatorSmoke(tank.getValue().hp, t.getPosition().x, t.getPosition().y);
             updateColor(t, Gdx.graphics.getDeltaTime());
 
-            print_nickname(gsp.getBatch(), t); // печатает ник -если нет то отправляет запрос
+            print_nickname(gsp.getBatch(), t); // печатает ник - если нет то отправляет запрос
 
             t.update(Gdx.graphics.getDeltaTime());
 
