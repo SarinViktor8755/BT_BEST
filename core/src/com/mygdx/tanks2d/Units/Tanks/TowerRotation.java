@@ -9,6 +9,8 @@ import java.util.Map;
 
 public class TowerRotation { /// поворот любой башни ЛОГИКА - входит в класс танка одного
 
+
+    private boolean pip_song = true;
     private HashMap<Float, Integer> targetTreet; // цели - угол до цели - номер цели )))
     private HashMap<Integer, OpponentsTanks> listOpponents;
 
@@ -38,10 +40,11 @@ public class TowerRotation { /// поворот любой башни ЛОГИК
         this.timerTackt = 0;
         this.rotation = false;
         this.myCommand = command;
+        pip_song = true;
         // this.myCommand  =
     }
 
-    public float getTimerTackt(){
+    public float getTimerTackt() {
         return timerTackt;
     }
 
@@ -65,23 +68,23 @@ public class TowerRotation { /// поворот любой башни ЛОГИК
                     nomTarget = null;
                     return;
                 }
-            }catch (NullPointerException e){
+            } catch (NullPointerException e) {
                 nomTarget = null;
                 return;
             }
             turningTower(returnAngle(listOpponents.get(nomTarget).getPosition(), myPosition), delta);
             if (MathUtils.randomBoolean(.05f)) targetDetectionTower(this.myPosition); // ищем цели
             if (checkLen()) nomTarget = null;
-            if(changeCommand()) nomTarget = null;
+            if (changeCommand()) nomTarget = null;
 
         }
     }
 
 
-    public boolean changeCommand(){// проверяет команду
+    public boolean changeCommand() {// проверяет команду
         try {
             return myCommand == listOpponents.get(nomTarget).getCommand();
-        }catch(NullPointerException e){
+        } catch (NullPointerException e) {
             e.printStackTrace();
             return false;
         }
@@ -92,10 +95,11 @@ public class TowerRotation { /// поворот любой башни ЛОГИК
     }
 
     private void turningTower(float targetAlign, float delta) { /// повернуть башню на градус
-   //    System.out.println(guidance);
+        //    System.out.println(guidance);
         float temp = direction.cpy().setAngleDeg(targetAlign).angleDeg(direction_tower);
 
-        if(temp > 358 || temp < 2) guidance = true; else  guidance = false;
+        if (temp > 358 || temp < 2) guidance = true;
+        else guidance = false;
 
 
         /// angle_difference = direction.cpy().setAngleDeg(targetAlign).angleDeg(direction_tower);
@@ -119,7 +123,7 @@ public class TowerRotation { /// поворот любой башни ЛОГИК
             if (!tank.getValue().isLive()) continue;
             if (myCommand == tank.getValue().getCommand()) continue;
             float l = tank.getValue().getPosition().cpy().sub(positionMy).len2();
-           // System.out.println("myCommand " + myCommand + "  " + tank.getValue().getCommand());
+            // System.out.println("myCommand " + myCommand + "  " + tank.getValue().getCommand());
 
             if (l < rast_to_target) {
                 this.targetTreet.put(returnAngle(tank.getValue().getPosition(), myPosition), tank.getKey());
@@ -194,7 +198,9 @@ public class TowerRotation { /// поворот любой башни ЛОГИК
         if (this.timerTackt >= 1f) {
             timerTackt = 0;
             return true;
-        } else return false;
+        } else {
+            return false;
+        }
     }
 
     private boolean checkVisebleRadar(float x, float y) {

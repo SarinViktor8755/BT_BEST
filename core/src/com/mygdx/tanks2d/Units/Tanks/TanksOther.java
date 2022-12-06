@@ -269,7 +269,13 @@ public class TanksOther { /// много танков )))
         }
         sb.setColor(1, 1, 1, 1);
     }
-
+//
+    public void send_all_layer_live_100_hp(){
+        for (Map.Entry<Integer, OpponentsTanks> tank : this.listOpponents.entrySet()) {
+           OpponentsTanks t = tank.getValue();
+           t.setLive(100);
+        }
+    }
 
     private void addSled(OpponentsTanks t) {
         try {

@@ -12,6 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 
 public class AudioEngine {
+    Sound pip1;
     MainGame mainGaming;
     ConcurrentHashMap<Integer, Float> stepCounter;
     Sound sound;
@@ -23,6 +24,8 @@ public class AudioEngine {
     Sound music_pause;
 
     Sound redy_for_action;
+
+    Sound pip;
 
 
     private Long idTrack;
@@ -44,7 +47,8 @@ public class AudioEngine {
         tower = mainGaming.getAMG().get("sound/bash.ogg", Sound.class);
         fight = mainGaming.getAMG().get("sound/f.ogg", Sound.class);
         loose = mainGaming.getAMG().get("sound/loose.ogg", Sound.class);
-
+        pip = mainGaming.getAMG().get("sound/pip.ogg", Sound.class);
+        pip1 = mainGaming.getAMG().get("sound/pip1.ogg", Sound.class);
         music_pause = mainGaming.getAMG().get("pause_screen/pm.ogg", Sound.class);
 
         explosion = mainGaming.getAMG().get("sound/explode4.ogg", Sound.class);
@@ -87,6 +91,15 @@ public class AudioEngine {
     public void pley_fight_ad_sound() {
         if(isPause()) return;
         this.fight.play();
+    }
+
+    public void pley_pip() {
+        if(isPause()) return;
+        this.pip.play();
+    }
+    public void pley_pip_1() {
+        if(isPause()) return;
+        this.pip1.play();
     }
 
     public void pley_lose_ad_sound() {

@@ -211,12 +211,10 @@ public class Tank {
 
 ///////////////////////////////////////
         tr.update(Gdx.graphics.getDeltaTime());
-
         if (this.tr.getTargetSize() > 1) gsp.getController().setButtonChangingOpponent(true);
         else gsp.getController().setButtonChangingOpponent(false);
         //if (MathUtils.randomBoolean(.05f)) hp--;
         generatorSmoke();
-
 
         getTargetCamera();
         getTargetCamera(directionMovementControll);
@@ -234,6 +232,7 @@ public class Tank {
             if (Vector2.dst2(position.x, position.y, deltaSledVec.x, deltaSledVec.y) > 200) {
                 deltaSledVec.set(getPosition());
                 gsp.getGameSpace().addSled(position.x + direction.x * 3, position.y + direction.y * 3, direction.angleDeg());
+                gsp.getMainGame().audioEngine.pley_pip_1();
             }
     }
 

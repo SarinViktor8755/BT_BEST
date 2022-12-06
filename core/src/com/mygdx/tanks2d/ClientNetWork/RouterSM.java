@@ -86,7 +86,7 @@ public class RouterSM {
 //            System.out.println("RESPOWN_TANK_PLAYER!!! " + sm.p2);
 //            System.out.println("RESPOWN_TANK_PLAYER!!! " + sm.p3);
 
-
+            mainGame.getGamePlayScreen().getTanksOther().send_all_layer_live_100_hp();
             /// ока сделаем что бы клиент сам определял место респауна, если что - поменяем на то что бы сервер определял ,
             mainGame.getGamePlayScreen().getTank().setHp(100);
            // mainGame.getGamePlayScreen().getTank().respownTank((int) sm.p4);

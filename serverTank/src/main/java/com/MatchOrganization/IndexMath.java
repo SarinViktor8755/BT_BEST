@@ -127,7 +127,7 @@ public class IndexMath {
 
     public void respon_math() {
         SCORE_RESPOWN--;
-        System.out.println(SCORE_RESPOWN);
+        //System.out.println(SCORE_RESPOWN);
         if (SCORE_RESPOWN > 0) return;
 
         listPlayers.respownAllPlaers();
@@ -146,7 +146,7 @@ public class IndexMath {
 
         listPlayers.respownAllPlaers();
         realTimeMath = 0;
-        System.out.println("RESTART MATH " + comand);
+       // System.out.println("RESTART MATH " + comand);
 
         SCORE_RESPOWN = DEFOULT_SCORE_RESPOWN;
     }

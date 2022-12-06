@@ -83,7 +83,7 @@ public class IndexBullets {
 //                    bullet.getTimeLife()
 //                    Heading_type.SHOT_LIFETIME
                  //   System.out.println( "---" + bullet.getTimeLife() + "   " + MathUtils.map(Heading_type.SHOT_LIFETIME, 0, 15, 50, bullet.getTimeLife()));
-                    int hp = (int) MathUtils.map(2000, 0, 10, 35, bullet.getTimeLife());
+                    int hp = (int) MathUtils.clamp(MathUtils.map(2000, 0, 10, 35, bullet.getTimeLife()),10,35);
                     player.minusHP(hp);
 
                     gameServer.send_PARAMETERS_PLAYER(player); // рассылка всем

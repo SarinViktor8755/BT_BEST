@@ -142,6 +142,7 @@ public class MenuScreen implements Screen {
 //                }
 
                 if (!button_start_click) {
+                    if(MathUtils.randomBoolean())mainGame.audioEngine.pley_pip();
                     if (!mainClient.getClient().isConnected()) {
                         try {
                             mainClient.getClient().reconnect();
