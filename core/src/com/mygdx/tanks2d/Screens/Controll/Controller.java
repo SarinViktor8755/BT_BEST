@@ -24,8 +24,10 @@ import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.tanks2d.ClientNetWork.Heading_type;
 import com.mygdx.tanks2d.MainGame;
 import com.mygdx.tanks2d.Screens.GamePlayScreen;
+import com.mygdx.tanks2d.Units.Tanks.Tank;
 
 
 /**
@@ -80,6 +82,7 @@ public class Controller {
     private Texture victory;
     private Texture failed;
 
+    private static boolean finalAd = false; // люч вфинальных титров любявлени
 
 
     private boolean buttonChangingOpponent;
@@ -161,7 +164,6 @@ public class Controller {
 //        System.out.println("!!!!!!!!!!!!!  " + sw);
 
 
-
         //System.out.println(Gdx.graphics.ge);
 
 /////////////////
@@ -171,9 +173,6 @@ public class Controller {
         // System.out.println(pointStick.getImageHeight()+ "  ==== ___ ");
 
         pointStick.setSize(90, 90);
-
-
-
 
 
         stick.addListener(new InputListener() {
@@ -246,6 +245,10 @@ public class Controller {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 //   voiceButton = true;
+                System.out.println();
+                System.out.println(timer);
+                System.out.println(time_in_game);
+
 
                 return true;
             }
@@ -292,8 +295,6 @@ public class Controller {
         voiceButtonImg.setSize(55, 55);
         voiceButtonImg.setPosition(WIDTH_SCREEN - 90, 170);
 //
-
-
         Group gropuButton = new Group();
         Group gropuStick = new Group();
 
@@ -373,7 +374,7 @@ public class Controller {
 
         changingGoal.setColor(1, 1, 1, .3f);
 
-       // assets.put("fith.png", Texture.class);
+        // assets.put("fith.png", Texture.class);
         track = gamePlayScreen.getAMG().get("treck_bar.png", Texture.class);
         fith = gamePlayScreen.getAMG().get("Fith.png", Texture.class);
 
@@ -383,7 +384,7 @@ public class Controller {
         feature = gamePlayScreen.getAMG().get("treck_bar1.png", Texture.class);
 
 
-        banner = new Banner(gsp.getBatch(),gsp.getAudioEngine(),fith,track);
+        banner = new Banner(gsp.getBatch(), gsp.getAudioEngine(), fith, track);
     }
 
     public boolean isButtonChangingOpponent() {
@@ -410,8 +411,18 @@ public class Controller {
 
     }
 
-    public void addBannerFeiath(){
-       // System.out.println("addBaner");
+    public void addBannerFeiath() {
+        // System.out.println("addBaner");
+        this.banner.addBanerFeith();
+    }
+
+    public void addBannerWiner() {
+         System.out.println("addBannerWiner");
+        this.banner.addBanerFeith();
+    }
+
+    public void addBannerLOUSER() {
+        System.out.println("lossser");
         this.banner.addBanerFeith();
     }
 
@@ -423,7 +434,7 @@ public class Controller {
             float tt = gamePlayScreen.getTank().getTime_Tackt();
 
             batch.setColor(1, 1, 1, 1);
-           // fr = MathUtils.random(0,15);
+            // fr = MathUtils.random(0,15);
             for (int i = 0; i < fr; i++) {
                 batch.draw(track,
                         WIDTH_SCREEN / 2 + 60 + (i * 15), // ширина экрана
@@ -546,6 +557,8 @@ public class Controller {
         if (buttonChangingOpponent) changingGoal.setColor(1, 1, 1, .3f);
         else changingGoal.setColor(1, 0, 0, .1f);
         if (!contollerOn) changingGoal.setColor(1, 1, 1, 1);
+
+        updateCotrollerFinalAd(); // бновление финалльног ообьявления или титров
     }
 
     public void setContollerOn(boolean contollerOn) {
@@ -613,5 +626,31 @@ public class Controller {
 
     public void setVoiceButton(boolean voiceButton) {
         this.voiceButton = voiceButton;
+    }
+
+    public void updateCotrollerFinalAd() {
+        ///// обеда
+        if (Controller.finalAd) {
+            if (fr < 1) {
+                Controller.finalAd = false;
+             //   System.out.println("BLUE WIN");
+                gamePlayScreen.getController().addBannerFeiath();
+                if(Tank.getMy_Command()== Heading_type.RED_COMMAND) gamePlayScreen.getController().addBannerLOUSER();else
+                if(Tank.getMy_Command()== Heading_type.BLUE_COMMAND) gamePlayScreen.getController().addBannerWiner();
+            }
+            if (fb < 1) {
+                Controller.finalAd = false;
+             //   System.out.println("RED WIN");
+                if(Tank.getMy_Command()== Heading_type.RED_COMMAND) gamePlayScreen.getController().addBannerWiner();else
+                if(Tank.getMy_Command()== Heading_type.BLUE_COMMAND) gamePlayScreen.getController().addBannerLOUSER();
+            }
+        }
+
+        //System.out.println(Controller.finalAd + "  Controller.finalAd " + fr + "   " + fb);
+        /// начало матча
+        if ((!Controller.finalAd) && (fr > 0) && (fb > 0) && (time_in_game > 8))
+            Controller.finalAd = true;
+        //else Controller.finalAd = false;
+
     }
 }

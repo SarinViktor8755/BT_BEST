@@ -93,16 +93,17 @@ public class TanksOther { /// много танков )))
 
             // есть фрейм - тогда смещаем танк к реальной точке перемещения
 
-                temp.set(p.xp, p.yp);
-                tRotation.set(p.xp, p.yp).sub(ot.getPosition());
+            temp.set(p.xp, p.yp);
+            tRotation.set(p.xp, p.yp).sub(ot.getPosition());
 
-                float delta = tRotation.angleDeg() - ot.getDirection().angleDeg();
-                if (Math.abs(delta) > 10) {
-                    delta = MathUtils.map(-360, 360, -1, 1, delta);
-                }
-                ot.getDirection().setAngleRad(delta);
+            float delta = tRotation.angleDeg() - ot.getDirection().angleDeg();
+            if (Math.abs(delta) > 10) {
+                delta = MathUtils.map(-360, 360, -1, 1, delta);
+            }
+            ot.getDirection().setAngleRad(delta);
 /////////////////////////////////
-               if(temp.dst2(ot.getPosition())>500) ot.getPosition().set(p.xp, p.yp);else
+            if (temp.dst2(ot.getPosition()) > 500) ot.getPosition().set(p.xp, p.yp);
+            else
                 ot.getPosition().add(temp.sub(ot.getPosition().cpy()).scl(Gdx.graphics.getDeltaTime() * 10));
 ////////////////////////////////
             float rotation = tRotation.set(p.xp, p.yp).cpy().sub(ot.getPosition()).angleDeg();
@@ -207,19 +208,21 @@ public class TanksOther { /// много танков )))
     }
 
 
-    private void print_nickname(SpriteBatch sb,OpponentsTanks t){ // печатает ник -если нет то отправляет запрос
+    private void print_nickname(SpriteBatch sb, OpponentsTanks t) { // печатает ник -если нет то отправляет запрос
 
-            if (t.getNikPlayer() != null ) {
-                textFont.draw(sb, t.getNikPlayer(), t.getPosition().x - t.getNikPlayer().length() * 4, t.getPosition().y + 50);
-            } else{
-                gsp.getMainGame().getMainClient().getNetworkPacketStock().toSendMyParPlayer(t.nomder);
-            }
+        if (t.getNikPlayer() != null) {
+            textFont.draw(sb, t.getNikPlayer(), t.getPosition().x - t.getNikPlayer().length() * 4, t.getPosition().y + 50);
+        } else {
+            gsp.getMainGame().getMainClient().getNetworkPacketStock().toSendMyParPlayer(t.nomder);
+        }
 
         try {
-            if (t.getNikPlayer().equals(Heading_type.DEFULT_NAME))gsp.getMainGame().getMainClient().getNetworkPacketStock().toSendMyParPlayer(t.nomder);
-            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!Heading_type.DEFULT_NAME");
-        }catch (NullPointerException e){
-            e.printStackTrace();
+            if (t.getNikPlayer().equals(Heading_type.DEFULT_NAME) && (MathUtils.randomBoolean(0.1f))) {
+                gsp.getMainGame().getMainClient().getNetworkPacketStock().toSendMyParPlayer(t.nomder);
+                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!Heading_type.DEFULT_NAME");
+            }
+        } catch (NullPointerException e) {
+            // e.printStackTrace();
         }
 
 
@@ -280,11 +283,12 @@ public class TanksOther { /// много танков )))
         }
         sb.setColor(1, 1, 1, 1);
     }
-//
-    public void send_all_layer_live_100_hp(){
+
+    //
+    public void send_all_layer_live_100_hp() {
         for (Map.Entry<Integer, OpponentsTanks> tank : this.listOpponents.entrySet()) {
-           OpponentsTanks t = tank.getValue();
-           t.setLive(100);
+            OpponentsTanks t = tank.getValue();
+            t.setLive(100);
         }
     }
 
@@ -424,7 +428,6 @@ public class TanksOther { /// много танков )))
         }
         return null;
     }
-
 
 
 }
