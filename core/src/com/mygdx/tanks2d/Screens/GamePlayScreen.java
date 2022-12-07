@@ -63,12 +63,10 @@ public class GamePlayScreen implements Screen {
         live_red_command = 0;
         this.mainGame = mainGame;
 
-
         this.timeInGame = 0;
         this.gameSpace = new GameSpace(this, mainGame);
         //this.audioEngine = new AudioEngine(this);
         this.audioEngine = mainGame.audioEngine;
-
         this.tanksOther = new TanksOther(this);
 
         this.inputProcessorPC = new InputProcessorDesktop(this);
@@ -76,14 +74,10 @@ public class GamePlayScreen implements Screen {
         this.pos = new Vector2(150, 150);
         this.cameraGame = new CameraGame(MainGame.WIDTH_SCREEN * 1.2f, MainGame.HEIGHT_SCREEN * 1.2f, gameSpace.getSizeLocationPixel(), gameSpace.WITH_LOCATION, gameSpace.HEIHT_LOCATION,mainGame.hb);
         this.cameraGame.jampCameraToPoint(pos.x, pos.y);
-
 //        this.controller = new Controller(this, mainGame.getAssetManager().get("flatDark26.png", Texture.class), mainGame.getAssetManager().get("flatDark261.png", Texture.class));
         this.controller = new Controller(this);
-
         tank = new Tank(this);
-
         bullets = new Bullets(this);
-
         pc = new ParticleCustum(this, mainGame.getAMG().get("particle1.png", Texture.class), mainGame.getAMG().get("fire.png", Texture.class), mainGame.getAMG().get("iron.png", Texture.class), mainGame.getAMG().get("de.pack", TextureAtlas.class), mainGame.getAMG().get("garnd.png", Texture.class));
 
 

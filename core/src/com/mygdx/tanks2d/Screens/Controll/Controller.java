@@ -377,14 +377,13 @@ public class Controller {
         // assets.put("fith.png", Texture.class);
         track = gamePlayScreen.getAMG().get("treck_bar.png", Texture.class);
         fith = gamePlayScreen.getAMG().get("Fith.png", Texture.class);
-
         failed = gamePlayScreen.getAMG().get("failed.png", Texture.class);
         victory = gamePlayScreen.getAMG().get("victory.png", Texture.class);
 
         feature = gamePlayScreen.getAMG().get("treck_bar1.png", Texture.class);
 
 
-        banner = new Banner(gsp.getBatch(), gsp.getAudioEngine(), fith, track);
+        banner = new Banner(gsp.getBatch(), gsp.getAudioEngine(), fith,victory,failed, track);
     }
 
     public boolean isButtonChangingOpponent() {
@@ -412,18 +411,15 @@ public class Controller {
     }
 
     public void addBannerFeiath() {
-        // System.out.println("addBaner");
-        this.banner.addBanerFeith();
+        this.banner.addBaner(1);
     }
 
     public void addBannerWiner() {
-         System.out.println("addBannerWiner");
-        this.banner.addBanerFeith();
+        this.banner.addBaner(2);
     }
 
     public void addBannerLOUSER() {
-        System.out.println("lossser");
-        this.banner.addBanerFeith();
+        this.banner.addBaner(3);
     }
 
     public void randerGUI(SpriteBatch batch) {
@@ -634,7 +630,7 @@ public class Controller {
             if (fr < 1) {
                 Controller.finalAd = false;
              //   System.out.println("BLUE WIN");
-                gamePlayScreen.getController().addBannerFeiath();
+           //     gamePlayScreen.getController().addBannerFeiath();
                 if(Tank.getMy_Command()== Heading_type.RED_COMMAND) gamePlayScreen.getController().addBannerLOUSER();else
                 if(Tank.getMy_Command()== Heading_type.BLUE_COMMAND) gamePlayScreen.getController().addBannerWiner();
             }

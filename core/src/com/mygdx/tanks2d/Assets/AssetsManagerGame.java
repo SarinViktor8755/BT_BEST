@@ -82,6 +82,7 @@ public class AssetsManagerGame {
 
         assets.put("sound/f.ogg", Sound.class);
         assets.put("sound/loose.ogg", Sound.class);
+        assets.put("sound/win.ogg", Sound.class);
         assets.put("sound/pip.ogg", Sound.class);
         assets.put("sound/pip1.ogg", Sound.class);
         assets.put("sound/bash.ogg", Sound.class);

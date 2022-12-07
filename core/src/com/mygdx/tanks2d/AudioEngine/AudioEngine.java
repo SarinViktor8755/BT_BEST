@@ -20,7 +20,7 @@ public class AudioEngine {
     Sound tower;
     Sound explosion;
 
-    Sound fight, loose;
+    Sound fight, loose, win;
     Sound music_pause;
 
     Sound redy_for_action;
@@ -31,7 +31,7 @@ public class AudioEngine {
     private Long idTrack;
     private Long idTower;
     private float timer_towr_ratation;
-    private boolean timerTower;
+  //  private boolean timerTower;
     private static long pause_music_id = 1;
 
     private static Vector2 tempV = new Vector2(0, 0);
@@ -39,7 +39,7 @@ public class AudioEngine {
     public AudioEngine(MainGame mainGaming) {
         timer_towr_ratation = 0;
         this.mainGaming = mainGaming;
-        timerTower = false;
+      //  timerTower = false;
 
         redy_for_action = mainGaming.getAMG().get("sound/READY2A.ogg", Sound.class);
         sound = mainGaming.getAMG().get("sound/BSB.ogg", Sound.class);
@@ -47,10 +47,11 @@ public class AudioEngine {
         tower = mainGaming.getAMG().get("sound/bash.ogg", Sound.class);
         fight = mainGaming.getAMG().get("sound/f.ogg", Sound.class);
         loose = mainGaming.getAMG().get("sound/loose.ogg", Sound.class);
+        win  = mainGaming.getAMG().get("sound/win.ogg", Sound.class);
+
         pip = mainGaming.getAMG().get("sound/pip.ogg", Sound.class);
         pip1 = mainGaming.getAMG().get("sound/pip1.ogg", Sound.class);
         music_pause = mainGaming.getAMG().get("pause_screen/pm.ogg", Sound.class);
-
         explosion = mainGaming.getAMG().get("sound/explode4.ogg", Sound.class);
 
 
@@ -91,6 +92,11 @@ public class AudioEngine {
     public void pley_fight_ad_sound() {
         if(isPause()) return;
         this.fight.play();
+    }
+
+    public void pley_win_ad_sound() {
+        if(isPause()) return;
+        this.win.play();
     }
 
     public void pley_pip() {

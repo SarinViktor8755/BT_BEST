@@ -181,7 +181,7 @@ public class Tank {
         if (banner_feith && time_life > .7f) {
             //System.out.println("!!!!!!!!!!!!!!!!!!!!! addBannerFeiath");
             banner_feith = false;
-            gsp.getAudioEngine().pley_fight_ad_sound();
+         //   gsp.getAudioEngine().pley_fight_ad_sound();
             gsp.getController().addBannerFeiath();
         }
 
