@@ -111,15 +111,15 @@ public class IndexMath {
     private void restartMath(float mathTime) {
         if (mathTime < 5000) return;
         if (mathTime > MATH_LENGHT) {
-            System.out.println("respown TIME");
+         //   System.out.println("respown TIME");
             respon_math();
         }
         if (StatisticMath.getLiveBlueSize() < 1) {
-            System.out.println("respown blue");
+          //  System.out.println("respown blue");
             respon_math(1);
         }
         if (StatisticMath.getLiveRedSize() < 1) {
-            System.out.println("respown red");
+         //   System.out.println("respown red");
             respon_math(2);
         }
 

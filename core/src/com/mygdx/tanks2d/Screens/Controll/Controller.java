@@ -630,6 +630,7 @@ public class Controller {
         if (Controller.finalAd) {
             if (fr < 1) {
                 Controller.finalAd = false;
+
              //   System.out.println("BLUE WIN");
            //     gamePlayScreen.getController().addBannerFeiath();
                 if(Tank.getMy_Command()== Heading_type.RED_COMMAND) gamePlayScreen.getController().addBannerLOUSER();else
