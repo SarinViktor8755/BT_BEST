@@ -148,12 +148,12 @@ public class RouterSM {
                         if (mainGame.getGamePlayScreen().getTimeInGame() < 1) return;
 
                         System.out.println("!!::  "+ot.hp + "  "+ ot.getNikPlayer());
-
+                        if(sm.p1 == Tank.getMy_Command()) mainGame.getGamePlayScreen().getController().addFrag();
                         mainGame.getGamePlayScreen().getPc().addAnimationDeath(ot.getPosition().x, ot.getPosition().y);
 
 
 //                        System.out.println(sm + " !!!!!!!!!!!!!!!!!!!!!!!");
-                        if(sm.p1 == mainGame.getMainClient().getClient().getID()) mainGame.getGamePlayScreen().getController().addFrag();
+
                     }
                 }
 
