@@ -70,7 +70,6 @@ public class IndexBullets {
 
                 try {
 
-
                     delBullet(bullet); // /тут ели попали в игрок 1. минусуем хп 2. уничтожаем патрон 3. рассылаем игрока
                     Player player = gameServer.getLp().getPlayerForId(np);
                     gameServer.getLp().getPlayerForId(bullet.getAuthor_bullet()).getCommand();
@@ -86,13 +85,14 @@ public class IndexBullets {
                     int hp = (int) MathUtils.clamp(MathUtils.map(2000, 0, 10, 35, bullet.getTimeLife()),10,35);
                     player.minusHP(hp);
 
+
                     gameServer.send_PARAMETERS_PLAYER(player); // рассылка всем
                     if (!player.isLive()) {     // если игрок умер тогда присваиваем очки
                         player.setPosition(-100000, -100000);
                         player.setStatus(Heading_type.DEATH_TANK);
 
                         IndexMath.add_score_team(player.getCommand());
-
+                        gameServer.send_add_frag(bullet.getAuthor_bullet());
                         /// отправить сообщение
 
                     }

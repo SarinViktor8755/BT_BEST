@@ -119,7 +119,14 @@ public class GameServer {
         stockMessOut.p2 = y;
         stockMessOut.p3 = nom;
         stockMessOut.p4 = author;
+        //stockMessOut.textM = mainGame.gameServer.getLp().getPlayerForId()
         this.sendToAllTCP_in_game(stockMessOut);
+
+    }
+
+    public void send_add_frag(int n) {
+        Network.Frag f = new Network.Frag();
+        this.server.sendToUDP(n,f);
 
     }
 

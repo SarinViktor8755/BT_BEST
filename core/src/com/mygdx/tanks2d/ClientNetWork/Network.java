@@ -22,6 +22,7 @@ public class Network {
         kryo.register(StockMessOut.class);
         kryo.register(StockMessInClient.class);
         kryo.register(GivePlayerParameters.class);
+        kryo.register(Frag.class);
     }
 
     /////////////////////////////////////
@@ -29,6 +30,10 @@ public class Network {
         public float xp;
         public float yp;
         public float roy_tower;
+    }
+
+    public static class Frag {   //позиция
+
     }
 
     public static class PleyerPositionNom {   //ответ позиция с номером

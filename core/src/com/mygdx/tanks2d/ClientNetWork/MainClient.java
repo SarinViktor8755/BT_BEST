@@ -167,6 +167,10 @@ public class MainClient {
 
         }
 
+        if (object instanceof Network.Frag) {
+            mg.getGamePlayScreen().getController().addFrag();
+        }
+
 
     }
 
