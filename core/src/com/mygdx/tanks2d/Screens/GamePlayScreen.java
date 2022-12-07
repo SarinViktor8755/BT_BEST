@@ -123,6 +123,11 @@ public class GamePlayScreen implements Screen {
 //            mainGame.goMenuForPause();
 //        }
 
+//        if(MathUtils.randomBoolean(.005f)) {
+//            //mainGame.getGamePlayScreen().getController().addFrag();
+//          //  System.out.println("+++");
+//        }
+
         //mainGame.getMainClient().
         //mainGame.getMainClient().checkConnect(Heading_type.STATUS_GAME);
 

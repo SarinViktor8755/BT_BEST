@@ -396,6 +396,7 @@ public class Controller {
 
     public void addFrag() {
         this.frag++;
+        this.my_frag.setText("frags : " + frag);
     }
 
     public void setChance(boolean chance) {

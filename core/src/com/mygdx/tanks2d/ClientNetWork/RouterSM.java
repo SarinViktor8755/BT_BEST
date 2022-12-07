@@ -153,7 +153,7 @@ public class RouterSM {
 
 
 //                        System.out.println(sm + " !!!!!!!!!!!!!!!!!!!!!!!");
-//                        if(sm.p1 == mainGame.getMainClient().getClient().getID()) mainGame.getGamePlayScreen().getController().addFrag();
+                        if(sm.p1 == mainGame.getMainClient().getClient().getID()) mainGame.getGamePlayScreen().getController().addFrag();
                     }
                 }
 
