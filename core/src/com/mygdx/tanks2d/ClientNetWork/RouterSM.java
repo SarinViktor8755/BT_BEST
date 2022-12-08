@@ -32,7 +32,7 @@ public class RouterSM {
     }
 
     public void routeSM(Network.StockMessOut sm) throws NullPointerException {
-        // System.out.println("-->>> in :: " + sm);
+         System.out.println("-->>> in :: " + sm);
         if (Heading_type.MY_SHOT == sm.tip) {
             try {
                 //   System.out.println(mainGame.getGamePlayScreen() + "!!!!!!!!!!!!!!!!!!!!!");

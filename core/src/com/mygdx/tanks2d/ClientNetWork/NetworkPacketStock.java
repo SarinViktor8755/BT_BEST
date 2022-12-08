@@ -32,6 +32,15 @@ public class NetworkPacketStock {
     }
 
 
+     public void sendMuCoordinat(float x, float y, int anTower) {
+        Network.PleyerPosition pp = new Network.PleyerPosition();
+        pp.xp = x;
+        pp.yp = y;
+        pp.roy_tower = anTower;
+        client.sendTCP(pp);
+    }
+
+
     private void send_package_to_server(int tip, float p1, float p2, float p3, float p4, String text) //Integer tip, Integer p1, Integer p2, Integer p3, Integer p4, Integer p5, Integer p6, Integer nomer_pley, String textM,
     {
         Network.StockMessOut pack = new Network.StockMessOut();
@@ -53,13 +62,13 @@ public class NetworkPacketStock {
       //  System.out.println("Nik");
         send_package_to_server(Heading_type.MY_NIK, 0, 0, 0, 0, NikName.getNikName());
     }
-    public void toSendMyParPlayer(int idPlayer) { // запорс параметра игрока
-        if(MathUtils.randomBoolean()) return;
-        Network.GivePlayerParameters givePlayerParameters = new Network.GivePlayerParameters();
-        givePlayerParameters.nomerPlayer = idPlayer;
-        givePlayerParameters.nik = NikName.getNikName();
-        client.sendUDP(givePlayerParameters);
-    }
+//    public void toSendMyParPlayer(int idPlayer) { // запорс параметра игрока --  ПЕРЕДЕЛАТЬ
+//        if(MathUtils.randomBoolean()) return;
+//        Network.GivePlayerParameters givePlayerParameters = new Network.GivePlayerParameters();
+//        givePlayerParameters.nomerPlayer = idPlayer;
+//        givePlayerParameters.nik = NikName.getNikName();
+//        client.sendUDP(givePlayerParameters);
+//    }
 
 
     public void toSendMyTokken(int status_game) {

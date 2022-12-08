@@ -256,7 +256,8 @@ public class Tank {
 
     private void send_my_coordinat() {
         //  System.out.println(getPosition());
-        ServiceClient.sendMuCoordinat(getPosition().x, getPosition().y, getTr().getAnTower(), gsp.getMainGame().getMainClient().getClient());
+        //   ServiceClient.sendMuCoordinat(getPosition().x, getPosition().y, getTr().getAnTower(), gsp.getMainGame().getMainClient().getClient());
+        gsp.getMainGame().getMainClient().getNetworkPacketStock().sendMuCoordinat(position.x,position.y,getTr().getAnTower());
     }
 
 

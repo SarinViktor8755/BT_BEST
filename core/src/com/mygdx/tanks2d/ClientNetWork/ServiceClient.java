@@ -21,7 +21,6 @@ public class ServiceClient {
         Network.PleyerPosition pp = new Network.PleyerPosition();
         pp.xp = x;
         pp.yp = y;
-        pp.xp = x;
         pp.roy_tower = anTower;
         client.sendUDP(pp);
     }
