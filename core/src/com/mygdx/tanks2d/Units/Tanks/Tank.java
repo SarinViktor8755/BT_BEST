@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.tanks2d.ClientNetWork.Heading_type;
+import com.mygdx.tanks2d.ClientNetWork.ServiceClient;
 import com.mygdx.tanks2d.Screens.Controll.Controller;
 import com.mygdx.tanks2d.Screens.GamePlayScreen;
 
@@ -175,56 +176,38 @@ public class Tank {
 
     public void update(Vector2 directionMovementControll, boolean inTuch) {
 
-        flashing_tank();
-       // System.out.println(banner_feith);
-
-        if (banner_feith && time_life > .7f) {
-            //System.out.println("!!!!!!!!!!!!!!!!!!!!! addBannerFeiath");
-            banner_feith = false;
-         //   gsp.getAudioEngine().pley_fight_ad_sound();
-            gsp.getController().addBannerFeiath();
-        }
-
-
-        if (MathUtils.randomBoolean(.005f))
-//        controller.addBannerFeiath();
-
-
-            if (!isLive()) this.position.set(DEATH_VECTOR);
-        // if (MathUtils.randomBoolean(.005f)) hp = MathUtils.random(0, 80);
-        // if(MathUtils.randomBoolean(.05f)) gsp.pc.addPasricalExplosionDeath(position.x, position.y);
         upDateHpHud();
-        //////////////////////////
-
-
-////////////////////////////////////
-        // gsp.getGameSpace().getLighting().setLasetOn(false);
-        try {
-            if (this.tr.getNomTarget() != null) {
-                targetCoordinat = gsp.getTanksOther().getTankForID(this.tr.getNomTarget()).getPosition();
-                // gsp.getGameSpace().getLighting().setLasetOn(true);
-            }
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
-
-
-///////////////////////////////////////
         tr.update(Gdx.graphics.getDeltaTime());
         if (this.tr.getTargetSize() > 1) gsp.getController().setButtonChangingOpponent(true);
         else gsp.getController().setButtonChangingOpponent(false);
         //if (MathUtils.randomBoolean(.05f)) hp--;
-        generatorSmoke();
+
 
         getTargetCamera();
         getTargetCamera(directionMovementControll);
-        //  targetDetectionTower();
-        if (!inTuch) return;
-        raz = Math.abs(direction.angleDeg() - directionMovementControll.angleDeg());
+        banner_feith();
 
-        if (isLive()) moveMainTank(directionMovementControll);
-        //System.out.println(direction.clamp(SPEED,SPEED).len());
-        generatorSled();
+        //  if (!inTuch) return;
+
+        if (isLive()) {
+            //System.out.println(direction.clamp(SPEED,SPEED).len());
+            moveMainTank(directionMovementControll, inTuch);
+            generatorSled();
+            tower_sec(); // работа башни
+            send_my_coordinat(); // передачакоординат
+            flashing_tank();
+            generatorSmoke();
+        } else this.position.set(DEATH_VECTOR);
+        ////////////////////////////////////
+        // gsp.getGameSpace().getLighting().setLasetOn(false);
+///////////////////////////////////////
+    }
+
+    private void banner_feith() {
+        if (banner_feith && time_life > .7f) {
+            banner_feith = false;
+            gsp.getController().addBannerFeiath();
+        }
     }
 
     private void generatorSled() {
@@ -232,7 +215,7 @@ public class Tank {
             if (Vector2.dst2(position.x, position.y, deltaSledVec.x, deltaSledVec.y) > 200) {
                 deltaSledVec.set(getPosition());
                 gsp.getGameSpace().addSled(position.x + direction.x * 3, position.y + direction.y * 3, direction.angleDeg());
-               // gsp.getMainGame().audioEngine.pley_pip_1();
+                // gsp.getMainGame().audioEngine.pley_pip_1();
             }
     }
 
@@ -242,12 +225,14 @@ public class Tank {
     }
 
 
-    private void moveMainTank(Vector2 directionMovementControll) { // движние основного танка
+    private void moveMainTank(Vector2 directionMovementControll, boolean inTuch) { // движние основного танка
         rotation_the_tower(directionMovementControll);
-        this.position.add(direction.nor().scl(SPEED).scl(Gdx.graphics.getDeltaTime()));
-        gsp.getGameSpace().checkMapBordersReturnSpaceTank(getPosition());
-        collisinRectangleTrue();
-        collisinCircleTrue();
+        if (inTuch) {
+            this.position.add(direction.nor().scl(SPEED).scl(Gdx.graphics.getDeltaTime()));
+            gsp.getGameSpace().checkMapBordersReturnSpaceTank(getPosition());
+            collisinRectangleTrue();
+            collisinCircleTrue();
+        }
         collisinOtherTanksTrue();
 
 
@@ -257,8 +242,26 @@ public class Tank {
 ///////////////////
     }
 
+    private void tower_sec() {
+        try {
+            if (this.tr.getNomTarget() != null) {
+                targetCoordinat = gsp.getTanksOther().getTankForID(this.tr.getNomTarget()).getPosition();
+                // gsp.getGameSpace().getLighting().setLasetOn(true);
+            }
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    private void send_my_coordinat() {
+        //  System.out.println(getPosition());
+        ServiceClient.sendMuCoordinat(getPosition().x, getPosition().y, getTr().getAnTower(), gsp.getMainGame().getMainClient().getClient());
+    }
+
 
     private void rotation_the_tower(Vector2 directionMovementControll) {
+        raz = Math.abs(direction.angleDeg() - directionMovementControll.angleDeg());
         if (raz > 10) // поворот башни
             if ((directionMovementControll.angleDeg(direction) > 180)) {
                 this.direction.setAngleDeg(direction.angleDeg() - Gdx.graphics.getDeltaTime() * SPEED_ROTATION);

@@ -161,7 +161,7 @@ public class IndexBot extends Thread {
         go_around_an_obstacle(tank, p); /// обход препядствий
 
 
-        p.getPosi().sub(p.getBody_rotation().cpy().nor().scl(deltaTime * 90)); /// перемещение танка
+        p.getPosi().sub(p.getBody_rotation().cpy().nor().scl(deltaTime * 100)); /// перемещение танка
         // перемещеени вперед
 
 

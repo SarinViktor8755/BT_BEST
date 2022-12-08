@@ -58,6 +58,7 @@ public class OpponentsTanks { // ОДИН ТАНК
         move = false;
         temp_delta = new Vector2(0, 0);
 
+
     }
 
 

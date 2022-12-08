@@ -24,7 +24,6 @@ public class ServiceClient {
         pp.xp = x;
         pp.roy_tower = anTower;
         client.sendUDP(pp);
-
     }
 
 

@@ -81,6 +81,7 @@ public class GamePlayScreen implements Screen {
         pc = new ParticleCustum(this, mainGame.getAMG().get("particle1.png", Texture.class), mainGame.getAMG().get("fire.png", Texture.class), mainGame.getAMG().get("iron.png", Texture.class), mainGame.getAMG().get("de.pack", TextureAtlas.class), mainGame.getAMG().get("garnd.png", Texture.class));
 
 
+
 //        if(!MainGame.ANDROID){
 //            inputProcessorPC = new InputProcessorDesktop(this);
 //
@@ -95,7 +96,7 @@ public class GamePlayScreen implements Screen {
 //            System.err.println(shader.getLog());
 //            System.exit(0);
 //        }
-
+     //   tanksOther.createOponent(tank.getPosition().x,tank.getPosition().y+20,55,15);
 
 //        batch.setShader(shader);
     }
@@ -137,7 +138,7 @@ public class GamePlayScreen implements Screen {
 
         // кинуть на сервер мои координаты
         //if (!getTank().isLive())
-        if(tank.isLive()) ServiceClient.sendMuCoordinat(tank.getPosition().x, tank.getPosition().y, tank.getTr().getAnTower(), mainGame.getMainClient().getClient());
+
 
         //////////    mainGame.getMainClient().getNetworkPacketStock();
 

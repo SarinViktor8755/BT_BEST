@@ -93,10 +93,13 @@ public class GameServer {
                                    if (object instanceof Network.GivePlayerParameters) {
                                        //System.out.println(connection.getID() + " ::GivePlayerParameters" + (Network.GivePlayerParameters) object);
                                        Network.GivePlayerParameters gpp = (Network.GivePlayerParameters) object;
+
                                        lp.getPlayerForId(connection.getID()).setNikName(gpp.nik);
+                                       System.out.println("!!!GivePlayerParameters::  "+ connection.getID()+ "  -- " + gpp.nomerPlayer );
 
                                        Player p = mainGame.gameServer.getLp().getPlayerForId(gpp.nomerPlayer);
-//
+
+
                                        if (p.getNikName() != null)
                                            mainGame.gameServer.send_PARAMETERS_PLAYER(p, connection.getID(), gpp.nomerPlayer);
                                    }
@@ -178,6 +181,7 @@ public class GameServer {
     }
 
     public void send_PARAMETERS_PLAYER(Player p, int forIdPlayer, int abautPlayer) {
+
         send_PARAMETERS_PLAYER(p.getHp(), p.getCommand(), p.getNikName(), forIdPlayer, abautPlayer);
     }
 

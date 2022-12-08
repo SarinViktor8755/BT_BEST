@@ -84,6 +84,8 @@ public class TanksOther { /// много танков )))
 //            listSled.put(nom, .0f);
 //        }
 
+
+
     }
 
     public void setTankPosition(Network.PleyerPositionNom p, Boolean newFrame) {  /// ЛОГИКА ПЕРЕМЕЩЕНИЯ ТАНКА БЕЗ СИГНАЛА
