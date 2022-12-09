@@ -87,6 +87,10 @@ public class TanksOther { /// много танков )))
 
     }
 
+    public void clearListOponent(){
+        this.listOpponents.clear();
+    }
+
     public void setTankPosition(Network.PleyerPositionNom p, Boolean newFrame) {  /// ЛОГИКА ПЕРЕМЕЩЕНИЯ ТАНКА БЕЗ СИГНАЛА
         if (listOpponents.containsKey(p.nom)) { //Если такой опоннет есть - работаем с ним - нет - сощдаем новый
             OpponentsTanks ot = listOpponents.get(p.nom);
@@ -241,10 +245,10 @@ public class TanksOther { /// много танков )))
             gsp.pc.generatorSmoke(tank.getValue().hp, t.getPosition().x, t.getPosition().y);
             updateColor(t, Gdx.graphics.getDeltaTime());
             print_nickname(gsp.getBatch(), t); // печатает ник - если нет то отправляет запрос
-            t.update(Gdx.graphics.getDeltaTime());
+            // t.update(Gdx.graphics.getDeltaTime());
 
 
-            sb.setColor(t.getColor(), t.getColor() + .5f, t.getColor(), 1);
+            sb.setColor(t.getColor(), t.getColor(), t.getColor(), t.getColor());
             if (t.getCommand() == Heading_type.RED_COMMAND) {
                 if (!t.move) b = img;
                 else if (MathUtils.sin(gsp.getTimeInGame() * 50) >= 0) b = img;

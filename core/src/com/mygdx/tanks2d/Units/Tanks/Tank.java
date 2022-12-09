@@ -175,7 +175,10 @@ public class Tank {
     }
 
     public void update(Vector2 directionMovementControll, boolean inTuch) {
-
+//       if(MathUtils.randomBoolean(.05f)) {
+//           System.out.println("cleeeeeeeeeeeeeeeeer");
+//           gsp.getTanksOther().listOpponents.clear();
+//       }
         upDateHpHud();
         tr.update(Gdx.graphics.getDeltaTime());
         if (this.tr.getTargetSize() > 1) gsp.getController().setButtonChangingOpponent(true);

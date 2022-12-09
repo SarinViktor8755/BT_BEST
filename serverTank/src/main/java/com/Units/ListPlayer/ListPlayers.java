@@ -66,6 +66,12 @@ public class ListPlayers {
         statisticMath = new StatisticMath(this);
     }
 
+    public boolean there_is_player(int id) {
+        if (getPlayerForId(id) == null) return false;
+        else return true;
+    }
+
+
     public Player getPlayerForId(int id) { // почему то вызывается  иногда
         Player result = players.get(id);
         if (result == null) {
@@ -434,7 +440,7 @@ public class ListPlayers {
             //  if (tank.getValue().hp < 1) continue;
             //   System.out.println(tank.getValue().id + "   " + tank.getValue().pos+ "   " + tank.getValue().status);
             if (tank.getValue().isCollisionsTanks(pos)) {
-                if(!tank.getValue().isLive()) continue;
+                if (!tank.getValue().isLive()) continue;
                 //  System.out.println("!!!!!!!!!!!!!!!"+ tank.getValue().nikName);
                 return new Vector2().set(pos.cpy().sub(tank.getValue().pos).nor());
             }
@@ -451,7 +457,7 @@ public class ListPlayers {
         Iterator<Map.Entry<Integer, Player>> entries = players.entrySet().iterator();
         while (entries.hasNext()) {
             Player p = entries.next().getValue();
-            if(!p.isLive()) continue;
+            if (!p.isLive()) continue;
             if (!p.in_game_player()) continue;
             if (my.getCommand() == p.getCommand()) continue;
             float dst = p.getPosi().dst2(myPosi);

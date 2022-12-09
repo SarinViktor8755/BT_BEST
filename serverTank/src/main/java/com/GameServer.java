@@ -67,7 +67,7 @@ public class GameServer {
                                @Override
                                public void connected(Connection connection) {
 
-                                  // send_MAP_PARAMETOR(connection.getID());
+                                   // send_MAP_PARAMETOR(connection.getID());
 
                                }
 
@@ -90,7 +90,13 @@ public class GameServer {
                                        RouterMassege.routeSM(sm, connection.getID(), getMainGame().gameServer);
                                    }
 
-//                                   if (object instanceof Network.GivePlayerParameters) { ПЕРЕДКЛАТЬ
+                                   if (object instanceof Network.GivePlayerParameters) { //ПЕРЕДКЛАТЬ
+                                       Network.GivePlayerParameters gp = (Network.GivePlayerParameters) object;
+                                       if (lp.there_is_player(gp.nomerPlayer)) {
+                                           send_PARAMETERS_PLAYER(lp.getPlayerForId(gp.nomerPlayer), connection.getID());
+                                       } else send_DISCONECT_PLAYER(connection.getID());
+
+                                   }
 //                                       //System.out.println(connection.getID() + " ::GivePlayerParameters" + (Network.GivePlayerParameters) object);
 //                                       Network.GivePlayerParameters gpp = (Network.GivePlayerParameters) object;
 //
@@ -103,8 +109,6 @@ public class GameServer {
 //                                       if (p.getNikName() != null)
 //                                           mainGame.gameServer.send_PARAMETERS_PLAYER(p, connection.getID(), gpp.nomerPlayer);
 //                                   }
-
-
 
 
                                }
@@ -132,7 +136,7 @@ public class GameServer {
 
     public void send_add_frag(int n) {
         Network.Frag f = new Network.Frag();
-        this.server.sendToUDP(n,f);
+        this.server.sendToUDP(n, f);
 
     }
 
@@ -150,6 +154,7 @@ public class GameServer {
         //      System.out.println(nikName + ">>>>");
     }
 
+
     public void send_RESPOUN_PLAYER(int id, float x, float y) {
         Network.StockMessOut stockMessOut = new Network.StockMessOut();
         stockMessOut.tip = Heading_type.RESPOWN_TANK_PLAYER;
@@ -158,18 +163,17 @@ public class GameServer {
         stockMessOut.p3 = id; /// ид игрока
 
 
-
         /// комада игрока - отом исправить мсена команды
         this.server.sendToTCP(id, stockMessOut);
     }
 
-    public void change_team(int id){
+    public void change_team(int id) {
         /////////////
         int comand;
         if (MathUtils.randomBoolean()) comand = Heading_type.RED_COMMAND;
         else comand = Heading_type.BLUE_COMMAND;
         lp.getPlayerForId(id).setCommand(comand);
-     //   stockMessOut.p4 = comand;
+        //   stockMessOut.p4 = comand;
         //////////////////Смена команды но надо еще мсообщить всем о смене )))
     }
 
@@ -212,6 +216,7 @@ public class GameServer {
 
 
     }
+
     /////!!!!!!!!!!!!!!!!!!!!!!!!!!
     public void send_PARAMETERS_PLAYER(Player p) { // для всех рассылк апараметров --- этот пакет определяет полнстью характеристики игрока))) !!!!!!!!!!
         Network.StockMessOut stockMessOut = new Network.StockMessOut();
@@ -230,19 +235,20 @@ public class GameServer {
     }
 
     /////!!!!!!!!!!!!!!!!!!!!!!!!!!
-    public void send_PARAMETERS_PLAYER(Player p, int forPlayer) { // оже Самое но отправить для опеределенного игкрока
+    public void send_PARAMETERS_PLAYER(Player p, int send_forPlayer) { // для всех рассылк апараметров --- этот пакет определяет полнстью характеристики игрока))) !!!!!!!!!!
         Network.StockMessOut stockMessOut = new Network.StockMessOut();
         if (p.getStatus() == Heading_type.DISCONECT_PLAYER) {
             send_DISCONECT_PLAYER(p.getId());
             return;
         }
+        /// роерить - может не существует игкрок
         stockMessOut.tip = Heading_type.PARAMETERS_PLAYER;
         stockMessOut.p1 = p.getId(); // id
         stockMessOut.p2 = getCoomandforPlayer(p.getId());// КОМАНДА
         stockMessOut.p3 = p.getHp(); // ХП
         stockMessOut.p4 = p.getCommand(); // номер игрока
         stockMessOut.textM = p.getNikName(); // ник нейм
-        this.server.sendToTCP(forPlayer,stockMessOut);
+        this.sendToAllTCP_in_game(stockMessOut);
     }
 
     public void send_MAP_PARAMETOR() { // сообщить название карты

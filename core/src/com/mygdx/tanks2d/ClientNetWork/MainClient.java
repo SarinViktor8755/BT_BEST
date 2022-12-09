@@ -128,15 +128,16 @@ public class MainClient {
             // System.out.println(mg.getGamePlayScreen().getTanksOther().get);
             try {
                 if (mg.isMainMenuScreen()) return;
-                OpponentsTanks tank = mg.getGamePlayScreen().getTanksOther().getTankForID(pp.nom);
-                System.out.println(tank);
+               // OpponentsTanks tank = mg.getGamePlayScreen().getTanksOther().getTankForID(pp.nom);
+              //  System.out.println(tank);
+
                 if (mg.getGamePlayScreen().getTanksOther().getTankForID(pp.nom) == null) {
                    // System.out.println("NET POLSOVATELY");
+                    if(MathUtils.randomBoolean(.005f))
+                   networkPacketStock.toSendMyParPlayer(pp.nom);
 
-                    if(MathUtils.randomBoolean(.05f))networkPacketStock.toSendMyParPlayer(pp.nom);
 
-
-                }
+                }else
                 mg.getGamePlayScreen().getTanksOther().setTankPosition(pp, mg.getMainClient().frameUpdates.get(pp.nom));
             } catch (NullPointerException e) {
                 System.out.println("NET POLSOVATELY");
