@@ -232,12 +232,14 @@ public class Tank {
             gsp.getGameSpace().checkMapBordersReturnSpaceTank(getPosition());
             collisinRectangleTrue();
             collisinCircleTrue();
+            replace_textures();
+            collisinOtherTanksTrue();
         }
-        collisinOtherTanksTrue();
+
 
 
         /////////////////////////////////////////////////////////
-        replace_textures();
+
         //  System.out.println(direction.len2());
 ///////////////////
     }

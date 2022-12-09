@@ -95,7 +95,7 @@ public class GamePlayScreen implements Screen {
 //            System.err.println(shader.getLog());
 //            System.exit(0);
 //        }
-        tanksOther.createOponent(tank.getPosition().x, tank.getPosition().y + 20, 55, 15);
+      //  tanksOther.createOponent(tank.getPosition().x, tank.getPosition().y + 20, 55, 15);
 
 //        batch.setShader(shader);
 

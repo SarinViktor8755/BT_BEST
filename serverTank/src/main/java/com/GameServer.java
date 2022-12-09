@@ -212,8 +212,25 @@ public class GameServer {
 
 
     }
+    /////!!!!!!!!!!!!!!!!!!!!!!!!!!
+    public void send_PARAMETERS_PLAYER(Player p) { // для всех рассылк апараметров --- этот пакет определяет полнстью характеристики игрока))) !!!!!!!!!!
+        Network.StockMessOut stockMessOut = new Network.StockMessOut();
+        if (p.getStatus() == Heading_type.DISCONECT_PLAYER) {
+            send_DISCONECT_PLAYER(p.getId());
+            return;
+        }
+        /// роерить - может не существует игкрок 
+        stockMessOut.tip = Heading_type.PARAMETERS_PLAYER;
+        stockMessOut.p1 = p.getId(); // id
+        stockMessOut.p2 = getCoomandforPlayer(p.getId());// КОМАНДА
+        stockMessOut.p3 = p.getHp(); // ХП
+        stockMessOut.p4 = p.getCommand(); // номер игрока
+        stockMessOut.textM = p.getNikName(); // ник нейм
+        this.sendToAllTCP_in_game(stockMessOut);
+    }
 
-    public void send_PARAMETERS_PLAYER(Player p) { // для всех рассылк апараметров
+    /////!!!!!!!!!!!!!!!!!!!!!!!!!!
+    public void send_PARAMETERS_PLAYER(Player p, int forPlayer) { // оже Самое но отправить для опеределенного игкрока
         Network.StockMessOut stockMessOut = new Network.StockMessOut();
         if (p.getStatus() == Heading_type.DISCONECT_PLAYER) {
             send_DISCONECT_PLAYER(p.getId());
@@ -225,7 +242,7 @@ public class GameServer {
         stockMessOut.p3 = p.getHp(); // ХП
         stockMessOut.p4 = p.getCommand(); // номер игрока
         stockMessOut.textM = p.getNikName(); // ник нейм
-        this.sendToAllTCP_in_game(stockMessOut);
+        this.server.sendToTCP(forPlayer,stockMessOut);
     }
 
     public void send_MAP_PARAMETOR() { // сообщить название карты
