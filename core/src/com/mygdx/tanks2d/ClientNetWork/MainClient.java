@@ -120,23 +120,29 @@ public class MainClient {
         if (object instanceof Network.PleyerPositionNom) { // полученеи позиции играков
             Network.PleyerPositionNom pp = (Network.PleyerPositionNom) object;
             frameUpdates.put(pp.nom, true);
-                        // System.out.println("pp.nom  " + pp.nom + "   " +pp.xp);
+            // System.out.println("pp.nom  " + pp.nom + "   " +pp.xp);
             //   System.out.println(pp.nom + "x y " + pp.xp + " " + pp.yp );
-            if (pp.nom == client.getID()) return;
+            if (pp.nom == client.getID()) return; // перить они НЕ должны приходить
 
 
-           // System.out.println(mg.getGamePlayScreen().getTanksOther().get);
+            // System.out.println(mg.getGamePlayScreen().getTanksOther().get);
             try {
-                if(mg.isMainMenuScreen()) return;
-              //  OpponentsTanks tank = mg.getGamePlayScreen().getTanksOther().getTankForID(pp.nom);
+                if (mg.isMainMenuScreen()) return;
+                OpponentsTanks tank = mg.getGamePlayScreen().getTanksOther().getTankForID(pp.nom);
+                System.out.println(tank);
+                if (mg.getGamePlayScreen().getTanksOther().getTankForID(pp.nom) == null) {
+                   // System.out.println("NET POLSOVATELY");
+
+                    if(MathUtils.randomBoolean(.05f))networkPacketStock.toSendMyParPlayer(pp.nom);
+
+
+                }
                 mg.getGamePlayScreen().getTanksOther().setTankPosition(pp, mg.getMainClient().frameUpdates.get(pp.nom));
             } catch (NullPointerException e) {
-                mg.getGamePlayScreen().getTanksOther().createOponent(-10_000,-10_000,pp.nom,0);
+                System.out.println("NET POLSOVATELY");
+                //   mg.getGamePlayScreen().getTanksOther().createOponent(-10_000,-10_000,pp.nom,0);
 
             }
-
-
-
 
 
             // System.out.println("PleyerPositionNom");
@@ -203,13 +209,13 @@ public class MainClient {
         return this.clientThread.getVoiceChatClient();
     }
 
-     synchronized void  reconectClienNewThred() { // выполняется каждые 50 мс
-     //   System.out.println(">>> " + coonection + "  " + key_coonection);
-        coonection-= Gdx.graphics.getDeltaTime();
+    synchronized void reconectClienNewThred() { // выполняется каждые 50 мс
+        //   System.out.println(">>> " + coonection + "  " + key_coonection);
+        coonection -= Gdx.graphics.getDeltaTime();
 
         if (coonection > 0) return;
         if (key_coonection) return;
-        if(client.isConnected()) return;
+        if (client.isConnected()) return;
         key_coonection = true;
         coonection = 8;
 
@@ -219,19 +225,19 @@ public class MainClient {
             public void run() {
                 try {
                     try {
-                     //   System.out.println(">->->->->->-  reconect ///////////");
+                        //   System.out.println(">->->->->->-  reconect ///////////");
 
                         getClient().reconnect(5000);
                         NetworkPacketStock.required_to_send_tooken = false;
                     } catch (IOException e) {
                         e.printStackTrace();
                         coonection = 0;
-                    }finally {
+                    } finally {
                         key_coonection = false;
                     }
 
                 } catch (Exception e) {
-                //    e.printStackTrace();
+                    //    e.printStackTrace();
                     System.out.println("not connect");
                 }
             }

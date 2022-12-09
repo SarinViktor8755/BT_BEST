@@ -21,7 +21,7 @@ public class Network {
         kryo.register(PleyerPositionNom.class);
         kryo.register(StockMessOut.class);
         kryo.register(StockMessInClient.class);
-        //kryo.register(GivePlayerParameters.class);
+        kryo.register(GivePlayerParameters.class);
         kryo.register(Frag.class);
     }
 

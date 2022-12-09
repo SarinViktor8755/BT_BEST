@@ -219,7 +219,7 @@ public class GameServer {
             send_DISCONECT_PLAYER(p.getId());
             return;
         }
-        /// роерить - может не существует игкрок 
+        /// роерить - может не существует игкрок
         stockMessOut.tip = Heading_type.PARAMETERS_PLAYER;
         stockMessOut.p1 = p.getId(); // id
         stockMessOut.p2 = getCoomandforPlayer(p.getId());// КОМАНДА

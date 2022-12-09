@@ -138,9 +138,13 @@ public class RouterSM {
                     //System.out.println(sm);
                     saveParametrsMyTank(sm);
                 } else {   // чужие танки  - получают урон
+                    // если игрока не будет создать нового
+                    if(!mainGame.getGamePlayScreen().getTanksOther().getExists((int) sm.p1)) mainGame.getGamePlayScreen().getTanksOther().createOponent(-1000, -1000,(int) sm.p1,0);
                     OpponentsTanks ot = mainGame.getGamePlayScreen().getTanksOther().getTankForID((int) sm.p1);
                     //    System.out.println(opponentsTanks);
                     // opponentsTanks = new OpponentsTanks();
+
+
                     ot.hp = (int) sm.p3;
                     ot.command = (int) sm.p2;
                     ot.setNikPlayer(sm.textM);

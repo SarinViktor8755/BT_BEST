@@ -85,7 +85,6 @@ public class TanksOther { /// много танков )))
 //        }
 
 
-
     }
 
     public void setTankPosition(Network.PleyerPositionNom p, Boolean newFrame) {  /// ЛОГИКА ПЕРЕМЕЩЕНИЯ ТАНКА БЕЗ СИГНАЛА
@@ -120,7 +119,7 @@ public class TanksOther { /// много танков )))
                 listSled.put(p.nom, listSled.get(p.nom) + Gdx.graphics.getDeltaTime()); /// СЛЕДЫ
         } else {
             try {
-                createOponent(p.xp, p.yp, p.nom, p.roy_tower); // создаем новый !!!!!!!
+                //  createOponent(p.xp, p.yp, p.nom, p.roy_tower); // создаем новый !!!!!!!
             } catch (NullPointerException e) {
 
             }
@@ -216,12 +215,12 @@ public class TanksOther { /// много танков )))
             textFont.draw(sb, t.getNikPlayer(), t.getPosition().x - t.getNikPlayer().length() * 4, t.getPosition().y + 50);
         } else {
             System.out.println("getNikPlayer() != null");
-          // if(MathUtils.randomBoolean(.005f)) gsp.getMainGame().getMainClient().getNetworkPacketStock().toSendMyParPlayer(t.nomder);
+            // if(MathUtils.randomBoolean(.005f)) gsp.getMainGame().getMainClient().getNetworkPacketStock().toSendMyParPlayer(t.nomder);
         }
 
         try {
             if (t.getNikPlayer().equals(Heading_type.DEFULT_NAME) && (MathUtils.randomBoolean(0.1f))) {
-           //     gsp.getMainGame().getMainClient().getNetworkPacketStock().toSendMyParPlayer(t.nomder);
+                //     gsp.getMainGame().getMainClient().getNetworkPacketStock().toSendMyParPlayer(t.nomder);
                 System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!Heading_type.DEFULT_NAME");
             }
         } catch (NullPointerException e) {
@@ -241,9 +240,7 @@ public class TanksOther { /// много танков )))
             if (!tank.getValue().isLive()) continue;
             gsp.pc.generatorSmoke(tank.getValue().hp, t.getPosition().x, t.getPosition().y);
             updateColor(t, Gdx.graphics.getDeltaTime());
-
             print_nickname(gsp.getBatch(), t); // печатает ник - если нет то отправляет запрос
-
             t.update(Gdx.graphics.getDeltaTime());
 
 
@@ -430,6 +427,13 @@ public class TanksOther { /// много танков )))
                 return new Vector2().set(pos.cpy().sub(tank.getValue().getPosition()).nor());
         }
         return null;
+    }
+
+    public boolean getExists(int id) {
+        OpponentsTanks t = this.listOpponents.get(id);
+        if (t == null) return false;
+        else return true;
+
     }
 
 
