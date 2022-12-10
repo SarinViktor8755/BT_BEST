@@ -31,7 +31,7 @@ public class RouterMassege {
             return;
         }
         if (Heading_type.MY_TOKKEN == sm.tip) {
-            gameServer.getLp().delete_by_toiken(sm.textM);
+           // gameServer.getLp().delete_by_toiken(sm.textM);
             gameServer.getLp().addPlayer(new Player(id_coonect,(int)sm.p1,sm.textM));
 
             return;

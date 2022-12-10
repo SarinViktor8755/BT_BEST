@@ -29,6 +29,7 @@ public class GameServer {
     IndexBot indexBot; // количество играков - по нему боты орентируюься сколько их нужно = для автобаласа
     private VoiceChatServer relay;
 
+
     public static boolean break_in_the_game;
 
     static long previousStepTime; // шаг для дельты
@@ -54,8 +55,9 @@ public class GameServer {
                                @Override
                                public void disconnected(Connection connection) {
                                    try {
-                                       lp.getPlayerForId(connection.getID()).setStatus(Heading_type.DISCONECT_PLAYER);
-                                       lp.getPlayerForId(connection.getID()).setPosition(Player.DISCONECT_SYS_LAYER);
+                                      lp.disconect(connection.getID());
+//                                       lp.getPlayerForId(connection.getID()).setStatus(Heading_type.DISCONECT_PLAYER);
+//                                       lp.getPlayerForId(connection.getID()).setPosition(Player.DISCONECT_SYS_LAYER);
                                        // getLp().getPlayers().remove(connection.getID());
                                    } catch (NullPointerException e) {
                                        e.printStackTrace();
@@ -74,6 +76,7 @@ public class GameServer {
 
                                @Override
                                public void received(Connection connection, Object object) {
+
                                    relay.relayVoice(connection, object, server);
                                    ///      System.out.println(server.getConnections().length +"    -------------");
                                    if (object instanceof Network.PleyerPosition) {
@@ -279,19 +282,35 @@ public class GameServer {
     }
 
     public void sendToAllTCP_in_game(Object object) { // разослать тем кто в игре
-        Connection[] connections = server.getConnections();
-        for (int i = 0, n = connections.length; i < n; i++) {
-            try {
-                Connection connection = connections[i];
-                // int id = connections[i].getID();
-                if (lp.getPlayerForId(connection.getID()).isClickButtonStart())
-                    connection.sendTCP(object);
-            } catch (NullPointerException e) {
-                //  lp.getPlayerForId(connection.getID())
-                lp.remove_player(connections[i].getID());
-                e.printStackTrace();
-            }
-        }
+        this.server.sendToAllTCP(object);
+//        Connection[] connections = server.getConnections();
+//        for (int i = 0, n = connections.length; i < n; i++) {
+//            try {
+//                Connection connection = connections[i];
+//                // int id = connections[i].getID();
+//                if (lp.getPlayerForId(connection.getID()).isClickButtonStart())
+//                    connection.sendTCP(object);
+//            } catch (NullPointerException e) {
+//                //  lp.getPlayerForId(connection.getID())
+//              //   lp.remove_player(connections[i].getID());
+//                e.printStackTrace();
+//            }
+
+//            for (int i = 0, n = connections.length; i < n; i++) {
+//                try {
+//                    Connection connection = connections[i];
+//                    // int id = connections[i].getID();
+//                    if (lp.getPlayerForId(connection.getID()).isClickButtonStart())
+//                        connection.sendTCP(object);
+//                } catch (NullPointerException e) {
+//                    //  lp.getPlayerForId(connection.getID())
+//                    lp.remove_player(connections[i].getID());
+//                    e.printStackTrace();
+//                }
+
+       // }
+
+
     }
 
     public void send_DISCONECT_PLAYER(int idPlayer) {

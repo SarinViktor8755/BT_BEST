@@ -175,7 +175,7 @@ public class Tank {
     }
 
     public void update(Vector2 directionMovementControll, boolean inTuch) {
-//       if(MathUtils.randomBoolean(.05f)) {
+//       if(MathUtils.randomBoolean(.005f)) {
 //           System.out.println("cleeeeeeeeeeeeeeeeer");
 //           gsp.getTanksOther().listOpponents.clear();
 //       }

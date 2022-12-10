@@ -217,15 +217,12 @@ public class TanksOther { /// много танков )))
 
         if (t.getNikPlayer() != null) {
             textFont.draw(sb, t.getNikPlayer(), t.getPosition().x - t.getNikPlayer().length() * 4, t.getPosition().y + 50);
-        } else {
-            System.out.println("getNikPlayer() != null");
-            // if(MathUtils.randomBoolean(.005f)) gsp.getMainGame().getMainClient().getNetworkPacketStock().toSendMyParPlayer(t.nomder);
         }
-
         try {
             if (t.getNikPlayer().equals(Heading_type.DEFULT_NAME) && (MathUtils.randomBoolean(0.1f))) {
-                //     gsp.getMainGame().getMainClient().getNetworkPacketStock().toSendMyParPlayer(t.nomder);
-                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!Heading_type.DEFULT_NAME");
+             gsp.getMainGame().getMainClient().getNetworkPacketStock().toSendMyParPlayer(t.getNomder());
+
+
             }
         } catch (NullPointerException e) {
             // e.printStackTrace();

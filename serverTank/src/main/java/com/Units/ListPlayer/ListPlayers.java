@@ -5,6 +5,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.mygdx.tanks2d.ClientNetWork.Heading_type;
 import com.mygdx.tanks2d.ClientNetWork.Network;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -22,7 +24,8 @@ public class ListPlayers {
 
     private int size_list_player_in_game = 0;
 
-    ConcurrentHashMap<Integer, Player> players;
+    private HashMap<Integer, Player> players;
+    private ArrayList<Player> basket;
     //  ConcurrentHashMap<String, Integer> playersTokken; // tooken/ id
 
     GameServer gameServer;
@@ -55,7 +58,8 @@ public class ListPlayers {
     private static Vector2 average_cord = new Vector2(0, 0);
 
     public ListPlayers(GameServer gameServer) {
-        this.players = new ConcurrentHashMap<>();
+        this.basket = new ArrayList<>();
+        this.players = new HashMap<Integer, Player>();
         // this.playersTokken = new ConcurrentHashMap<>();
         this.gameServer = gameServer;
 
@@ -71,6 +75,15 @@ public class ListPlayers {
         else return true;
     }
 
+    public ArrayList<Player> getBasket() {
+        return basket;
+    }
+
+    public boolean disconect(int id){
+        basket.add(getPlayerForId(id));
+        players.remove(id);
+        return true;
+    }
 
     public Player getPlayerForId(int id) { // почему то вызывается  иногда
         Player result = players.get(id);
@@ -85,7 +98,7 @@ public class ListPlayers {
 //        return playersTokken;
 //    }
 
-    public ConcurrentHashMap<Integer, Player> getPlayers() {
+    public HashMap<Integer, Player> getPlayers() {
         return players;
     }
 
