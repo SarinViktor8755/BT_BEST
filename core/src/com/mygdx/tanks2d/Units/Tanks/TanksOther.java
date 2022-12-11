@@ -13,6 +13,7 @@ import com.mygdx.tanks2d.ClientNetWork.Heading_type;
 import com.mygdx.tanks2d.ClientNetWork.Network;
 import com.mygdx.tanks2d.Screens.GamePlayScreen;
 
+import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -27,6 +28,7 @@ public class TanksOther { /// много танков )))
 
     HashMap<Integer, Float> listSled;
     HashMap<Integer, Vector2> deltaSledVec; // слкды танков
+    ArrayList<TempPoint> points; // временные точки
 
     GamePlayScreen gsp;
 
@@ -245,7 +247,7 @@ public class TanksOther { /// много танков )))
             // t.update(Gdx.graphics.getDeltaTime());
 
 
-            sb.setColor(t.getColor(), t.getColor(), t.getColor(), t.getColor());
+
             if (t.getCommand() == Heading_type.RED_COMMAND) {
                 if (!t.move) b = img;
                 else if (MathUtils.sin(gsp.getTimeInGame() * 50) >= 0) b = img;
@@ -259,6 +261,17 @@ public class TanksOther { /// много танков )))
                 tower = img_1B;
             }
 
+            sb.setColor(0,0,0,MathUtils.clamp(t.getColor(),0,.5f));
+            sb.draw(b,
+                    t.getPosition().x - 17, t.getPosition().y - 17,
+                    20, 20,
+                    40, 40,
+                    1, 1,
+                    t.getDirection().angleDeg() + 180,
+                    0, 0,
+                    img.getWidth(), img.getHeight(),
+                    true, false);
+            sb.setColor(t.getColor(), t.getColor(), t.getColor(), t.getColor());
             sb.draw(b,
                     t.getPosition().x - 20, t.getPosition().y - 20,
                     20, 20,
@@ -269,6 +282,18 @@ public class TanksOther { /// много танков )))
                     img.getWidth(), img.getHeight(),
                     true, false);
 
+            sb.setColor(0,0,0,MathUtils.clamp(t.getColor(),0,.5f));
+            sb.draw(tower,
+                    t.getPosition().x - 16, t.getPosition().y - 16,
+                    16, 16,
+                    40, 40,
+                    1, 1,
+                    t.getDirection_tower().angleDeg() + 180,
+                    0, 0,
+                    img.getWidth(), img.getHeight(),
+                    false, false);
+
+            sb.setColor(t.getColor(), t.getColor(), t.getColor(), t.getColor());
             sb.draw(tower,
                     t.getPosition().x - 20, t.getPosition().y - 20,
                     20, 20,

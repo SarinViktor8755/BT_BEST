@@ -337,9 +337,10 @@ public class Tank {
         //  System.out.println("coommand: " + getMy_Command());
         //   if (MathUtils.randomBoolean(0.2f)) command = MathUtils.random(0, 3);
 
-        sb.setColor(g + 1, g, 1, 1);
-        sb.draw(body,
-                position.x - 20, position.y - 20,
+
+        sb.setColor(0,0,0,.5f);
+        sb.draw(body,  // тень тела
+                position.x - 17, position.y - 17,
                 20, 20,
                 40, 40,
                 1, 1,
@@ -357,6 +358,43 @@ public class Tank {
                 img.getWidth(), img.getHeight(),
                 false, false);
 
+        sb.setColor(g + 1, g, 1, 1);
+        sb.draw(body,
+                position.x - 20, position.y - 20,
+                20, 20,
+                40, 40,
+                1, 1,
+                direction.angleDeg() + 180,
+                0, 0,
+                img.getWidth(), img.getHeight(),
+                true, false);
+
+
+
+        sb.setColor(0,0,0,.5f);
+        sb.draw(towers,
+                position.x - 16, position.y - 16,
+                16, 16,
+                40, 40,
+                1, 1,
+                direction_tower.angleDeg() + 180,
+                0, 0,
+                img.getWidth(), img.getHeight(),
+                false, false);
+        sb.setColor(g + 1, g, 1, 1);
+        sb.draw(towers,
+                position.x - 20, position.y - 20,
+                20, 20,
+                40, 40,
+                1, 1,
+                direction_tower.angleDeg() + 180,
+                0, 0,
+                img.getWidth(), img.getHeight(),
+                false, false);
+
+
+
+
         // System.out.println(this.tr.getNomTarget());
 
         if (tr.getNomTarget() != null) {
@@ -371,6 +409,8 @@ public class Tank {
                     1, 1,
                     80, 80,
                     false, false);
+
+
             if (tr.isGuidance()) {
                 sb.setColor(.6f, 1, .6f, .2f);
                 sb.draw(target_guidance,
