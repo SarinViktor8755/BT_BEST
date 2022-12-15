@@ -48,11 +48,12 @@ public class CameraGame {
         //// System.out.println("moveFloatCameraToPoint");
         this.camera.position.sub(this.camera.position.cpy().sub(targetPoint.x, targetPoint.y, 0).scl(Gdx.graphics.getDeltaTime() * speed));
         fixBounds();
-        integrationCamera();
+        interatorCamera();
+     //   integrationCamera();
 
     }
 
-    private void integrationCamera() {
+    public void integrationCamera() {
         int xc, yc;
         xc = (int) camera.position.x;
         yc = (int) camera.position.y;
@@ -82,7 +83,7 @@ public class CameraGame {
         } catch (NullPointerException e) {
             tank.getGsp().getCameraGame().createNewTargetDeathRhim(tank.getGsp().getTanksOther().getRandomPlayer());
         }
-        integrationCamera();
+       // integrationCamera();
     }
 
     public void createNewTargetDeathRhim(OpponentsTanks ot) {

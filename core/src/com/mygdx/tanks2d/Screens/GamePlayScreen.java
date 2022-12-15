@@ -216,14 +216,14 @@ public class GamePlayScreen implements Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        this.cameraGame.getCamera().update();
+       // this.cameraGame.getCamera().update();
         this.batch.setProjectionMatrix(cameraGame.getCamera().combined);
 
         this.cameraGame.getCamera().update();
         this.batch.begin();
         try {
             //  System.out.println("rander");
-
+            this.cameraGame.integrationCamera();
             this.gameSpace.renderSpace((OrthographicCamera) cameraGame.getCamera());                //рендер пространство
             this.cameraGame.getCamera().update();
 
