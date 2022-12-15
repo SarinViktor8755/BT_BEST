@@ -73,7 +73,7 @@ public class GameSpace {
 
         TiledMapTileLayer tiledLayer = (TiledMapTileLayer) map.getLayers().get(0);
         WITH_LOCATION = tiledLayer.getWidth() * tiledLayer.getTileWidth();
-        HEIHT_LOCATION = tiledLayer.getWidth() * tiledLayer.getTileHeight();
+        HEIHT_LOCATION = tiledLayer.getHeight() * tiledLayer.getTileHeight();
         //System.out.println(HEIHT_LOCATION + "!!!!!!!!!!!!!!!!!!");
         //shapeRenderer = new ShapeRenderer();
         //  mapRenderer = new OrthogonalTiledMapRenderer(map, 1 / 32f);
@@ -280,11 +280,11 @@ public class GameSpace {
     }
 
     public boolean checkMapBordersReturnSpaceTank(Vector2 pos) {
-        if (pos.x < 0 - 0) pos.x = 0;
-        if (pos.x > WITH_LOCATION + 0) pos.x = WITH_LOCATION;
+        if (pos.x < 30 - 0) pos.x = 30;
+        if (pos.x > WITH_LOCATION  -30) pos.x = WITH_LOCATION  -30; // щирина карты
 
-        if (pos.y < 0 - 0) pos.y = 0;
-        if (pos.y > HEIHT_LOCATION + 0) pos.y = HEIHT_LOCATION;
+        if (pos.y < 15) pos.y = 15;
+        if (pos.y > HEIHT_LOCATION ) pos.y = HEIHT_LOCATION;  // высоа карты
         return true;
     }
 

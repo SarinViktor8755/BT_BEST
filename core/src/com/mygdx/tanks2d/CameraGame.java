@@ -94,6 +94,7 @@ public class CameraGame {
         //this.camera.position.set(x,y,0);
         fixBounds();
         this.camera.position.set(x, y, 0);
+        interatorCamera();
 
     }
 
@@ -139,9 +140,17 @@ public class CameraGame {
             camera.position.y = scaledViewportHeightHalfExtent - this.dw;
         else if (camera.position.y > hl - scaledViewportHeightHalfExtent + this.dw)
             camera.position.y = hl - scaledViewportHeightHalfExtent + this.dw;
+
+        interatorCamera();
     }
 
     public Vector3 getCameraPosition() {
         return camera.position;
+    }
+
+
+    private void interatorCamera(){
+        this.camera.position.x = (int)this.camera.position.x;
+        this.camera.position.y = (int)this.camera.position.y;
     }
 }

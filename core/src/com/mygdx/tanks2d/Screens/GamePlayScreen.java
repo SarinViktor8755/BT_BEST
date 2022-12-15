@@ -72,7 +72,7 @@ public class GamePlayScreen implements Screen {
         this.inputProcessorPC = new InputProcessorDesktop(this);
         Gdx.input.setInputProcessor(inputProcessorPC);
         this.pos = new Vector2(150, 150);
-        this.cameraGame = new CameraGame(MainGame.WIDTH_SCREEN * 1.2f, MainGame.HEIGHT_SCREEN * 1.2f, gameSpace.getSizeLocationPixel(), gameSpace.WITH_LOCATION, gameSpace.HEIHT_LOCATION, mainGame.hb);
+        this.cameraGame = new CameraGame(MainGame.WIDTH_SCREEN * 1.2f, MainGame.HEIGHT_SCREEN * 1.2f, gameSpace.getSizeLocationPixel(), gameSpace.HEIHT_LOCATION, gameSpace.WITH_LOCATION, mainGame.hb);
         this.cameraGame.jampCameraToPoint(pos.x, pos.y);
 //        this.controller = new Controller(this, mainGame.getAssetManager().get("flatDark26.png", Texture.class), mainGame.getAssetManager().get("flatDark261.png", Texture.class));
         this.controller = new Controller(this);
