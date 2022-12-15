@@ -197,14 +197,14 @@ public class IndexBot extends Thread {
     }
 
     private void moving_away_from_tanks(Player p, DBBot tank, boolean r) { // уход от других танков
-        if (MathUtils.randomBoolean(.95f)) return;
+        if (MathUtils.randomBoolean(.55f)) return;
         Vector2 away_tank = gs.getLp().search_for_nearest_tank(p.getPosi());
         // System.out.println("at" + away_tank);
         if (away_tank == null) return;
         if (!r) return;
         // Vector2 stick = get_vector_from_players_position(tank.getTarget_body_rotation_angle(), p).scl(-1);
         tank.getTarget_body_rotation_angle().set(p.getPosi().cpy().sub(away_tank).scl(-1)).rotateDeg(MathUtils.random(-30, 30));
-        tank.setTime_to_operation(MathUtils.random(2, 5));
+        tank.setTime_to_operation(MathUtils.random(.5f, 5));
 
     }
 
@@ -223,7 +223,7 @@ public class IndexBot extends Thread {
                 tank.getTarget_body_rotation_angle().rotateDeg(MathUtils.random(-100, -25));
             }
 
-            tank.setTime_to_operation(MathUtils.random(1, 4));
+            tank.setTime_to_operation(MathUtils.random(.1f, 6));
         }
 
     }
@@ -324,14 +324,10 @@ public class IndexBot extends Thread {
 
         ///////////////////////
 
-
         int target_comand = 0;
         if(StatisticMath.getBlueSize() > StatisticMath.getRedSize()) target_comand = Heading_type.BLUE_COMMAND;
         if(StatisticMath.getBlueSize() < StatisticMath.getRedSize()) target_comand = Heading_type.RED_COMMAND;
         if(target_comand == 0) return;
-
-
-
 
     }
 
