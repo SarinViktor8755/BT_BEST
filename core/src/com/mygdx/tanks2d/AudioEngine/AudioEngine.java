@@ -27,11 +27,18 @@ public class AudioEngine {
 
     Sound pip;
 
+    static public boolean SondOn = true;
+    static public boolean MusicOn = true;
+    static public boolean Vibration = true;
+
+    public Long getIdTrack() {
+        return idTrack;
+    }
 
     private Long idTrack;
     private Long idTower;
     private float timer_towr_ratation;
-  //  private boolean timerTower;
+    //  private boolean timerTower;
     private static long pause_music_id = 1;
 
     private static Vector2 tempV = new Vector2(0, 0);
@@ -39,15 +46,14 @@ public class AudioEngine {
     public AudioEngine(MainGame mainGaming) {
         timer_towr_ratation = 0;
         this.mainGaming = mainGaming;
-      //  timerTower = false;
-
+        //  timerTower = false;
         redy_for_action = mainGaming.getAMG().get("sound/READY2A.ogg", Sound.class);
         sound = mainGaming.getAMG().get("sound/BSB.ogg", Sound.class);
         track = mainGaming.getAMG().get("sound/00708.ogg", Sound.class);
         tower = mainGaming.getAMG().get("sound/bash.ogg", Sound.class);
         fight = mainGaming.getAMG().get("sound/f.ogg", Sound.class);
         loose = mainGaming.getAMG().get("sound/loose.ogg", Sound.class);
-        win  = mainGaming.getAMG().get("sound/win.ogg", Sound.class);
+        win = mainGaming.getAMG().get("sound/win.ogg", Sound.class);
 
         pip = mainGaming.getAMG().get("sound/pip.ogg", Sound.class);
         pip1 = mainGaming.getAMG().get("sound/pip1.ogg", Sound.class);
@@ -82,6 +88,8 @@ public class AudioEngine {
         sound.setVolume(id, distanc);
     }
 
+
+
     private static float countVolmeDistantion(float x, float y, float x1, float y1) {
         tempV.set(x, y);
         float distanc = tempV.dst2(x1, y1);
@@ -90,30 +98,51 @@ public class AudioEngine {
     }
 
     public void pley_fight_ad_sound() {
-        if(isPause()) return;
+        if(!AudioEngine.SondOn) return;
+        if (isPause()) return;
         this.fight.play();
     }
 
+    public static void Mute(boolean on){
+        AudioEngine.SondOn = on;
+        AudioEngine.MusicOn = on;
+        AudioEngine.Vibration = on;
+    }
+
+    public static void Vibration(int time_msec){
+        if(!AudioEngine.Vibration) return;
+        Gdx.input.vibrate(time_msec);
+    }
+
+    public static void Vibration(float time_msec){
+        AudioEngine.Vibration((int) time_msec);
+    }
+
     public void pley_win_ad_sound() {
-        if(isPause()) return;
+        if(!AudioEngine.SondOn) return;
+        if (isPause()) return;
         this.win.play();
     }
 
     public void pley_pip() {
-        if(isPause()) return;
+        if(!AudioEngine.SondOn) return;
+        if (isPause()) return;
         this.pip.play();
     }
+
     public void pley_pip_1() {
-        if(isPause()) return;
+        if (isPause()) return;
         this.pip1.play();
     }
 
     public void pley_lose_ad_sound() {
-        if(isPause()) return;
+        if(!AudioEngine.SondOn) return;
+        if (isPause()) return;
         this.loose.play();
     }
 
     public void rady_for_action() {
+        if(!AudioEngine.SondOn) return;
         this.redy_for_action.play();
     }
 
@@ -124,7 +153,8 @@ public class AudioEngine {
 
 
     public void pleySoundKickExplosion(float x, float y, float x1, float y1) {
-        if(isPause()) return;
+        if(!AudioEngine.SondOn) return;
+        if (isPause()) return;
         float distanc = countVolmeDistantion(x, y, x1, y1);
         if (distanc <= 0) return;
         long id = explosion.play();
@@ -133,19 +163,22 @@ public class AudioEngine {
     }
 
     public void pleySoundKickStick(float x, float y, float x1, float y1) {
+        if(!AudioEngine.SondOn) return;
         try {
-            if(isPause()) return;
+            if (isPause()) return;
             float distanc = countVolmeDistantion(x, y, x1, y1);
             if (distanc <= 0) return;
             long id = sound.play();
             sound.setPitch(id, MathUtils.random(.95f, 1.1f));
             sound.setVolume(id, distanc);
-        }catch (NullPointerException | IllegalArgumentException e){}
+        } catch (NullPointerException | IllegalArgumentException e) {
+        }
 
     }
 
     public void pleySoundKickStick(float vol) {
-        if(isPause()) return;
+        if(!AudioEngine.SondOn) return;
+        if (isPause()) return;
         if (vol < 0) return;
         float distanc = 1;
         long id = sound.play();
@@ -154,7 +187,8 @@ public class AudioEngine {
     }
 
     public void pleySoundOfTracks() {
-        if(isPause()) return;
+        if(!AudioEngine.SondOn) return;
+        if (isPause()) return;
         //  System.out.println(idTrack);
 
         if (idTrack == null) {
@@ -167,11 +201,12 @@ public class AudioEngine {
 
     ///////////////
     public void playMusicPaseMenu() {
+        if(!AudioEngine.MusicOn) return;
         stopSoundOfTracks();
-   //     System.out.println("!!!!!!!!!! music_pause__pause_music_id " + pause_music_id);
-      //  if(pause_music_id == -999) return;
+        //     System.out.println("!!!!!!!!!! music_pause__pause_music_id " + pause_music_id);
+        //  if(pause_music_id == -999) return;
 //        if(pause_music_id != -1) return;
-      //  if(pause_music_id<1) return;
+        //  if(pause_music_id<1) return;
         pause_music_id = music_pause.loop(1);
         //music_pause.
         // pause_music_id = music_pause.play();
@@ -195,6 +230,7 @@ public class AudioEngine {
 
 
     public void pleySoundOfTower() {
+        if(!AudioEngine.SondOn) return;
         //   System.out.println(idTrack);
 //        timerTower = true;
         timer_towr_ratation = 0;
@@ -206,6 +242,7 @@ public class AudioEngine {
     }
 
     public void stopSoundOfTower() {
+        if(!AudioEngine.SondOn) return;
         // System.out.println(timer_towr_ratation);
         try {
             timer_towr_ratation += Gdx.graphics.getDeltaTime();

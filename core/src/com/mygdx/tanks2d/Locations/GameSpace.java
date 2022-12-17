@@ -165,6 +165,7 @@ public class GameSpace {
 //    }
 
     public void renderSpace(OrthographicCamera camera) {
+
         rendererMap.setView(camera);
 
         decorations = (TiledMapTileLayer) map.getLayers().get(1);

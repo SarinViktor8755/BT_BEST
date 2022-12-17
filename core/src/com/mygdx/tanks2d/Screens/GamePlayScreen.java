@@ -283,6 +283,7 @@ public class GamePlayScreen implements Screen {
     @Override
     public void pause() {
 
+        AudioEngine.Mute(false);
     }
 
     public Tank getTank() {
@@ -301,7 +302,7 @@ public class GamePlayScreen implements Screen {
 
     @Override
     public void hide() {
-
+        AudioEngine.Mute(false);
     }
 
     public int getLive_blue_command() {

@@ -55,8 +55,10 @@ public class CameraGame {
 
     public void integrationCamera() {
         int xc, yc;
+
         xc = (int) camera.position.x;
         yc = (int) camera.position.y;
+       // System.out.println(camera.position);
         camera.position.set(xc, yc, 1);
     }
 
@@ -114,6 +116,7 @@ public class CameraGame {
     }
 
     public OrthographicCamera getCamera() {
+        integrationCamera();
         return camera;
     }
 

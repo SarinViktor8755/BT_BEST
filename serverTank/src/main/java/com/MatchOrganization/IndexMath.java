@@ -13,7 +13,7 @@ import main.java.com.Units.ListPlayer.Player;
 import main.java.com.Units.ListPlayer.StatisticMath;
 
 public class IndexMath {
-    private static final float SECONDS_MATH = 180;
+    private static final float SECONDS_MATH = 120;
     private static final float MATH_LENGHT = 1000 * SECONDS_MATH; // время матча
     private static float realTimeMath; // время матча
     private ListPlayers listPlayers; // копия листа

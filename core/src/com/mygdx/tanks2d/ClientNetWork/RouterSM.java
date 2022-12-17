@@ -1,9 +1,11 @@
 package com.mygdx.tanks2d.ClientNetWork;
 
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ArrayMap;
+import com.mygdx.tanks2d.AudioEngine.AudioEngine;
 import com.mygdx.tanks2d.Locations.GameSpace;
 import com.mygdx.tanks2d.MainGame;
 import com.mygdx.tanks2d.Units.Tanks.OpponentsTanks;
@@ -205,10 +207,11 @@ public class RouterSM {
 
 
     private void saveParametrsMyTank(Network.StockMessOut sm) {
+        float stHp = mainGame.getGamePlayScreen().getTank().getHp() - sm.p3;
+        if(stHp > 0) AudioEngine.Vibration(stHp * 4);
         mainGame.getGamePlayScreen().getTank().setHp((int) sm.p3);
         //mainGame.getGamePlayScreen().getTank().set((int) sm.p4);
         if (!mainGame.getGamePlayScreen().getTank().isLive()) {
-           // mainGame.getGamePlayScreen().getAudioEngine().pley_lose_ad_sound();
             mainGame.getGamePlayScreen().getPc().addAnimationDeath(mainGame.getGamePlayScreen().getTank().getPosition().x, mainGame.getGamePlayScreen().getTank().getPosition().y);
         }
     }

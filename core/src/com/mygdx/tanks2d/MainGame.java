@@ -20,7 +20,6 @@ public class MainGame extends Game {
 
     //  public AssetManager assetManager;
     public AudioEngine audioEngine;
-
     public AssetsManagerGame assetsManagerGame;
     private MainClient mainClient;
     private GamePlayScreen gamePlayScreen;
