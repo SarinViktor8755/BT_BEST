@@ -186,7 +186,6 @@ public class GameServer {
         if (pause) stockMessOut.p1 = Heading_type.PAUSE_GAME;
         else stockMessOut.p1 = Heading_type.PLAY_GAME;
         if (stockMessOut.p1 == Heading_type.PLAY_GAME) return;
-
         this.server.sendToAllTCP(stockMessOut);
     }
 

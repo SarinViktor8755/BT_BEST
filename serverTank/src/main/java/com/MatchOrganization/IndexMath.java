@@ -21,19 +21,20 @@ public class IndexMath {
     private static int red_team_score = 0;
     private static int blue_team_score = 0;
 
-    private static int red_team_score_math = 0;
-    private static int blue_team_score_math = 0;
+    private static int red_team_score_math = 0;  // очков в матче
+    private static int blue_team_score_math = 0; // очков в матче
 
 
     private final static int DEFOULT_SCORE_RESPOWN = 150;
     private static int SCORE_RESPOWN = 80;
 
+    private static int WINNING_NUMBER_OF_POINTS = 3;
 
     public void updateMath(float dt, ListPlayers listPlayers, boolean pause_game) {
         this.realTimeMath += dt;
         this.listPlayers = listPlayers;
         this.restartMath(this.realTimeMath);
-        //   if(pause_game) System.out.println("PAUSE game");
+        if(pause_game) System.out.println("PAUSE game");
 
 
     }
@@ -108,18 +109,28 @@ public class IndexMath {
         // System.out.println("RED  " + red_team_score + "  BLUE  " + blue_team_score);
     }
 
-    private void restartMath(float mathTime) {
+    private void restartMath(float mathTime) { // рестарт матч или конец матча
         if (mathTime < 5000) return;
         if (mathTime > MATH_LENGHT) {
-         //   System.out.println("respown TIME");
+
             respon_math();
+        }/////////////
+        if (red_team_score_math >= WINNING_NUMBER_OF_POINTS) {
+
+            return;
         }
+        if (blue_team_score_math >= WINNING_NUMBER_OF_POINTS) {
+
+            return;
+        }
+
+        ///////////////////////
         if (StatisticMath.getLiveBlueSize() < 1) {
-          //  System.out.println("respown blue");
+
             respon_math(1);
         }
         if (StatisticMath.getLiveRedSize() < 1) {
-         //   System.out.println("respown red");
+
             respon_math(2);
         }
 

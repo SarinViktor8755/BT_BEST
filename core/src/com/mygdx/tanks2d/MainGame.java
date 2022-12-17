@@ -120,7 +120,6 @@ public class MainGame extends Game {
         this.pauseScreen = new PauseScreen(this);
         this.setScreen(pauseScreen);
         MainGame.status = STATUS_GAME_PAUSE;
-
     }
 
     public void goGameForPause() { // выход из паузы в игру

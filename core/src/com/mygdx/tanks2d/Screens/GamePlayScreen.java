@@ -259,7 +259,7 @@ public class GamePlayScreen implements Screen {
         }
 
         mainGame.startPauseScreen();
-        //  if(MathUtils.randomBoolean(.005f)) MainGame.setFlagChangeScreen((byte) MainGame.STATUS_GAME_PAUSE);
+         if(MathUtils.randomBoolean(.005f)) MainGame.setFlagChangeScreen((byte) MainGame.STATUS_GAME_PAUSE);
     }
 
     public AssetsManagerGame getAMG() {

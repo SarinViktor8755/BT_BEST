@@ -33,8 +33,6 @@ public class PauseScreen implements Screen {
 
     public PauseScreen(MainGame mainGame) {
         System.out.println("PAUSE ");
-
-
         audioEngine = mainGame.audioEngine;
         this.batch = new SpriteBatch();
         this.mainGame = mainGame;
@@ -47,20 +45,47 @@ public class PauseScreen implements Screen {
         camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0);
         camera.update();
         this.mainClient = mainGame.getMainClient();
-        f = mainGame.getAMG().get("bg.png", Texture.class);
-        f_bw = mainGame.getAMG().get("bg_bw.png", Texture.class);
+        f = mainGame.getAMG().get("pause_screen/bg.png", Texture.class);
+        f_bw = mainGame.getAMG().get("pause_screen/bg_bw.png", Texture.class);
         tb = mainGame.getAMG().get("treck_bar.png", Texture.class);
         timeInScreen = 15;
 
-       // audioEngine.playMusicPaseMenu();
+        audioEngine.playMusicPaseMenu();
 //
 //        BitmapFont font = mainGame.getAssetManager().get("fonts/font.fnt", BitmapFont.class);
 //        Label.LabelStyle style = new Label.LabelStyle(font, Color.WHITE);
 //        puseTextLabel = new Label("PAUSE_GAME",style);
 //        font = new BitmapFont(); //or use alex answer to use custom font
         ///////////////////////////////
-
     }
+
+    public PauseScreen(MainGame mainGame, float timeInScreen) {
+        System.out.println("PAUSE ");
+        audioEngine = mainGame.audioEngine;
+        this.batch = new SpriteBatch();
+        this.mainGame = mainGame;
+
+        viewport = new StretchViewport(MainGame.WIDTH_SCREEN, MainGame.HEIGHT_SCREEN, camera);
+        //viewport.apply();
+        camera = new OrthographicCamera();
+        viewport = new StretchViewport(MainGame.WIDTH_SCREEN / 2, MainGame.HEIGHT_SCREEN / 2, camera);
+        viewport.apply();
+        camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0);
+        camera.update();
+        this.mainClient = mainGame.getMainClient();
+        f = mainGame.getAMG().get("pause_screen/bg.png", Texture.class);
+        f_bw = mainGame.getAMG().get("pause_screen/bg_bw.png", Texture.class);
+        tb = mainGame.getAMG().get("treck_bar.png", Texture.class);
+        this.timeInScreen = timeInScreen;
+        audioEngine.playMusicPaseMenu();
+//
+//        BitmapFont font = mainGame.getAssetManager().get("fonts/font.fnt", BitmapFont.class);
+//        Label.LabelStyle style = new Label.LabelStyle(font, Color.WHITE);
+//        puseTextLabel = new Label("PAUSE_GAME",style);
+//        font = new BitmapFont(); //or use alex answer to use custom font
+        ///////////////////////////////
+    }
+
 
 
     @Override
