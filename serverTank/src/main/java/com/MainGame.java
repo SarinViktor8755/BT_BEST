@@ -15,6 +15,13 @@ public class MainGame {
     IndexMap mapSpace;
     IndexMath indexMath;
     // IndexBot bot;
+    private Thread thred25;
+    private Thread thred50;
+    private Thread thred600;
+
+    private static boolean thred25_Live;
+    private static boolean thred50_Live;
+
 
    ///public boolean pause_game;
 
@@ -26,7 +33,6 @@ public class MainGame {
 
     public MainGame(GameServer gameServer, int targetPlayer) {
         MainGame.targetPlayer = targetPlayer;
-
         this.gameServer = gameServer;
         this.bullets = new IndexBullets(this.gameServer);
         this.mapSpace = new IndexMap(MapsList.getMapForServer()); // создание карты
@@ -53,17 +59,17 @@ public class MainGame {
     }
 
     private void startSecondaryThread_50() { // выполняется каждые 50 мс
-        new Thread(new Runnable() {
+       new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
                     while (true) {
+                        thred50_Live = true;
                         if(MathUtils.randomBoolean(.05f)) System.out.println(":::: 50");
                       //  System.out.println(":::: 50");
                         if (gameServer.isServerLivePlayer()) Thread.sleep(timer_tread_50);
                         else Thread.sleep(450);
                        // System.out.println("50");
-
 
                         StatisticMath.key_recalculate_statistics = true;
 
@@ -97,6 +103,7 @@ public class MainGame {
                 }
             }
         }).start();
+
     }
 
 
@@ -111,6 +118,7 @@ public class MainGame {
             public void run() {
                 try {
                     while (true) {
+                        thred25_Live = true;
                       if(MathUtils.randomBoolean(.05f)) System.out.println(":::: 25");
                         if (gameServer.isServerLivePlayer()) Thread.sleep(timer_tread_25);
                         else Thread.sleep(timer_tread_50);
@@ -152,9 +160,15 @@ public class MainGame {
             public void run() {
                 try {
                     while (true) {
+
                         //      System.out.println(":::: 600");
                         Thread.sleep(600);
-                        System.out.println("600");
+                       // System.out.println("600");
+                        System.out.println("50LIVE " + thred50_Live + "   "+ "25LIVE " + thred25_Live);
+
+                        thred25_Live = false;
+                        thred50_Live = false;
+
                         gameServer.indexBot.updateCountBot(gameServer.countLivePlayer(), targetPlayer); // контроль количество ботов
                         gameServer.lp.getStatisticMath().counting_p(); /// пересчет игры
 

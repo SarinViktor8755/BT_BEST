@@ -11,6 +11,8 @@ public class MapsList {
         this.mapsList = new ArrayList<>();
         mapsList.add("field");
         mapsList.add("desert");
+        mapsList.add("wasteland");
+
     }
 
     public static String getMapForServer() {
@@ -18,6 +20,7 @@ public class MapsList {
         ml = new ArrayList<String>();
         ml.add("field");
         ml.add("desert");
+        ml.add("wasteland");
         return ml.get(MathUtils.random(ml.size() - 1));
     }
 

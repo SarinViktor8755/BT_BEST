@@ -20,8 +20,7 @@ public class RouterSM {
 
     static Vector2 positionTemp;
 
-    public static String map_math;
-
+    public static String map_math; /// карта в мате
 
     public RouterSM(MainGame mainGame) {
         velocity = new Vector2();

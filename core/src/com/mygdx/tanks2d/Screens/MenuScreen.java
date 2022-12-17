@@ -237,6 +237,7 @@ public class MenuScreen implements Screen {
 
     @Override
     public void render(float delta) {
+        System.out.println(RouterSM.map_math);
 //        System.out.println(viewport.getWorldHeight());
 //        System.out.println(viewport.getScreenHeight());
 //        System.out.println();

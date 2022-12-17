@@ -116,12 +116,14 @@ public class IndexMath {
             respon_math();
         }/////////////
         if (red_team_score_math >= WINNING_NUMBER_OF_POINTS) {
-
-            return;
+            blue_team_score_math = 0 ;
+            red_team_score_math = 0 ;
+          //  return;
         }
         if (blue_team_score_math >= WINNING_NUMBER_OF_POINTS) {
-
-            return;
+            blue_team_score_math = 0 ;
+            red_team_score_math = 0 ;
+            //   return;
         }
 
         ///////////////////////

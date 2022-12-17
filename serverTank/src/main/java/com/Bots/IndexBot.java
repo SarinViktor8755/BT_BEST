@@ -255,10 +255,10 @@ public class IndexBot extends Thread {
         p.setHp(100);
         if (p.getCommand() == Heading_type.RED_COMMAND) {
             p.setPosition(gs.getMainGame().getMapSpace().getRasp2().cpy());
-            p.getPosi().y += MathUtils.random(200);
+            p.getPosi().y += MathUtils.random(300);
         } else if (p.getCommand() == Heading_type.BLUE_COMMAND) {
             p.setPosition(gs.getMainGame().getMapSpace().getRasp1());
-            p.getPosi().y += MathUtils.random(200);
+            p.getPosi().y += MathUtils.random(300);
         }
         // System.out.println("----------");
         gs.send_PARAMETERS_PLAYER(p);
