@@ -19,7 +19,7 @@ public class BulletPool extends Pool<Bullet> {
     // метод создания одного объекта
     @Override
     protected Bullet newObject() {
-        //   System.out.println("Creating new bullet");
+           System.out.println("Creating new bullet");
         return new Bullet();
     }
 

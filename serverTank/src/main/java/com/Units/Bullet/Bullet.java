@@ -7,6 +7,7 @@ public class Bullet implements Pool.Poolable {
     // fields for bullets position and direction
     // поля для определения положения и направления пуль
     private static int BULLET_SPEED = 400;
+    public final static Vector2 BULLET_SLEAP = new Vector2(-20_000,-20_000);
 
     public Vector2 position = new Vector2(0, 0);
     public Vector2 direction = new Vector2(0, 0);
@@ -18,11 +19,11 @@ public class Bullet implements Pool.Poolable {
     @Override
     public void reset() {
         //вызывается при выстреле пули
-        this.position.set(0, 0);
+        this.position.set(Bullet.BULLET_SLEAP);
         this.direction.set(BULLET_SPEED, 0);
         nom = 0;
         timeLife = 0;
-        // System.out.println("Bullet is reset");
+        System.out.println("Bullet is reset");
     }
 
     // метод, который мы можем вызвать для обновления нашей логики маркеров

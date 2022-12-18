@@ -58,7 +58,9 @@ public class IndexBullets {
         for (int i = 0; i < activeBullets.size; i++) {
             bullet = activeBullets.get(i);
             bullet.update(dt);
-        //    System.out.println(bullet.getTimeLife());
+            System.out.println("bl = " + bullet.getTimeLife());
+            if (bullet.getTimeLife() > 2000) continue;
+            //    System.out.println(bullet.getTimeLife());
 
             ////////////
             // System.out.println(bullet.getAuthor_bullet());
@@ -69,7 +71,6 @@ public class IndexBullets {
             if (np != -1) {
 
                 try {
-
                     delBullet(bullet); // /тут ели попали в игрок 1. минусуем хп 2. уничтожаем патрон 3. рассылаем игрока
                     Player player = gameServer.getLp().getPlayerForId(np);
                     gameServer.getLp().getPlayerForId(bullet.getAuthor_bullet()).getCommand();
@@ -81,8 +82,8 @@ public class IndexBullets {
                     //  int hp = player.minusHP(MathUtils.random(18, 27));
 //                    bullet.getTimeLife()
 //                    Heading_type.SHOT_LIFETIME
-                 //   System.out.println( "---" + bullet.getTimeLife() + "   " + MathUtils.map(Heading_type.SHOT_LIFETIME, 0, 15, 50, bullet.getTimeLife()));
-                    int hp = (int) MathUtils.clamp(MathUtils.map(2000, 0, 10, 35, bullet.getTimeLife()),10,35);
+                    //   System.out.println( "---" + bullet.getTimeLife() + "   " + MathUtils.map(Heading_type.SHOT_LIFETIME, 0, 15, 50, bullet.getTimeLife()));
+                    int hp = (int) MathUtils.clamp(MathUtils.map(2000, 0, 10, 35, bullet.getTimeLife()), 10, 35);
                     player.minusHP(hp);
 
 
@@ -132,12 +133,12 @@ public class IndexBullets {
 
     public void delBullet(Bullet bullet) {
         gameServer.sendSHELL_RUPTURE(bullet.position.x, bullet.position.y, bullet.getNom(), bullet.getAuthor_bullet());
-        bullet.position.set(-20_000, -20_000);
+        bullet.position.set(Bullet.BULLET_SLEAP);
     }
 
     public void delBullet(Bullet bullet, boolean life) {
         //gameServer.sendSHELL_RUPTURE(bullet.position.x, bullet.position.y,bullet.getNom(),bullet.getAuthor_bullet());
-        bullet.position.set(-20_000, -20_000);
+        bullet.position.set(Bullet.BULLET_SLEAP);
     }
 
 
