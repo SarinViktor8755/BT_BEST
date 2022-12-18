@@ -343,6 +343,7 @@ public class ListPlayers {
                     //     if (!getPlayerForId(connection.getID()).isClickButtonStart()) continue;
                     Player ppp = players.get(connections[i].getID());
                     if (ppp == null) return;
+                    if(connections[i].getID()==pn.nom) continue;
                     //float dst = Vector2.dst2(pn.xp, pn.yp, ppp.getPosi().x, ppp.getPosi().y);
 
                     boolean bx = !MathUtils.isEqual(pn.xp, ppp.getPosi().x, 500);

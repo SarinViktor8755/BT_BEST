@@ -21,7 +21,7 @@ public class IndexBot extends Thread {
     public static GameServer gs;
     ConcurrentHashMap<Integer, DBBot> dbBots;
 
-    final static float SPEED = 90f;
+    final static float SPEED = 120f;
     final static float SPEED_ROTATION = 180f;
     final static float SPEED_BULLET = 700;
 
@@ -161,7 +161,7 @@ public class IndexBot extends Thread {
         go_around_an_obstacle(tank, p); /// обход препядствий
 
 
-        p.getPosi().sub(p.getBody_rotation().cpy().nor().scl(deltaTime * 100)); /// перемещение танка
+        p.getPosi().sub(p.getBody_rotation().cpy().nor().scl(deltaTime * SPEED)); /// перемещение танка
         // перемещеени вперед
 
 

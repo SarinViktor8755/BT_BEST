@@ -40,7 +40,7 @@ public class Tank {
     Vector2 deltaSledVec;
     static Integer my_Command = generateCommand(); // по умолчанию 1 красня команда временно
 
-    final float SPEED = 100f;
+    final float SPEED = 120f;
     final float SPEED_ROTATION = 180f;
 
     private TowerRotation tr;

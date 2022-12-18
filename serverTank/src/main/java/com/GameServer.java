@@ -39,9 +39,9 @@ public class GameServer {
     public GameServer(String[] args, ServerLauncher serverLauncher) throws IOException {
         GameServer.break_in_the_game = false;
 
-        int bufferSize = 44100; // Recommened value.
+        int bufferSize = 10000000; // Recommened value.
 
-        server = new Server(10000000, 9000000);
+        server = new Server(bufferSize, bufferSize);
         register(server);
         server.bind(Network.tcpPort, Network.udpPort);
         server.start();

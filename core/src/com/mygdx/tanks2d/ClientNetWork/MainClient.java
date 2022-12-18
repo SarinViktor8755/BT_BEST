@@ -122,6 +122,7 @@ public class MainClient {
             frameUpdates.put(pp.nom, true);
             // System.out.println("pp.nom  " + pp.nom + "   " +pp.xp);
             //   System.out.println(pp.nom + "x y " + pp.xp + " " + pp.yp );
+            if (pp.nom == client.getID())  System.out.println("!!!!!!!!!!!!!______!!!MYYYYYYYYYYYYYYYYYYYYYY");
             if (pp.nom == client.getID()) return; // перить они НЕ должны приходить
 
 

@@ -1,7 +1,11 @@
 package main.java.com;
 
 
+import static com.mygdx.tanks2d.ClientNetWork.Network.register;
+
 import com.badlogic.gdx.math.MathUtils;
+import com.esotericsoftware.kryonet.Server;
+import com.mygdx.tanks2d.ClientNetWork.Network;
 import com.mygdx.tanks2d.Locations.MapsList;
 
 import main.java.com.MatchOrganization.IndexMath;
@@ -26,7 +30,7 @@ public class MainGame {
    ///public boolean pause_game;
 
 
-    public final long timer_tread_50 = 25; //ms поток таймер циклов , рассылвает координаты ботов ))
+    public final long timer_tread_50 = 20; //ms поток таймер циклов , рассылвает координаты ботов ))
     public final long timer_tread_25 = 15; // таймер поведения ботов - 25
 
     public static int targetPlayer = 2;
@@ -130,18 +134,14 @@ public class MainGame {
                         indexMath.updateMath(deltaTime, gameServer.lp,false); // время матча
 
 
-
                         float time = (float) (deltaTime * .001);
                         bullets.updateBulets(deltaTime);
                         gameServer.indexBot.updaeteBot(time);
 
                         //      gameServer.lp.respaunPlayer();
-
                         // gameServer.lp.re
 
-
                        // System.out.println("---");
-
 //     не останавливать поток все функции должны быть конечными )))
 
 
@@ -160,7 +160,6 @@ public class MainGame {
             public void run() {
                 try {
                     while (true) {
-
                         //      System.out.println(":::: 600");
                         Thread.sleep(600);
                        // System.out.println("600");
