@@ -81,7 +81,7 @@ public class IndexMap {
     }
 
     private void createRectangle(JSONObject obj) {
-        System.out.println(obj.get("name"));
+       // System.out.println(obj.get("name"));
         if (obj.get("name").equals("resp_1")) {
             rasp1 = new Vector2(obj.getInt("x"), height_map - obj.getInt("y"));
             return;

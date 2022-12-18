@@ -58,7 +58,7 @@ public class IndexBullets {
         for (int i = 0; i < activeBullets.size; i++) {
             bullet = activeBullets.get(i);
             bullet.update(dt);
-            System.out.println("bl = " + bullet.getTimeLife());
+         //   System.out.println("bl = " + bullet.getTimeLife());
             if (bullet.getTimeLife() > 2000) continue;
             //    System.out.println(bullet.getTimeLife());
 

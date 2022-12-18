@@ -11,7 +11,7 @@ import main.java.com.Units.ListPlayer.StatusPlayer;
 public class RouterMassege {
 
     public static void routeSM(Network.StockMessOut sm, int id_coonect, GameServer gameServer) {
-        System.out.println("-->> " + sm);
+   //     System.out.println("-->> " + sm);
         if (Heading_type.MY_SHOT == sm.tip) {
             Vector2 velBullet = new Vector2(700, 0).setAngleDeg(sm.p3);
             gameServer.getMainGame().bullets.addBullet(new Vector2(sm.p1, sm.p2), velBullet, (int) sm.p4, id_coonect);
