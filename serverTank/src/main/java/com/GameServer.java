@@ -80,11 +80,16 @@ public class GameServer {
                                    relay.relayVoice(connection, object, server);
                                    ///      System.out.println(server.getConnections().length +"    -------------");
                                    if (object instanceof Network.PleyerPosition) {
+                                       try {
                                        Network.PleyerPosition pp = (Network.PleyerPosition) object;
                                        //  lp.sendToAllPlayerPosition(connection.getID(), (Network.PleyerPosition) object);
                                        lp.getPlayerForId(connection.getID()).setPosition(pp.xp, pp.yp);
                                        lp.getPlayerForId(connection.getID()).setRotTower(pp.roy_tower);
                                        return;
+                                       }catch (NullPointerException e){
+                                           e.printStackTrace();
+                                           return;
+                                       }
                                    }
 
                                    if (object instanceof Network.StockMessOut) {// полученеи сообщения

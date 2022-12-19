@@ -1,0 +1,99 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\game_dev\BT_BEST\android\AndroidManifest.xml:2:1-35:12
+INJECTED from C:\game_dev\BT_BEST\android\AndroidManifest.xml:2:1-35:12
+INJECTED from C:\game_dev\BT_BEST\android\AndroidManifest.xml:2:1-35:12
+INJECTED from C:\game_dev\BT_BEST\android\AndroidManifest.xml:2:1-35:12
+INJECTED from C:\game_dev\BT_BEST\android\AndroidManifest.xml:2:1-35:12
+INJECTED from C:\game_dev\BT_BEST\android\AndroidManifest.xml:2:1-35:12
+INJECTED from C:\game_dev\BT_BEST\android\AndroidManifest.xml:2:1-35:12
+	package
+		ADDED from C:\game_dev\BT_BEST\android\AndroidManifest.xml:4:5-32
+		INJECTED from C:\game_dev\BT_BEST\android\AndroidManifest.xml
+		INJECTED from C:\game_dev\BT_BEST\android\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\game_dev\BT_BEST\android\AndroidManifest.xml
+		ADDED from C:\game_dev\BT_BEST\android\AndroidManifest.xml:2:1-35:12
+		INJECTED from C:\game_dev\BT_BEST\android\AndroidManifest.xml
+	xmlns:tools
+		ADDED from C:\game_dev\BT_BEST\android\AndroidManifest.xml:3:5-51
+	android:versionCode
+		INJECTED from C:\game_dev\BT_BEST\android\AndroidManifest.xml
+		ADDED from C:\game_dev\BT_BEST\android\AndroidManifest.xml:2:1-35:12
+		INJECTED from C:\game_dev\BT_BEST\android\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\game_dev\BT_BEST\android\AndroidManifest.xml:2:11-69
+uses-permission#android.permission.INTERNET
+ADDED from C:\game_dev\BT_BEST\android\AndroidManifest.xml:6:5-66
+	android:name
+		ADDED from C:\game_dev\BT_BEST\android\AndroidManifest.xml:6:22-64
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from C:\game_dev\BT_BEST\android\AndroidManifest.xml:8:5-75
+	android:name
+		ADDED from C:\game_dev\BT_BEST\android\AndroidManifest.xml:8:22-73
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from C:\game_dev\BT_BEST\android\AndroidManifest.xml:9:5-79
+	android:name
+		ADDED from C:\game_dev\BT_BEST\android\AndroidManifest.xml:9:22-76
+uses-permission#android.permission.VIBRATE
+ADDED from C:\game_dev\BT_BEST\android\AndroidManifest.xml:10:5-66
+	android:name
+		ADDED from C:\game_dev\BT_BEST\android\AndroidManifest.xml:10:22-63
+uses-feature#0x00020000
+ADDED from C:\game_dev\BT_BEST\android\AndroidManifest.xml:12:5-78
+	android:glEsVersion
+		ADDED from C:\game_dev\BT_BEST\android\AndroidManifest.xml:12:19-51
+	android:required
+		ADDED from C:\game_dev\BT_BEST\android\AndroidManifest.xml:12:52-75
+application
+ADDED from C:\game_dev\BT_BEST\android\AndroidManifest.xml:14:5-33:19
+	android:label
+		ADDED from C:\game_dev\BT_BEST\android\AndroidManifest.xml:20:9-41
+	android:fullBackupContent
+		ADDED from C:\game_dev\BT_BEST\android\AndroidManifest.xml:16:9-41
+	android:appCategory
+		ADDED from C:\game_dev\BT_BEST\android\AndroidManifest.xml:19:9-35
+	tools:ignore
+		ADDED from C:\game_dev\BT_BEST\android\AndroidManifest.xml:21:9-39
+	android:icon
+		ADDED from C:\game_dev\BT_BEST\android\AndroidManifest.xml:17:9-45
+	android:allowBackup
+		ADDED from C:\game_dev\BT_BEST\android\AndroidManifest.xml:15:9-35
+	android:isGame
+		ADDED from C:\game_dev\BT_BEST\android\AndroidManifest.xml:18:9-30
+activity#com.mygdx.tanks2d.AndroidLauncher
+ADDED from C:\game_dev\BT_BEST\android\AndroidManifest.xml:22:9-32:20
+	android:screenOrientation
+		ADDED from C:\game_dev\BT_BEST\android\AndroidManifest.xml:25:13-50
+	android:label
+		ADDED from C:\game_dev\BT_BEST\android\AndroidManifest.xml:24:13-45
+	android:exported
+		ADDED from C:\game_dev\BT_BEST\android\AndroidManifest.xml:27:13-36
+	android:configChanges
+		ADDED from C:\game_dev\BT_BEST\android\AndroidManifest.xml:26:13-107
+	android:name
+		ADDED from C:\game_dev\BT_BEST\android\AndroidManifest.xml:23:13-61
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\game_dev\BT_BEST\android\AndroidManifest.xml:28:13-31:29
+action#android.intent.action.MAIN
+ADDED from C:\game_dev\BT_BEST\android\AndroidManifest.xml:29:17-69
+	android:name
+		ADDED from C:\game_dev\BT_BEST\android\AndroidManifest.xml:29:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\game_dev\BT_BEST\android\AndroidManifest.xml:30:17-77
+	android:name
+		ADDED from C:\game_dev\BT_BEST\android\AndroidManifest.xml:30:27-74
+uses-sdk
+INJECTED from C:\game_dev\BT_BEST\android\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\game_dev\BT_BEST\android\AndroidManifest.xml
+INJECTED from C:\game_dev\BT_BEST\android\AndroidManifest.xml
+INJECTED from C:\game_dev\BT_BEST\android\AndroidManifest.xml
+INJECTED from C:\game_dev\BT_BEST\android\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from C:\game_dev\BT_BEST\android\AndroidManifest.xml
+		ADDED from C:\game_dev\BT_BEST\android\AndroidManifest.xml
+		INJECTED from C:\game_dev\BT_BEST\android\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\game_dev\BT_BEST\android\AndroidManifest.xml
+		ADDED from C:\game_dev\BT_BEST\android\AndroidManifest.xml
+		INJECTED from C:\game_dev\BT_BEST\android\AndroidManifest.xml

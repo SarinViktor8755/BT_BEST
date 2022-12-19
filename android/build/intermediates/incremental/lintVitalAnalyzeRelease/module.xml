@@ -1,0 +1,18 @@
+<lint-module
+    format="1"
+    dir="C:\game_dev\BT_BEST\android"
+    name=":android"
+    type="APP"
+    maven="BT_BEST:android:"
+    gradle="7.2.2"
+    buildFolder="build"
+    bootClassPath="D:\SDKAndroid\platforms\android-32\android.jar;D:\SDKAndroid\build-tools\33.0.0\core-lambda-stubs.jar"
+    javaSourceLevel="1.8"
+    compileTarget="android-32">
+  <lintOptions
+      abortOnError="true"
+      absolutePaths="true"
+      checkReleaseBuilds="true"
+      explainIssues="true"/>
+  <variant name="release"/>
+</lint-module>

@@ -1,0 +1,4 @@
+#Sun Dec 18 21:07:28 GMT+06:00 2022
+base.0=C\:\\game_dev\\BT_BEST\\android\\build\\intermediates\\dex\\release\\minifyReleaseWithR8\\classes.dex
+renamed.0=classes.dex
+path.0=classes.dex
