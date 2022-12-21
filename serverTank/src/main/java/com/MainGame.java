@@ -48,11 +48,14 @@ public class MainGame {
 
 
     public void check_pause_game(){
+        /// System.out.println(" !indexMath.isPause()  "+ !indexMath.isPause()+ "   " + pause_math);
         if(!indexMath.isPause()) return;
+        // gameServer.send_Chang_screen(true,PAUSE_TIME);
+
         pause_math = PAUSE_TIME;
         System.out.println("startPauseTimer");
-        gameServer.send_Chang_screen(true,PAUSE_TIME);
         indexMath.setPause(false);
+
 
         // что то ещу нжно для рестарта матча
        // indexMath.set() = 0;
@@ -144,6 +147,10 @@ public class MainGame {
         return mapSpace;
     }
 
+    public void setMapSpace(IndexMap mapSpace) {
+        this.mapSpace = mapSpace;
+    }
+
     private void startSecondaryThread_25() {
         new Thread(new Runnable() {
             @Override
@@ -151,33 +158,30 @@ public class MainGame {
                 try {
                     while (true) {
                         thred25_Live = true;
-                        //     if(MathUtils.randomBoolean(.05f)) System.out.println(":::: 25");
+
+                        if(MathUtils.randomBoolean(.005f)) System.out.println(":::: 25");
+
+                        /// сон потока
                         if (gameServer.isServerLivePlayer()) Thread.sleep(timer_tread_25);
                         else Thread.sleep(timer_tread_50);
+
+                       // System.out.println("--------------");
 
                         //  System.out.println("25");
 
                         long deltaTime = GameServer.getDeltaTime();
-
-
-                        float time = (float) (deltaTime * .001);
-                        pause_math -= time; // время паузы
-                        check_pause_game(); // проверка на паузу и вызов ее на 15 секунд
-
-
-                        System.out.println("pause_math " + pause_math);
-                        System.out.println("time " + time);
-
-                        indexMath.updateMath(deltaTime, gameServer.lp, false); // время матча
-
-
+                        indexMath.updateMath(deltaTime, gameServer.lp,false); // время матча
+                        pause_math-=(deltaTime * .001);
                         bullets.updateBulets(deltaTime);
-                        gameServer.indexBot.updaeteBot(time);
-
+                        gameServer.indexBot.updaeteBot((float) (deltaTime * .001));
+                        check_pause_game();
                         //      gameServer.lp.respaunPlayer();
+
                         // gameServer.lp.re
 
+
                         // System.out.println("---");
+
 //     не останавливать поток все функции должны быть конечными )))
 
 

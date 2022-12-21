@@ -85,8 +85,9 @@ public class IndexBot extends Thread {
     }
 
     public void updaeteBot(float deltaTime) {
-        if(!gs.isServerLivePlayer()) return;
         if(MainGame.isPause()) return;
+        if(!gs.isServerLivePlayer()) return;
+        //  if(MainGame.isPause()) return;
 
         actionBot(deltaTime);
         send_bot_coordinates();

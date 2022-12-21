@@ -237,11 +237,13 @@ public class MenuScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        System.out.println(RouterSM.map_math);
+        //    System.out.println(RouterSM.map_math);
 //        System.out.println(viewport.getWorldHeight());
 //        System.out.println(viewport.getScreenHeight());
 //        System.out.println();
      //   mainGame.audioEngine.stopSoundOfTracks();
+
+        check_screen_flag();
         upDateScreen();
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -278,6 +280,12 @@ public class MenuScreen implements Screen {
         this.batch.end();
         stageMenu.draw();
 
+
+    }
+
+    private void check_screen_flag() {
+        byte screen = MainGame.getFlagChangeScreen();
+        if(screen == Heading_type.PAUSE_GAME) mainGame.goMenuForPause();
 
     }
 

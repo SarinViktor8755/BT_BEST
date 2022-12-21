@@ -76,9 +76,10 @@ public class RouterSM {
 
         if (Heading_type.CHANGE_THE_SCREEN == sm.tip) {
             //   System.out.println("=+++++++++++++  " + sm.p1);
-            if (sm.p1 == Heading_type.PAUSE_GAME)
-                MainGame.setFlagChangeScreen((byte) MainGame.STATUS_GAME_PAUSE);
-            //if(sm.p1 == Heading_type.PLAY_GAME) MainGame.setFlagChangeScreen((byte) MainGame.STATUS_GAME_GAMEPLAY);
+            if (sm.p1 == Heading_type.PAUSE_GAME) MainGame.setFlagChangeScreen((byte) MainGame.STATUS_GAME_PAUSE);
+
+
+             if(sm.p1 == Heading_type.PLAY_GAME) MainGame.setFlagChangeScreen((byte) MainGame.STATUS_GAME_GAMEPLAY);
         }
 
 

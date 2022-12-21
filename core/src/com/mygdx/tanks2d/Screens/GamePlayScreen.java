@@ -304,8 +304,8 @@ public class GamePlayScreen implements Screen {
 
     @Override
     public void hide() {
-        getMainGame().getMainClient().getClient().stop();
-        getMainGame().goMenuForPause();
+        // getMainGame().getMainClient().getClient().stop();
+        // getMainGame().goMenuForPause();
     //    AudioEngine.Mute(false);
     }
 

@@ -10,6 +10,7 @@ import com.esotericsoftware.kryonet.Server;
 import com.mygdx.tanks2d.ClientNetWork.Heading_type;
 import com.mygdx.tanks2d.ClientNetWork.Network;
 import com.mygdx.tanks2d.ClientNetWork.VoiceChat.VoiceChatServer;
+import com.mygdx.tanks2d.Locations.MapsList;
 
 
 import java.io.IOException;
@@ -190,9 +191,15 @@ public class GameServer {
         stockMessOut.tip = Heading_type.CHANGE_THE_SCREEN;
         if (pause) stockMessOut.p1 = Heading_type.PAUSE_GAME;
         else stockMessOut.p1 = Heading_type.PLAY_GAME;
-        stockMessOut.p1 = time;
+        stockMessOut.p2 = time;
        // if (stockMessOut.p1 == Heading_type.PLAY_GAME) return;
+        ////System.out.println(">>>>>>>>>>>");
         this.server.sendToAllTCP(stockMessOut);
+
+        //
+
+        mainGame.setMapSpace(new IndexMap(MapsList.getMapForServer())); // создаем новую карту
+
     }
 
     public void send_PARAMETERS_PLAYER(Player p, int forIdPlayer, int abautPlayer) {

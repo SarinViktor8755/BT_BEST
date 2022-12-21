@@ -234,6 +234,9 @@ public class MainGame extends Game {
 
     }
 
+    public static byte getFlagChangeScreen() {
+        return flagChangeScreen;
+    }
 
     ///////////////////////////////////////////
 

@@ -29,18 +29,15 @@ public class IndexMath {
     private final static int DEFOULT_SCORE_RESPOWN = 150;
     private static int SCORE_RESPOWN = 80;
 
-    private static int WINNING_NUMBER_OF_POINTS = 3;
+    private static int WINNING_NUMBER_OF_POINTS = 1;
     private boolean pause = false; // протсо флаг для проверки из другова класса - что пора вызвать паузу
 
     public void updateMath(float dt, ListPlayers listPlayers, boolean pause_game) {
         this.realTimeMath += dt;
         this.listPlayers = listPlayers;
         this.restartMath(this.realTimeMath);
-        if(pause_game) System.out.println("PAUSE game");
-
-
+        if (pause_game) System.out.println("PAUSE game");
     }
-
 
 
     public float getTimeMath() { // время оставшегося матча
@@ -51,8 +48,6 @@ public class IndexMath {
         if (realTimeMath > MATH_LENGHT) return true;
         else return false;
     }
-
-
 
 
     public int getCommand() { // определить команду
@@ -124,36 +119,38 @@ public class IndexMath {
     }
 
     private void restartMath(float mathTime) { // рестарт матч или конец матча
+        ///    if(MathUtils.randomBoolean(.001f))
+
         if (mathTime < 5000) return;
         if (mathTime > MATH_LENGHT) {
 
             respon_math();
+
         }/////////////
-        if (red_team_score_math >= WINNING_NUMBER_OF_POINTS) {
-            blue_team_score_math = 0 ;
-            red_team_score_math = 0 ;
-            setPause(true);
-
-          //  return;
-        }
-        if (blue_team_score_math >= WINNING_NUMBER_OF_POINTS) {
-            blue_team_score_math = 0 ;
-            red_team_score_math = 0 ;
-            setPause(true);
-        }
-
-
+//        if (red_team_score_math >= WINNING_NUMBER_OF_POINTS) {
+//            setPause(true);
+//             return;
+//        }
+//        if (blue_team_score_math >= WINNING_NUMBER_OF_POINTS) {
+//            blue_team_score_math = 0 ;
+//            red_team_score_math = 0 ;
+//
+//        }
 
         ///////////////////////
         if (StatisticMath.getLiveBlueSize() < 1) {
-
             respon_math(1);
         }
         if (StatisticMath.getLiveRedSize() < 1) {
-
             respon_math(2);
         }
 
+    }
+
+    public void send_pause_game() {
+        blue_team_score_math = 0;
+        red_team_score_math = 0;
+        setPause(true);
     }
 
     public void respon_math() {
@@ -169,15 +166,23 @@ public class IndexMath {
 
     public void respon_math(int comand) {
         SCORE_RESPOWN--;
-       // System.out.println(SCORE_RESPOWN);
+        // System.out.println(SCORE_RESPOWN);
         if (SCORE_RESPOWN > 0) return;
 
         if (comand == 1) red_team_score_math++;
         if (comand == 2) blue_team_score_math++;
 
+        ////////////
+        if ((blue_team_score_math >= WINNING_NUMBER_OF_POINTS)|| (red_team_score_math >= WINNING_NUMBER_OF_POINTS)) {
+            send_pause_game();
+        }
+        
+
+        /////////////
+
         listPlayers.respownAllPlaers();
         realTimeMath = 0;
-       // System.out.println("RESTART MATH " + comand);
+        // System.out.println("RESTART MATH " + comand);
 
         SCORE_RESPOWN = DEFOULT_SCORE_RESPOWN;
     }
