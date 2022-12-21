@@ -6,6 +6,7 @@ import com.mygdx.tanks2d.ClientNetWork.Heading_type;
 import com.mygdx.tanks2d.ClientNetWork.Network;
 
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -79,7 +80,7 @@ public class ListPlayers {
         return basket;
     }
 
-    public boolean disconect(int id){
+    public boolean disconect(int id) {
         basket.add(getPlayerForId(id));
         players.remove(id);
         return true;
@@ -322,43 +323,48 @@ public class ListPlayers {
     }
 
     public void send_bot_coordinates() {
-        if (MathUtils.randomBoolean(.05f)) update_the_average_coordinates_of_the_commands();
-        Iterator<Map.Entry<Integer, Player>> entries = players.entrySet().iterator();
-        while (entries.hasNext()) {
-            Map.Entry<Integer, Player> entry = entries.next();
-            checkPlayerForDisconect(entry.getValue()); // проверка на дисконект игрока
-            // if (!isBot(entry.getValue())) continue;
-            Player p = entry.getValue();
-            pn.nom = entry.getKey();
-            pn.xp = p.getPosi().x;
-            pn.yp = p.getPosi().y;
-            pn.roy_tower = p.getRotTower();
+        try {
+            if (MathUtils.randomBoolean(.05f)) update_the_average_coordinates_of_the_commands();
+            Iterator<Map.Entry<Integer, Player>> entries = players.entrySet().iterator();
+            while (entries.hasNext()) {
+                Map.Entry<Integer, Player> entry = entries.next();
+                checkPlayerForDisconect(entry.getValue()); // проверка на дисконект игрока
+                // if (!isBot(entry.getValue())) continue;
+                Player p = entry.getValue();
+                pn.nom = entry.getKey();
+                pn.xp = p.getPosi().x;
+                pn.yp = p.getPosi().y;
+                pn.roy_tower = p.getRotTower();
 
-            Connection[] connections = this.gameServer.getServer().getConnections();
-            for (int i = 0, n = connections.length; i < n; i++) {
-                Connection connection = connections[i];
-                //  System.out.println(getPlayerForId(connection.getID()).isClickButtonStart());
-                try {
+                Connection[] connections = this.gameServer.getServer().getConnections();
+                for (int i = 0, n = connections.length; i < n; i++) {
+                    Connection connection = connections[i];
+                    //  System.out.println(getPlayerForId(connection.getID()).isClickButtonStart());
+                    try {
 
-                    //     if (!getPlayerForId(connection.getID()).isClickButtonStart()) continue;
-                    Player ppp = players.get(connections[i].getID());
-                    if (ppp == null) return;
-                    if(connections[i].getID()==pn.nom) continue;
-                    //float dst = Vector2.dst2(pn.xp, pn.yp, ppp.getPosi().x, ppp.getPosi().y);
+                        //     if (!getPlayerForId(connection.getID()).isClickButtonStart()) continue;
+                        Player ppp = players.get(connections[i].getID());
+                        if (ppp == null) return;
+                        if (connections[i].getID() == pn.nom) continue;
+                        //float dst = Vector2.dst2(pn.xp, pn.yp, ppp.getPosi().x, ppp.getPosi().y);
 
-                    boolean bx = !MathUtils.isEqual(pn.xp, ppp.getPosi().x, 500);
-                    boolean by = !MathUtils.isEqual(pn.yp, ppp.getPosi().y, 350);
-                    boolean res = bx && by;
+                        boolean bx = !MathUtils.isEqual(pn.xp, ppp.getPosi().x, 500);
+                        boolean by = !MathUtils.isEqual(pn.yp, ppp.getPosi().y, 350);
+                        boolean res = bx && by;
 //                (dst > 230400)
-                    if (!ppp.isLive()) {
+                        if (!ppp.isLive()) {
+                            connection.sendUDP(pn);
+                        } else if ((((res) && !MathUtils.randomBoolean(.12f)))) continue;
                         connection.sendUDP(pn);
-                    } else if ((((res) && !MathUtils.randomBoolean(.12f)))) continue;
-                    connection.sendUDP(pn);
-                } catch (NullPointerException e) {
-                    e.printStackTrace();
-                    //     players.remove(connections[i].getID());
+                    } catch (NullPointerException e) {
+                        e.printStackTrace();
+                        //     players.remove(connections[i].getID());
+                    }
                 }
             }
+        } catch (
+                ConcurrentModificationException e) {
+            e.printStackTrace();
         }
     }
 
