@@ -185,12 +185,13 @@ public class GameServer {
         //////////////////Смена команды но надо еще мсообщить всем о смене )))
     }
 
-    public void send_Chang_screen(boolean pause) { // нужно добаить время на сколько уходим на паузу
+    public void send_Chang_screen(boolean pause,float time) { // нужно добаить время на сколько уходим на паузу
         Network.StockMessOut stockMessOut = new Network.StockMessOut();
         stockMessOut.tip = Heading_type.CHANGE_THE_SCREEN;
         if (pause) stockMessOut.p1 = Heading_type.PAUSE_GAME;
         else stockMessOut.p1 = Heading_type.PLAY_GAME;
-        if (stockMessOut.p1 == Heading_type.PLAY_GAME) return;
+        stockMessOut.p1 = time;
+       // if (stockMessOut.p1 == Heading_type.PLAY_GAME) return;
         this.server.sendToAllTCP(stockMessOut);
     }
 

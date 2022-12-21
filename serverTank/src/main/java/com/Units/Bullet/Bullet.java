@@ -3,6 +3,8 @@ package main.java.com.Units.Bullet;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Pool;
 
+import main.java.com.MainGame;
+
 public class Bullet implements Pool.Poolable {
     // fields for bullets position and direction
     // поля для определения положения и направления пуль
@@ -29,6 +31,7 @@ public class Bullet implements Pool.Poolable {
     // метод, который мы можем вызвать для обновления нашей логики маркеров
 
     public void update(float dt) {
+        if(MainGame.isPause()) this.position = BULLET_SLEAP;
         this.timeLife +=dt;
         this.direction.clamp(BULLET_SPEED, BULLET_SPEED);
         // System.out.println((dt * .001f)+ " ms");

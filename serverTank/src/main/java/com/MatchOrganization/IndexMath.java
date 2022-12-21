@@ -7,6 +7,7 @@ import com.mygdx.tanks2d.ClientNetWork.Heading_type;
 import java.util.Iterator;
 import java.util.Map;
 
+import main.java.com.GameServer;
 import main.java.com.MainGame;
 import main.java.com.Units.ListPlayer.ListPlayers;
 import main.java.com.Units.ListPlayer.Player;
@@ -29,6 +30,7 @@ public class IndexMath {
     private static int SCORE_RESPOWN = 80;
 
     private static int WINNING_NUMBER_OF_POINTS = 3;
+    private boolean pause = false; // протсо флаг для проверки из другова класса - что пора вызвать паузу
 
     public void updateMath(float dt, ListPlayers listPlayers, boolean pause_game) {
         this.realTimeMath += dt;
@@ -39,6 +41,8 @@ public class IndexMath {
 
     }
 
+
+
     public float getTimeMath() { // время оставшегося матча
         return realTimeMath;
     }
@@ -47,6 +51,8 @@ public class IndexMath {
         if (realTimeMath > MATH_LENGHT) return true;
         else return false;
     }
+
+
 
 
     public int getCommand() { // определить команду
@@ -87,6 +93,14 @@ public class IndexMath {
         IndexMath.blue_team_score = blue_team_score;
     }
 
+    public boolean isPause() {
+        return pause;
+    }
+
+    public void setPause(boolean pause) {
+        this.pause = pause;
+    }
+
     public static void add_score_blue_team() {
         blue_team_score++;
     }
@@ -118,13 +132,17 @@ public class IndexMath {
         if (red_team_score_math >= WINNING_NUMBER_OF_POINTS) {
             blue_team_score_math = 0 ;
             red_team_score_math = 0 ;
+            setPause(true);
+
           //  return;
         }
         if (blue_team_score_math >= WINNING_NUMBER_OF_POINTS) {
             blue_team_score_math = 0 ;
             red_team_score_math = 0 ;
-            //   return;
+            setPause(true);
         }
+
+
 
         ///////////////////////
         if (StatisticMath.getLiveBlueSize() < 1) {

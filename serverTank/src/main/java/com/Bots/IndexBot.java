@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import main.java.com.GameServer;
+import main.java.com.MainGame;
 import main.java.com.Units.ListPlayer.ListPlayers;
 import main.java.com.Units.ListPlayer.Player;
 import main.java.com.Units.ListPlayer.StatisticMath;
@@ -85,6 +86,8 @@ public class IndexBot extends Thread {
 
     public void updaeteBot(float deltaTime) {
         if(!gs.isServerLivePlayer()) return;
+        if(MainGame.isPause()) return;
+
         actionBot(deltaTime);
         send_bot_coordinates();
     }
