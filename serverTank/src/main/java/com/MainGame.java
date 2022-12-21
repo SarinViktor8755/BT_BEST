@@ -50,7 +50,7 @@ public class MainGame {
     public void check_pause_game(){
         /// System.out.println(" !indexMath.isPause()  "+ !indexMath.isPause()+ "   " + pause_math);
         if(!indexMath.isPause()) return;
-        // gameServer.send_Chang_screen(true,PAUSE_TIME);
+         gameServer.send_Chang_screen(true,PAUSE_TIME);
 
         pause_math = PAUSE_TIME;
         System.out.println("startPauseTimer");

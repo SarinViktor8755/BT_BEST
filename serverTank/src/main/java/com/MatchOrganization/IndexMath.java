@@ -176,7 +176,7 @@ public class IndexMath {
         if ((blue_team_score_math >= WINNING_NUMBER_OF_POINTS)|| (red_team_score_math >= WINNING_NUMBER_OF_POINTS)) {
             send_pause_game();
         }
-        
+
 
         /////////////
 
