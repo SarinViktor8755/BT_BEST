@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.mygdx.tanks2d.Units.Tanks.OpponentsTanks;
 import com.mygdx.tanks2d.Units.Tanks.Tank;
@@ -28,9 +29,11 @@ public class CameraGame {
 
     private final int hl, wl, dw;
 
+    float zoom = 1;
+
     public CameraGame(float HIDE_SCREEN, float WHIDE_SCREEN, int sm, int hl, int wl, float delta_wheile) {
         this.camera = new OrthographicCamera();
-        this.viewport = new FillViewport(HIDE_SCREEN, WHIDE_SCREEN, camera);
+        this.viewport = new FillViewport(HIDE_SCREEN * zoom, WHIDE_SCREEN * zoom, camera);
         //  this.viewport = new FillViewport(HIDE_SCREEN, WHIDE_SCREEN, camera);
         floatCamera = false;
         targetPoint = new Vector2();
@@ -43,6 +46,8 @@ public class CameraGame {
     }
 
     public void moveFloatCameraToPoint(float x, float y, float speed) {
+        Scaling
+
 
         this.targetPoint.set(x, y);
         //// System.out.println("moveFloatCameraToPoint");

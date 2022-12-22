@@ -197,8 +197,8 @@ public class GameServer {
         this.server.sendToAllTCP(stockMessOut);
 
         //
-
-        mainGame.setMapSpace(new IndexMap(MapsList.getMapForServer())); // создаем новую карту
+        String map = mainGame.getMapSpace().getMap_math();
+        mainGame.setMapSpace(new IndexMap(MapsList.getMapForServer(map))); // создаем новую карту
         send_MAP_PARAMETOR();
 
     }

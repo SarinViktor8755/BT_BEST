@@ -16,12 +16,20 @@ public class MapsList {
     }
 
     public static String getMapForServer() {
+        return getMapForServer("");
+    }
+
+    public static String getMapForServer(String except_map) {
         ArrayList<String> ml;
+        String map;
         ml = new ArrayList<String>();
         ml.add("field");
         ml.add("desert");
         ml.add("wasteland");
-        return ml.get(MathUtils.random(ml.size() - 1));
+        for (; ; ) {
+            map = ml.get(MathUtils.random(ml.size() - 1));
+            if (!map.equals(except_map)) return map;
+        }
     }
 
 
