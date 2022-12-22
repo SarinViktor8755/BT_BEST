@@ -127,15 +127,15 @@ public class IndexMath {
             respon_math();
 
         }/////////////
-//        if (red_team_score_math >= WINNING_NUMBER_OF_POINTS) {
-//            setPause(true);
-//             return;
-//        }
-//        if (blue_team_score_math >= WINNING_NUMBER_OF_POINTS) {
-//            blue_team_score_math = 0 ;
-//            red_team_score_math = 0 ;
-//
-//        }
+        if (red_team_score_math >= WINNING_NUMBER_OF_POINTS) {
+            setPause(true);
+             return;
+        }
+        if (blue_team_score_math >= WINNING_NUMBER_OF_POINTS) {
+            blue_team_score_math = 0 ;
+            red_team_score_math = 0 ;
+
+        }
 
         ///////////////////////
         if (StatisticMath.getLiveBlueSize() < 1) {

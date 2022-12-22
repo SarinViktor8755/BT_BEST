@@ -26,6 +26,7 @@ public class PauseScreen implements Screen {
 
     /////////////////////////////////////
     private float timeInScreen;
+    private float final_time;
     Texture f;
     Texture f_bw;
     Texture tb;
@@ -49,6 +50,7 @@ public class PauseScreen implements Screen {
         f_bw = mainGame.getAMG().get("pause_screen/bg_bw.png", Texture.class);
         tb = mainGame.getAMG().get("treck_bar.png", Texture.class);
         timeInScreen = 15;
+        final_time = 15;
 
         audioEngine.playMusicPaseMenu();
 //
@@ -64,6 +66,7 @@ public class PauseScreen implements Screen {
         audioEngine = mainGame.audioEngine;
         this.batch = new SpriteBatch();
         this.mainGame = mainGame;
+        final_time = timeInScreen;
 
         viewport = new StretchViewport(MainGame.WIDTH_SCREEN, MainGame.HEIGHT_SCREEN, camera);
         //viewport.apply();
@@ -113,14 +116,9 @@ public class PauseScreen implements Screen {
         batch.draw(f_bw, viewport.getScreenX(), viewport.getScreenY(), Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         batch.setColor(1, 1, 1, 1);
         batch.draw(tb, viewport.getScreenX(), viewport.getScreenY(), Gdx.graphics.getWidth() * getWith(), Gdx.graphics.getHeight() / 25);
-
         batch.end();
-
-
        // System.out.println(timeInScreen);
         //if(timeInScreen < 0) mainGame.goGameForPause();
-
-
     }
 
     private void update() {
@@ -131,8 +129,8 @@ public class PauseScreen implements Screen {
 
     private float getAlpha() {
         float result = 1;
-        if (timeInScreen > 13) {
-            result = Interpolation.exp10Out.apply(14 - timeInScreen);
+        if (timeInScreen > final_time - 2) {
+            result = Interpolation.exp10Out.apply(final_time - 1 - timeInScreen);
         } else if (timeInScreen < 1.3f) {
             result = Interpolation.exp10Out.apply(timeInScreen - 1);
             audioEngine.stopMusicPaseMenu();
@@ -143,8 +141,8 @@ public class PauseScreen implements Screen {
     }
 
     private float getWith() {
-        float result = 15 - timeInScreen;
-        result = result / 15f;
+        float result = final_time - timeInScreen;
+        result = result / final_time;
         return Interpolation.fade.apply(result);
 
     }

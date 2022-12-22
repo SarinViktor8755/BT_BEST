@@ -110,6 +110,10 @@ public class MainGame extends Game {
     }
 
     public void startPauseScreen() {
+        startPauseScreen(15);
+    }
+
+    public void startPauseScreen(float time) {
         if (MainGame.flagChangeScreen != MainGame.STATUS_GAME_PAUSE) return;
         // assetsManagerGame.loadAllAsseGame();
         MainGame.flagChangeScreen = 0;
@@ -117,7 +121,7 @@ public class MainGame extends Game {
         //  assetsManagerGame.loadAllAsseGame();
         // this.setScreen(null);
         // assetsManagerGame.loadAllAsseGame();
-        this.pauseScreen = new PauseScreen(this);
+        this.pauseScreen = new PauseScreen(this, time);
         this.setScreen(pauseScreen);
         MainGame.status = STATUS_GAME_PAUSE;
     }
