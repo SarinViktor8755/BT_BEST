@@ -199,6 +199,7 @@ public class GameServer {
         //
 
         mainGame.setMapSpace(new IndexMap(MapsList.getMapForServer())); // создаем новую карту
+        send_MAP_PARAMETOR();
 
     }
 
